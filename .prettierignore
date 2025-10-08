@@ -1,0 +1,9 @@
+node_modules/
+mc-out/
+tests/output/
+tests/output-rewrite/
+coverage/
+**/.next/
+**/dist/
+**/build/
+**/.turbo/

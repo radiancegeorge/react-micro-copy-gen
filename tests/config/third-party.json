@@ -1,0 +1,5 @@
+{
+  "Empty": ["title", "description"],
+  "Tooltip": ["title"],
+  "VisuallyHidden": ["children"]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "auto-micro-copy-gen",
+  "version": "0.1.0",
+  "description": "Scan React/JSX/TSX code for UI text, normalize placeholders, and generate a deduped messages store and report.",
+  "bin": {
+    "mc-scan": "./bin/mc-scan.js"
+  },
+  "scripts": {
+    "scan": "node ./bin/mc-scan.js",
+    "scan:strict": "node ./bin/mc-scan.js --mode strict",
+    "fixtures:prepare": "node ./tests/scripts/prepare.js",
+    "fixtures:scan": "node ./tests/scripts/scan.js",
+    "fixtures:all": "npm run fixtures:prepare && npm run fixtures:scan",
+    "rewrite": "node ./bin/mc-rewrite.js",
+    "fixtures:rewrite": "node ./tests/scripts/rewrite.js",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "i18n",
+    "localization",
+    "jsx",
+    "react",
+    "scanner",
+    "microcopy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.24.0",
+    "@babel/traverse": "^7.24.0",
+    "@babel/generator": "^7.24.0",
+    "commander": "^11.1.0",
+    "fast-glob": "^3.3.2",
+    "prettier": "^3.3.3"
+  }
+}

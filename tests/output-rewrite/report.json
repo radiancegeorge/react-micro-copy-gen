@@ -1,0 +1,82 @@
+{
+  "filesScanned": 13,
+  "messagesCount": 32,
+  "occurrencesCount": 40,
+  "collisions": [
+    {
+      "text": "Hi {firstName}",
+      "placeholderSets": [
+        [],
+        [
+          "firstName"
+        ]
+      ],
+      "exampleFiles": [
+        {
+          "file": "basic-jsx/App.jsx",
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 18
+            },
+            "end": {
+              "line": 13,
+              "column": 34
+            }
+          }
+        },
+        {
+          "file": "findtext/Calls.jsx",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 11
+            },
+            "end": {
+              "line": 5,
+              "column": 33
+            }
+          }
+        },
+        {
+          "file": "tsx/App.tsx",
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 22
+            },
+            "end": {
+              "line": 13,
+              "column": 38
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "missingInStore": [
+    {
+      "file": "findtext/Calls.jsx",
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 11
+        },
+        "end": {
+          "line": 6,
+          "column": 28
+        }
+      },
+      "text": "EXPR(findText-arg1)"
+    }
+  ],
+  "unusedInCode": [],
+  "errors": [
+    {
+      "file": "complex-functions/Funcs.jsx",
+      "error": "You must pass a scope and parentPath unless traversing a Program/File. Instead of that you tried to traverse a FunctionDeclaration node without passing scope and parentPath."
+    }
+  ],
+  "mode": "loose",
+  "htmlCollapseCandidatesCount": 0
+}
