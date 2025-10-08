@@ -1,0 +1,42 @@
+[
+  {
+    "file": "Calls.jsx",
+    "loc": {
+      "start": {
+        "line": 4,
+        "column": 11
+      },
+      "end": {
+        "line": 4,
+        "column": 18
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Plain",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Calls.jsx",
+    "loc": {
+      "start": {
+        "line": 5,
+        "column": 11
+      },
+      "end": {
+        "line": 5,
+        "column": 33
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hi {firstName}",
+    "placeholders": [
+      "firstName"
+    ],
+    "sourceExprs": {
+      "firstName": "user.firstName"
+    }
+  }
+]

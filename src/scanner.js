@@ -648,6 +648,9 @@ async function runScan(config) {
     occurrences: m.occurrences,
   }));
 
+  // Build word store (sorted unique sentences)
+  const wordStore = messages.map((m) => m.text).sort((a, b) => a.localeCompare(b));
+
   // Collisions: same text with different placeholder sets
   const collisions = [];
   for (const m of state.messagesMap.values()) {
@@ -679,6 +682,7 @@ async function runScan(config) {
     errors: state.errors || [],
     mode: config.mode,
     htmlCollapseCandidatesCount: (state.htmlCollapseCandidates || []).length,
+    wordStoreCount: wordStore.length,
   };
 
   if (!config.reportOnly) {
@@ -686,10 +690,12 @@ async function runScan(config) {
     const msgPath = path.join(config.outDir, 'messages.json');
     const repPath = path.join(config.outDir, 'report.json');
     const htmlPath = path.join(config.outDir, 'html-collapse.json');
+    const wordStorePath = path.join(config.outDir, 'wordStore.json');
 
     fs.writeFileSync(occPath, JSON.stringify(state.occurrences, null, 2));
     fs.writeFileSync(msgPath, JSON.stringify(messages, null, 2));
     fs.writeFileSync(repPath, JSON.stringify(report, null, 2));
+    fs.writeFileSync(wordStorePath, JSON.stringify(wordStore, null, 2));
     if (config.htmlCollapse && config.htmlCollapse.detect) {
       fs.writeFileSync(htmlPath, JSON.stringify(state.htmlCollapseCandidates, null, 2));
     }

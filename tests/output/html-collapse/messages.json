@@ -1,0 +1,24 @@
+[
+  {
+    "text": "Obi is a boy",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Collapse.jsx",
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 8
+          },
+          "end": {
+            "line": 7,
+            "column": 6
+          }
+        },
+        "context": "JSXText",
+        "element": "h1",
+        "attribute": null
+      }
+    ]
+  }
+]

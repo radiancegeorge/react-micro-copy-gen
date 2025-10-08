@@ -1,0 +1,20 @@
+[
+  {
+    "file": "Acc.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 22
+      },
+      "end": {
+        "line": 8,
+        "column": 40
+      }
+    },
+    "context": "JSXText",
+    "element": "VisuallyHidden",
+    "text": "Screen reader only",
+    "placeholders": [],
+    "sourceExprs": {}
+  }
+]

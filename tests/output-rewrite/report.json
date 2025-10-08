@@ -78,5 +78,6 @@
     }
   ],
   "mode": "loose",
-  "htmlCollapseCandidatesCount": 0
+  "htmlCollapseCandidatesCount": 0,
+  "wordStoreCount": 32
 }

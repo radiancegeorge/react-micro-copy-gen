@@ -1,5 +1,41 @@
 [
   {
+    "file": "accessibility/Acc.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 16
+      },
+      "end": {
+        "line": 10,
+        "column": 28
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "{children}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "accessibility/Acc.jsx",
+    "loc": {
+      "start": {
+        "line": 19,
+        "column": 32
+      },
+      "end": {
+        "line": 19,
+        "column": 52
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Screen reader only",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
     "file": "array-map/List.jsx",
     "loc": {
       "start": {
@@ -14,240 +50,6 @@
     "context": "findText",
     "element": null,
     "text": "Hello {name}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "attributes/Attrs.jsx",
-    "loc": {
-      "start": {
-        "line": 8,
-        "column": 25
-      },
-      "end": {
-        "line": 8,
-        "column": 41
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Picture of cat",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "attributes/Attrs.jsx",
-    "loc": {
-      "start": {
-        "line": 8,
-        "column": 60
-      },
-      "end": {
-        "line": 8,
-        "column": 70
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Cute cat",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "attributes/Attrs.jsx",
-    "loc": {
-      "start": {
-        "line": 10,
-        "column": 30
-      },
-      "end": {
-        "line": 10,
-        "column": 49
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Enter {firstName}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "attributes/Attrs.jsx",
-    "loc": {
-      "start": {
-        "line": 13,
-        "column": 29
-      },
-      "end": {
-        "line": 13,
-        "column": 41
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Name input",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "attributes/Attrs.jsx",
-    "loc": {
-      "start": {
-        "line": 16,
-        "column": 24
-      },
-      "end": {
-        "line": 16,
-        "column": 32
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Submit",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "attributes/Attrs.jsx",
-    "loc": {
-      "start": {
-        "line": 17,
-        "column": 26
-      },
-      "end": {
-        "line": 17,
-        "column": 43
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Click to submit",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "attributes/Attrs.jsx",
-    "loc": {
-      "start": {
-        "line": 18,
-        "column": 24
-      },
-      "end": {
-        "line": 18,
-        "column": 46
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Something went wrong",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "attributes/Attrs.jsx",
-    "loc": {
-      "start": {
-        "line": 20,
-        "column": 38
-      },
-      "end": {
-        "line": 20,
-        "column": 60
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Describes the region",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "attributes/Attrs.jsx",
-    "loc": {
-      "start": {
-        "line": 21,
-        "column": 18
-      },
-      "end": {
-        "line": 21,
-        "column": 26
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Region",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "basic-jsx/App.jsx",
-    "loc": {
-      "start": {
-        "line": 5,
-        "column": 19
-      },
-      "end": {
-        "line": 5,
-        "column": 32
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hello world",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "basic-jsx/App.jsx",
-    "loc": {
-      "start": {
-        "line": 7,
-        "column": 18
-      },
-      "end": {
-        "line": 7,
-        "column": 32
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hello {name}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "basic-jsx/App.jsx",
-    "loc": {
-      "start": {
-        "line": 11,
-        "column": 19
-      },
-      "end": {
-        "line": 11,
-        "column": 33
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hello {name}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "basic-jsx/App.jsx",
-    "loc": {
-      "start": {
-        "line": 13,
-        "column": 18
-      },
-      "end": {
-        "line": 13,
-        "column": 34
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hi {firstName}",
     "placeholders": [],
     "sourceExprs": {}
   },
@@ -338,6 +140,78 @@
     "context": "findText",
     "element": null,
     "text": "b",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "basic-jsx/App.jsx",
+    "loc": {
+      "start": {
+        "line": 5,
+        "column": 19
+      },
+      "end": {
+        "line": 5,
+        "column": 32
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello world",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "basic-jsx/App.jsx",
+    "loc": {
+      "start": {
+        "line": 7,
+        "column": 18
+      },
+      "end": {
+        "line": 7,
+        "column": 32
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello {name}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "basic-jsx/App.jsx",
+    "loc": {
+      "start": {
+        "line": 11,
+        "column": 19
+      },
+      "end": {
+        "line": 11,
+        "column": 33
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello {name}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "basic-jsx/App.jsx",
+    "loc": {
+      "start": {
+        "line": 13,
+        "column": 18
+      },
+      "end": {
+        "line": 13,
+        "column": 34
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hi {firstName}",
     "placeholders": [],
     "sourceExprs": {}
   },
@@ -508,42 +382,6 @@
     }
   },
   {
-    "file": "accessibility/Acc.jsx",
-    "loc": {
-      "start": {
-        "line": 10,
-        "column": 16
-      },
-      "end": {
-        "line": 10,
-        "column": 28
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "{children}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "accessibility/Acc.jsx",
-    "loc": {
-      "start": {
-        "line": 19,
-        "column": 32
-      },
-      "end": {
-        "line": 19,
-        "column": 52
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Screen reader only",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
     "file": "html-collapse/Collapse.jsx",
     "loc": {
       "start": {
@@ -565,17 +403,179 @@
     "file": "html-collapse/Collapse.jsx",
     "loc": {
       "start": {
-        "line": 7,
+        "line": 11,
         "column": 18
       },
       "end": {
-        "line": 7,
+        "line": 11,
         "column": 28
       }
     },
     "context": "findText",
     "element": null,
     "text": "{gender}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "attributes/Attrs.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 25
+      },
+      "end": {
+        "line": 8,
+        "column": 41
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Picture of cat",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "attributes/Attrs.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 60
+      },
+      "end": {
+        "line": 8,
+        "column": 70
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Cute cat",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "attributes/Attrs.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 30
+      },
+      "end": {
+        "line": 10,
+        "column": 49
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Enter {firstName}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "attributes/Attrs.jsx",
+    "loc": {
+      "start": {
+        "line": 13,
+        "column": 29
+      },
+      "end": {
+        "line": 13,
+        "column": 41
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Name input",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "attributes/Attrs.jsx",
+    "loc": {
+      "start": {
+        "line": 16,
+        "column": 24
+      },
+      "end": {
+        "line": 16,
+        "column": 32
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Submit",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "attributes/Attrs.jsx",
+    "loc": {
+      "start": {
+        "line": 17,
+        "column": 26
+      },
+      "end": {
+        "line": 17,
+        "column": 43
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Click to submit",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "attributes/Attrs.jsx",
+    "loc": {
+      "start": {
+        "line": 18,
+        "column": 24
+      },
+      "end": {
+        "line": 18,
+        "column": 46
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Something went wrong",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "attributes/Attrs.jsx",
+    "loc": {
+      "start": {
+        "line": 20,
+        "column": 38
+      },
+      "end": {
+        "line": 20,
+        "column": 60
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Describes the region",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "attributes/Attrs.jsx",
+    "loc": {
+      "start": {
+        "line": 21,
+        "column": 18
+      },
+      "end": {
+        "line": 21,
+        "column": 26
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Region",
     "placeholders": [],
     "sourceExprs": {}
   },

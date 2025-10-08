@@ -1,0 +1,17 @@
+{
+  "filesScanned": 1,
+  "messagesCount": 2,
+  "occurrencesCount": 2,
+  "collisions": [],
+  "missingInStore": [],
+  "unusedInCode": [],
+  "errors": [
+    {
+      "file": "Expr.jsx",
+      "error": "You must pass a scope and parentPath unless traversing a Program/File. Instead of that you tried to traverse a FunctionDeclaration node without passing scope and parentPath."
+    }
+  ],
+  "mode": "loose",
+  "htmlCollapseCandidatesCount": 0,
+  "wordStoreCount": 2
+}

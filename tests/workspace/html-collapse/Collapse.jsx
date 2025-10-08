@@ -3,7 +3,11 @@ export default function Collapse({ child }) {
   return (
     <h1>
       {findText('Obi is a boy')}
-      <span>
+      <span
+        style={{
+          color: 'green',
+        }}
+      >
         {findText('{gender}', {
           gender: child?.gender,
         })}

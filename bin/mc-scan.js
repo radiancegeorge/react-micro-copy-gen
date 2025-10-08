@@ -67,6 +67,10 @@ async function main() {
     if (result.report && typeof result.report.htmlCollapseCandidatesCount === 'number') {
       process.stdout.write(`HTML collapse candidates: ${result.report.htmlCollapseCandidatesCount}\n`);
     }
+    if (result.report && typeof result.report.wordStoreCount === 'number') {
+      process.stdout.write(`Word store size: ${result.report.wordStoreCount}\n`);
+      process.stdout.write(`Word store path: ${path.join(config.outDir, 'wordStore.json')}\n`);
+    }
     process.stdout.write(`Report written to: ${path.join(config.outDir, 'report.json')}\n`);
   }
 }
