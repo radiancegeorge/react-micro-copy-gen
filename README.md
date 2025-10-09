@@ -29,6 +29,13 @@ Or config:
 }
 ```
 
+Resolution order for settings:
+
+1. CLI flags
+2. File config (`.mc.config.json` or `mc.config.json` at project root)
+3. Previous scan metadata (`<root>/mc.json`)
+4. Built-in defaults
+
 Outputs are written to `html-collapse.json` with entries:
 
 ```json
@@ -61,11 +68,24 @@ Security and correctness notes:
 - React diffing: collapsed HTML is opaque to reconciliation; use only when acceptable.
 - `{br}` is not special; if you want a break token, author `{br}` and pass `kwargs.br` as `"<br/>"` or `"\n"`. Inline `<br/>` is kept as literal in the template.
 
-## Install
+## Install and local linking
 
 ```bash
+# in this repo
 npm install
-chmod +x bin/mc-scan.js
+npm link
+
+# optional: in a target project to add as a dependency (symlink)
+cd /path/to/your/project
+npm link auto-micro-copy-gen
+```
+
+Verify the CLIs are on PATH:
+
+```bash
+which mc-scan && which mc-rewrite
+mc-scan --help
+mc-rewrite --help
 ```
 
 ## Usage
@@ -111,6 +131,63 @@ Outputs are written to `mc-out/` by default:
 - `messages.json`: deduped messages `{ text, placeholders, occurrences[] }`.
 - `occurrences.json`: raw sightings with file, loc, element/attribute, and source expressions.
 - `report.json`: summary with `collisions`, `missingInStore`, `unusedInCode`, and `errors`.
+
+Additionally, when not in `--report-only` mode, a root-level metadata file is written:
+
+- `<root>/mc.json`: records the last scan's `outDir`, `wordStorePath`, `reportPath`, `include`, `exclude`, and `mode`.
+
+### Rewrite CLI
+
+Rewrite JSX to route UI text through `findText(...)`, adding imports and top-level hook initialization where needed and safe.
+
+Basic usage (auto-discovers prior scan output or generates it if missing):
+
+```bash
+mc-rewrite --root /path/to/project
+```
+
+Dry-run (no file writes):
+
+```bash
+mc-rewrite --root /path/to/project --dry
+```
+
+Custom hook and store identifiers (optional):
+
+```bash
+mc-rewrite \
+  --root /path/to/project \
+  --translation-hook-source l-min-components/src/components \
+  --translation-hook-name useTranslation \
+  --word-store-import-source ./i18n/mc/wordStore.json \
+  --word-store-identifier wordStore
+```
+
+Notes:
+
+- If you previously ran `mc-scan` with a custom `--out-dir`, rewrite reads `<root>/mc.json` to locate `wordStore.json` automatically.
+- If no prior scan is detected and no explicit `--word-store-import-source` is provided, rewrite runs a quick scan to generate `<root>/mc-out/wordStore.json` and then proceeds.
+- Hook placement follows React rules: initialization is hoisted to component/hook hosts (top level), not inside loops or nested functions.
+
+### Linking and unlinking
+
+- Global link (done once in this repo):
+  - `npm link`
+- Link into a target project (optional, if you want it as a dependency):
+  - `npm link auto-micro-copy-gen`
+- Unlink from a target project:
+  - `npm unlink auto-micro-copy-gen`
+- Remove the global link:
+  - `npm unlink -g auto-micro-copy-gen`
+
+You can also install from a local path or tarball instead of linking:
+
+```bash
+npm i /absolute/path/to/auto-micro-copy-gen
+# or
+npm pack   # produces auto-micro-copy-gen-<version>.tgz
+npm i ./auto-micro-copy-gen-<version>.tgz
+```
 
 ## Configuration
 
@@ -171,7 +248,7 @@ Example config:
 
 ## Roadmap
 
-- Codemod replacement (Loose/Strict) with idempotence.
-- Local function analysis with simple branching and param-based inlining.
+- HTML collapsing codemod (opt-in) with trust controls.
+- Local function analysis: deeper branches and inter-file basics.
 - File hash cache to skip unchanged files.
 - CI guardrail with baseline store diff.
