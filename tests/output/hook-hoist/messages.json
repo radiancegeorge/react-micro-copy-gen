@@ -1,0 +1,70 @@
+[
+  {
+    "text": "Option {arg1}",
+    "placeholders": [
+      "arg1"
+    ],
+    "occurrences": [
+      {
+        "file": "CheckoutTextList.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 13
+          },
+          "end": {
+            "line": 9,
+            "column": 34
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Abhore",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "CheckoutTextList.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 24
+          },
+          "end": {
+            "line": 11,
+            "column": 32
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "input",
+        "attribute": "placeholder"
+      }
+    ]
+  },
+  {
+    "text": "/80",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "CheckoutTextList.jsx",
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 28
+          },
+          "end": {
+            "line": 21,
+            "column": 31
+          }
+        },
+        "context": "JSXText",
+        "element": "span",
+        "attribute": null
+      }
+    ]
+  }
+]

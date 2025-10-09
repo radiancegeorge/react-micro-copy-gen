@@ -1,24 +1,12 @@
 import React from 'react';
-import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite/wordStore.json';
+
 export default function Skip({ name }) {
-  const { findText } = useTranslation(wordStore);
-  const background = 'blue'; // Non-UI string
+  const background = "blue"; // Non-UI string
   return (
     <div>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: '<b>Bold</b>',
-        }}
-      />
-      <p
-        dangerouslySetInnerHTML={{
-          __html: findText('Welcome {name}', {
-            name: `<strong>${name}</strong>`,
-          }),
-        }}
-      ></p>
-      <p>{findText('Hello world')}</p>
+      <div dangerouslySetInnerHTML={{ __html: "<b>Bold</b>" }} />
+      <p>Welcome <strong>{name}</strong></p>
+      <p>Hello{' '}world</p>
     </div>
   );
 }

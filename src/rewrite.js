@@ -27,6 +27,19 @@ function calleeMatchesIdentifier(path, names) {
   return false;
 }
 
+function isChildrenReference(expr) {
+  if (t.isIdentifier(expr, { name: 'children' })) return true;
+  if (t.isMemberExpression(expr) && !expr.computed) {
+    // any .children access
+    let cur = expr;
+    while (t.isMemberExpression(cur) && !cur.computed) {
+      if (t.isIdentifier(cur.property, { name: 'children' })) return true;
+      cur = cur.object;
+    }
+  }
+  return false;
+}
+
 function isHookHostFunction(path) {
   if (!path || !path.isFunction()) return false;
 
@@ -847,36 +860,40 @@ function wrapJsxTextNode(value) {
 
 function toFindTextExpr(expr, pathCtx, source, mode) {
   if (isFindTextCall(expr)) return expr; // idempotent
-  if (mode === 'strict') {
-    const strict = tryStrictNormalize(expr, pathCtx, source);
-    if (strict && strict.text != null) {
-      return makeFindTextCallFromTemplateString(strict.text, strict.entries);
-    }
+  // Conservative: only wrap if we can strictly normalize to text
+  const strict = tryStrictNormalize(expr, pathCtx, source);
+  if (strict && strict.text != null) {
+    return makeFindTextCallFromTemplateString(strict.text, strict.entries);
   }
-  // Loose fallback
-  return t.callExpression(t.identifier('findText'), [expr]);
+  return null;
 }
 
 function wrapJsxExpression(expr, pathCtx, source, mode) {
   if (t.isJSXEmptyExpression(expr)) return null;
-  // Handle conditionals and logicals by wrapping branches
+  if (isChildrenReference(expr)) return null; // never wrap React children
+  // Handle conditionals and logicals conservatively
   if (t.isConditionalExpression(expr)) {
     const cons = toFindTextExpr(expr.consequent, pathCtx, source, mode);
     const alt = toFindTextExpr(expr.alternate, pathCtx, source, mode);
-    return t.jsxExpressionContainer(t.conditionalExpression(expr.test, cons, alt));
+    if (cons && alt) return t.jsxExpressionContainer(t.conditionalExpression(expr.test, cons, alt));
+    return t.jsxExpressionContainer(expr);
   }
   if (t.isLogicalExpression(expr)) {
     if (expr.operator === '&&') {
-      // Keep the test (left) intact; wrap the right string branch
       const right = toFindTextExpr(expr.right, pathCtx, source, mode);
-      return t.jsxExpressionContainer(t.logicalExpression('&&', expr.left, right));
+      if (right) return t.jsxExpressionContainer(t.logicalExpression('&&', expr.left, right));
+      return t.jsxExpressionContainer(expr);
     }
-    // For '||', wrap both sides
-    const leftW = toFindTextExpr(expr.left, pathCtx, source, mode);
-    const rightW = toFindTextExpr(expr.right, pathCtx, source, mode);
-    return t.jsxExpressionContainer(t.logicalExpression(expr.operator, leftW, rightW));
+    if (expr.operator === '||') {
+      const leftW = toFindTextExpr(expr.left, pathCtx, source, mode);
+      const rightW = toFindTextExpr(expr.right, pathCtx, source, mode);
+      if (leftW && rightW) return t.jsxExpressionContainer(t.logicalExpression('||', leftW, rightW));
+      return t.jsxExpressionContainer(expr);
+    }
+    return t.jsxExpressionContainer(expr);
   }
-  return t.jsxExpressionContainer(toFindTextExpr(expr, pathCtx, source, mode));
+  const call = toFindTextExpr(expr, pathCtx, source, mode);
+  return call ? t.jsxExpressionContainer(call) : null;
 }
 
 async function rewriteFile(absPath, code, config) {
@@ -910,17 +927,26 @@ async function rewriteFile(absPath, code, config) {
         } else if (t.isJSXExpressionContainer(attr.value)) {
           const inner = attr.value.expression;
           if (t.isJSXEmptyExpression(inner)) continue;
-          if (isFindTextCall(inner)) continue;
+          // If it's an existing findText call with a non-text argument (or children), unwrap to the raw argument
+          if (isFindTextCall(inner)) {
+            const arg = inner.arguments && inner.arguments[0];
+            const strict = arg ? tryStrictNormalize(arg, path, code) : null;
+            if (arg && (isChildrenReference(arg) || !strict)) {
+              attr.value = t.jsxExpressionContainer(arg);
+              changed = true; nodesRewritten++;
+              continue;
+            }
+            // else leave as-authored
+            continue;
+          }
           // Try strict, else loose
-          const strict = config.mode === 'strict' ? tryStrictNormalize(inner, path, code) : null;
+          const strict = tryStrictNormalize(inner, path, code);
           if (strict && strict.text) {
             const call = makeFindTextCallFromTemplateString(strict.text, strict.entries);
             attr.value = t.jsxExpressionContainer(call);
             changed = true; nodesRewritten++;
           } else {
-            const call = t.callExpression(t.identifier('findText'), [inner]);
-            attr.value = t.jsxExpressionContainer(call);
-            changed = true; nodesRewritten++;
+            // Not text-like; keep original expression
           }
         }
       }
@@ -1199,11 +1225,10 @@ async function rewriteFile(absPath, code, config) {
             if (isFindTextCall(e)) return false;
             if (t.isConditionalExpression(e) || t.isLogicalExpression(e)) return false; // handle separately
             if (exprContainsJSX(e) || isMapCall(e)) return false;
-            // allow if strictly normalizable or simple identifier/member
+            if (isChildrenReference(e)) return false;
+            // Only if we can strictly normalize to text
             const strict = tryStrictNormalize(e, path, code);
-            if (strict) return true;
-            if (t.isIdentifier(e) || t.isMemberExpression(e) || t.isOptionalMemberExpression(e)) return true;
-            return false;
+            return !!strict;
           }
           return false;
         })
@@ -1293,6 +1318,16 @@ async function rewriteFile(absPath, code, config) {
           }
           // Skip wrapping if the expression yields JSX or a map over items (node-like)
           const e = ch.expression;
+          // Unwrap invalid existing findText calls on non-text expressions (e.g., children, numbers)
+          if (isFindTextCall(e)) {
+            const arg = e.arguments && e.arguments[0];
+            const strict = arg ? tryStrictNormalize(arg, path, code) : null;
+            if (arg && (isChildrenReference(arg) || !strict)) {
+              newChildren.push(t.jsxExpressionContainer(arg));
+              changed = true; nodesRewritten++;
+              continue;
+            }
+          }
           const wrapped = (function() {
             if (isMapCall(e)) return null;
             if (exprContainsJSX(e)) return null;

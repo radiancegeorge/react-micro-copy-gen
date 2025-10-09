@@ -1,0 +1,46 @@
+[
+  {
+    "file": "Skip.jsx",
+    "element": "p",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 6
+      },
+      "end": {
+        "line": 8,
+        "column": 44
+      }
+    },
+    "template": "Welcome {name}",
+    "placeholders": [
+      "name"
+    ],
+    "kwargs": {
+      "name": "<strong>${name}</strong>"
+    },
+    "warnings": [
+      "Untrusted HTML content expression in <strong>: name"
+    ],
+    "inlineWhitelist": [
+      "span",
+      "strong",
+      "em",
+      "b",
+      "i",
+      "u",
+      "small",
+      "sup",
+      "sub",
+      "code",
+      "kbd",
+      "samp",
+      "mark",
+      "abbr",
+      "time",
+      "br",
+      "wbr",
+      "a"
+    ]
+  }
+]

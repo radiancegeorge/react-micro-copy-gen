@@ -1,9 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite/wordStore.json';
+
 export default function Calls({ user }) {
-  const { findText } = useTranslation(wordStore);
-  findText('Plain');
+  findText("Plain");
   findText(`Hi ${user.firstName}`);
   findText(messageFromServer);
   return null;

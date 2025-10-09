@@ -1,42 +1,20 @@
 import React from 'react';
-import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite/wordStore.json';
-function greet(n) {
-  return `Hi ${n}`;
-}
-function formatName(n) {
-  return n;
-}
+
+function greet(n) { return `Hi ${n}`; }
+function formatName(n) { return n; }
+
 export default function Expr({ name, user }) {
-  const { findText } = useTranslation(wordStore);
-  const msg = 'Hi ' + name;
-  const copy = {
-    empty: {
-      title: 'No items yet',
-    },
-  };
+  const msg = "Hi " + name;
+  const copy = { empty: { title: "No items yet" } };
   const welcome = `Welcome ${formatName(user.firstName)}`;
   return (
     <div>
-      <p>
-        {findText('Hi {name}', {
-          name: name,
-        })}
-      </p>
-      <Empty title={findText('No items yet')} />
-      <p>
-        {findText('Hi {n}', {
-          n: user.firstName,
-        })}
-      </p>
-      <p>
-        {findText('Welcome {firstName}', {
-          firstName: formatName(user.firstName),
-        })}
-      </p>
+      <p>{msg}</p>
+      <Empty title={copy.empty.title} />
+      <p>{greet(user.firstName)}</p>
+      <p>{welcome}</p>
     </div>
   );
 }
-function Empty(props) {
-  return <div {...props} />;
-}
+
+function Empty(props) { return <div {...props} />; }

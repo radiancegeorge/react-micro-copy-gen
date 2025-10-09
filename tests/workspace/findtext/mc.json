@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "lastScan": {
+    "root": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/workspace/findtext",
+    "outDir": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/findtext",
+    "reportPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/findtext/report.json",
+    "messagesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/findtext/messages.json",
+    "occurrencesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/findtext/occurrences.json",
+    "wordStorePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/findtext/wordStore.json",
+    "htmlCollapsePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/findtext/html-collapse.json",
+    "include": [
+      "**/*.{js,jsx,ts,tsx}"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/coverage/**",
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.stories.*",
+      "**/__tests__/**",
+      "**/__mocks__/**",
+      "**/storybook/**"
+    ],
+    "mode": "loose",
+    "scannedAt": "2025-10-09T06:05:45.483Z"
+  }
+}

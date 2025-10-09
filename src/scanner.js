@@ -14,6 +14,19 @@ const {
 } = require('./normalize');
 const { getPlaceholderName } = require('./normalize');
 
+function isChildrenReference(expr) {
+  if (!expr) return false;
+  if (t.isIdentifier(expr, { name: 'children' })) return true;
+  if (t.isMemberExpression(expr) && !expr.computed) {
+    let cur = expr;
+    while (t.isMemberExpression(cur) && !cur.computed) {
+      if (t.isIdentifier(cur.property, { name: 'children' })) return true;
+      cur = cur.object;
+    }
+  }
+  return false;
+}
+
 function parseFile(code, filename) {
   return parser.parse(code, {
     sourceType: 'module',
@@ -103,6 +116,9 @@ function addOccurrence(state, occ) {
 function collectStringFromExpression(expr, pathCtx, source) {
   // Returns array of { text, placeholders, sourceExprs }
   const out = [];
+
+  // Never treat React children references as text
+  if (isChildrenReference(expr)) return out;
 
   function add(res) {
     if (!res) return;
@@ -325,6 +341,7 @@ function scanFile(absPath, relPath, code, config, state) {
           }
         } else if (t.isJSXExpressionContainer(val)) {
           const expr = val.expression;
+          if (isChildrenReference(expr)) continue; // skip React children
           const results = collectStringFromExpression(expr, path, code);
           for (const res of results) {
             if (!res.text || res.text.trim() === '') continue;
@@ -360,6 +377,7 @@ function scanFile(absPath, relPath, code, config, state) {
           }
         } else if (t.isJSXExpressionContainer(child)) {
           const expr = child.expression;
+          if (isChildrenReference(expr)) return; // skip React children
           const results = collectStringFromExpression(expr, path, code);
           for (const res of results) {
             if (!res.text || res.text.trim() === '') continue;

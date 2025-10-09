@@ -1,0 +1,202 @@
+[
+  {
+    "text": "Picture of cat",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 15
+          },
+          "end": {
+            "line": 10,
+            "column": 31
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "img",
+        "attribute": "alt"
+      }
+    ]
+  },
+  {
+    "text": "Cute cat",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 38
+          },
+          "end": {
+            "line": 10,
+            "column": 50
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "img",
+        "attribute": "title"
+      }
+    ]
+  },
+  {
+    "text": "Enter {firstName}",
+    "placeholders": [
+      "firstName"
+    ],
+    "occurrences": [
+      {
+        "file": "Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 25
+          },
+          "end": {
+            "line": 11,
+            "column": 52
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "input",
+        "attribute": "placeholder"
+      }
+    ]
+  },
+  {
+    "text": "Name input",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 64
+          },
+          "end": {
+            "line": 11,
+            "column": 76
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "input",
+        "attribute": "aria-label"
+      }
+    ]
+  },
+  {
+    "text": "Submit",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 20
+          },
+          "end": {
+            "line": 12,
+            "column": 28
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Button",
+        "attribute": "title"
+      }
+    ]
+  },
+  {
+    "text": "Click to submit",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 37
+          },
+          "end": {
+            "line": 12,
+            "column": 54
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Button",
+        "attribute": "tooltip"
+      }
+    ]
+  },
+  {
+    "text": "Something went wrong",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 61
+          },
+          "end": {
+            "line": 12,
+            "column": 85
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Button",
+        "attribute": "error"
+      }
+    ]
+  },
+  {
+    "text": "Describes the region",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 28
+          },
+          "end": {
+            "line": 13,
+            "column": 50
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "div",
+        "attribute": "aria-description"
+      }
+    ]
+  },
+  {
+    "text": "Region",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 51
+          },
+          "end": {
+            "line": 13,
+            "column": 57
+          }
+        },
+        "context": "JSXText",
+        "element": "div",
+        "attribute": null
+      }
+    ]
+  }
+]

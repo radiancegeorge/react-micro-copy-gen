@@ -1,0 +1,24 @@
+[
+  {
+    "text": "Welcome {name}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Component.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 24
+          },
+          "end": {
+            "line": 9,
+            "column": 40
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  }
+]

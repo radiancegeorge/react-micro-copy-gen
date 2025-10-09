@@ -1,14 +1,10 @@
 import React from 'react';
-import { useTranslation } from 'l-min-components/src/components';
+import { useTranslation } from 'legacy-lib';
 import legacyStore from '../legacyStore';
-import wordStore from '../../output-rewrite/wordStore.json';
+
 export default function Component({ user, otherStore }) {
-  const { translate, findText } = useTranslation(wordStore);
-  return (
-    <div>
-      {findText('Welcome {name}', {
-        name: user.name,
-      })}
-    </div>
-  );
+  const { translate } = useTranslation(legacyStore);
+  const result = useTranslation(otherStore);
+  const { findText } = result;
+  return <div>{findText('Welcome {name}', { name: user.name })}</div>;
 }

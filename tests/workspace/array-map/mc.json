@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "lastScan": {
+    "root": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/workspace/array-map",
+    "outDir": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/array-map",
+    "reportPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/array-map/report.json",
+    "messagesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/array-map/messages.json",
+    "occurrencesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/array-map/occurrences.json",
+    "wordStorePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/array-map/wordStore.json",
+    "htmlCollapsePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output/array-map/html-collapse.json",
+    "include": [
+      "**/*.{js,jsx,ts,tsx}"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/coverage/**",
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.stories.*",
+      "**/__tests__/**",
+      "**/__mocks__/**",
+      "**/storybook/**"
+    ],
+    "mode": "loose",
+    "scannedAt": "2025-10-09T06:05:45.435Z"
+  }
+}
