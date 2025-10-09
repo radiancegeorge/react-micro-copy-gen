@@ -136,6 +136,60 @@ Additionally, when not in `--report-only` mode, a root-level metadata file is wr
 
 - `<root>/mc.json`: records the last scan's `outDir`, `wordStorePath`, `reportPath`, `include`, `exclude`, and `mode`.
 
+### Extras via mc.json
+
+You can extend defaults without CLI flags by editing `<root>/mc.json`.
+
+Supported keys:
+
+- `settings.allowAttrsExtra`: array of extra attribute names to treat as text-bearing globally.
+- `settings.thirdPartyExtra`: object mapping `ComponentName` to an array of prop names to treat as text-bearing for that component.
+
+Example (handle `inputPlaceHolder` globally and specifically for `CustomDropDown`):
+
+```json
+{
+  "version": 1,
+  "settings": {
+    "allowAttrsExtra": ["inputPlaceHolder"],
+    "thirdPartyExtra": {
+      "CustomDropDown": ["inputPlaceHolder"]
+    }
+  }
+}
+```
+
+Precedence and merge order:
+
+1. CLI flags
+2. File config (`.mc.config.json` or `mc.config.json`)
+3. mc.json extras (`settings.allowAttrsExtra`, `settings.thirdPartyExtra`) are merged in
+4. Built-in defaults
+
+This ensures extras work even if you don’t pass flags every run.
+
+### Initialize mc.json
+
+Create a starter `mc.json` you can edit:
+
+```bash
+mc-init --root /path/to/project
+# overwrite if it exists
+mc-init --root /path/to/project --force
+```
+
+Skeleton created:
+
+```json
+{
+  "version": 1,
+  "settings": {
+    "allowAttrsExtra": [],
+    "thirdPartyExtra": {}
+  }
+}
+```
+
 ### Rewrite CLI
 
 Rewrite JSX to route UI text through `findText(...)`, adding imports and top-level hook initialization where needed and safe.

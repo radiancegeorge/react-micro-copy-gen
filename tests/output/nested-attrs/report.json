@@ -1,12 +1,12 @@
 {
   "filesScanned": 1,
-  "messagesCount": 3,
-  "occurrencesCount": 3,
+  "messagesCount": 6,
+  "occurrencesCount": 6,
   "collisions": [],
   "missingInStore": [],
   "unusedInCode": [],
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 3
+  "wordStoreCount": 6
 }

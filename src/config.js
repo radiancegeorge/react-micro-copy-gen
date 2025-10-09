@@ -92,13 +92,30 @@ async function loadConfig(cliConfig) {
   } else {
     thirdParty = thirdPartyFromConfig;
   }
+  // merge thirdParty extras from mc.json
+  if (meta && meta.settings && meta.settings.thirdPartyExtra && typeof meta.settings.thirdPartyExtra === 'object') {
+    const extra = meta.settings.thirdPartyExtra;
+    for (const comp of Object.keys(extra)) {
+      const list = Array.isArray(extra[comp]) ? extra[comp] : [];
+      if (!thirdParty[comp]) thirdParty[comp] = [];
+      const set = new Set(thirdParty[comp]);
+      list.forEach((n) => set.add(n));
+      thirdParty[comp] = Array.from(set);
+    }
+  }
 
   const mode = (cliConfig.mode || (fileConfig && fileConfig.mode) || 'loose').toLowerCase();
   if (!['loose', 'strict'].includes(mode)) {
     throw new Error(`Invalid mode: ${mode}. Use 'loose' or 'strict'.`);
   }
 
-  const allowAttrs = cliConfig.allowAttrs || (fileConfig && fileConfig.allowAttrs) || DEFAULT_ALLOW_ATTRS;
+  let allowAttrs = cliConfig.allowAttrs || (fileConfig && fileConfig.allowAttrs) || DEFAULT_ALLOW_ATTRS;
+  // augment allowAttrs with extras from mc.json
+  if (meta && meta.settings && Array.isArray(meta.settings.allowAttrsExtra)) {
+    const set = new Set(allowAttrs);
+    meta.settings.allowAttrsExtra.forEach((n) => set.add(n));
+    allowAttrs = Array.from(set);
+  }
   const include = cliConfig.include || (fileConfig && fileConfig.include) || DEFAULT_INCLUDE;
   const exclude = cliConfig.exclude || (fileConfig && fileConfig.exclude) || DEFAULT_EXCLUDE;
   let outDir = cliConfig.outDir

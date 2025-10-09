@@ -1,7 +1,7 @@
 {
-  "filesScanned": 22,
-  "messagesCount": 40,
-  "occurrencesCount": 49,
+  "filesScanned": 23,
+  "messagesCount": 42,
+  "occurrencesCount": 51,
   "collisions": [
     {
       "text": "Hi {firstName}",
@@ -54,29 +54,10 @@
       ]
     }
   ],
-  "missingInStore": [
-    {
-      "file": "findtext/Calls.jsx",
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 11
-        },
-        "end": {
-          "line": 8,
-          "column": 28
-        }
-      },
-      "text": "EXPR(findText-arg1)"
-    }
-  ],
-  "unusedInCode": [
-    "{children}",
-    "{length} /80",
-    "{value}"
-  ],
+  "missingInStore": [],
+  "unusedInCode": [],
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 40
+  "wordStoreCount": 42
 }

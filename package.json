@@ -4,7 +4,8 @@
   "description": "Scan React/JSX/TSX code for UI text, normalize placeholders, and generate a deduped messages store and report.",
   "bin": {
     "mc-scan": "./bin/mc-scan.js",
-    "mc-rewrite": "./bin/mc-rewrite.js"
+    "mc-rewrite": "./bin/mc-rewrite.js",
+    "mc-init": "./bin/mc-init.js"
   },
   "scripts": {
     "scan": "node ./bin/mc-scan.js",
@@ -14,7 +15,8 @@
     "fixtures:all": "npm run fixtures:prepare && npm run fixtures:scan",
     "rewrite": "node ./bin/mc-rewrite.js",
     "fixtures:rewrite": "node ./tests/scripts/rewrite.js",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "init": "node ./bin/mc-init.js"
   },
   "keywords": [
     "i18n",

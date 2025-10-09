@@ -1,0 +1,120 @@
+[
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 9,
+        "column": 14
+      },
+      "end": {
+        "line": 9,
+        "column": 33
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "TestQuestionWrapper",
+    "attribute": "title",
+    "text": "Dialogue Question",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 21
+      },
+      "end": {
+        "line": 13,
+        "column": 10
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "TestQuestionWrapper",
+    "attribute": "dropdownList",
+    "text": "View in a flow diagram",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 21
+      },
+      "end": {
+        "line": 13,
+        "column": 10
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "TestQuestionWrapper",
+    "attribute": "dropdownList",
+    "text": "View as dialogue",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 15,
+        "column": 18
+      },
+      "end": {
+        "line": 15,
+        "column": 27
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "Menu",
+    "attribute": "items",
+    "text": "{actions}",
+    "placeholders": [
+      "actions"
+    ],
+    "sourceExprs": {
+      "actions": "actions"
+    }
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 15,
+        "column": 18
+      },
+      "end": {
+        "line": 15,
+        "column": 27
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "Menu",
+    "attribute": "items",
+    "text": "Open",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 15,
+        "column": 18
+      },
+      "end": {
+        "line": 15,
+        "column": 27
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "Menu",
+    "attribute": "items",
+    "text": "Close",
+    "placeholders": [],
+    "sourceExprs": {}
+  }
+]

@@ -1,5 +1,6 @@
 [
   "{arg1}:{arg2} min",
+  "{messageFromServer}",
   "{mins}:{arg2} min",
   "/80",
   "a",
@@ -11,6 +12,7 @@
   "Click to submit",
   "Cute cat",
   "Describes the region",
+  "Dialogue Question",
   "Enter {firstName}",
   "Head",
   "Hello",

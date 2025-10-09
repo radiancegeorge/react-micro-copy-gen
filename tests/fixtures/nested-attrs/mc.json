@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "settings": {
+    "allowAttrsExtra": ["dropdownList", "items"],
+    "thirdPartyExtra": {
+      "TestQuestionWrapper": ["dropdownList"],
+      "Menu": ["items"]
+    }
+  }
+}

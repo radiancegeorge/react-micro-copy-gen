@@ -9,6 +9,27 @@ const prettier = require('prettier');
 const { runScan } = require('./scanner');
 const { collapseJsxText, normalizeTemplateLiteral, normalizeBinaryExpression, getPlaceholderName, normalizeStringLiteral } = require('./normalize');
 
+const NON_TEXT_PROPS = new Set([
+  'class', 'className', 'style', 'id', 'htmlFor', 'role', 'type', 'src', 'href', 'to',
+  'd', 'viewBox', 'fill', 'stroke', 'width', 'height', 'color', 'bg', 'background',
+  'variant', 'size', 'key', 'data-testid', 'aria-hidden', 'tabIndex', 'disabled',
+  'checked', 'required', 'name', 'value', 'defaultValue'
+]);
+
+function isLikelyMicrocopy(text, attrName) {
+  if (!text) return false;
+  const trimmed = String(text).trim();
+  if (!trimmed) return false;
+  if (attrName && NON_TEXT_PROPS.has(attrName)) return false;
+  if (/^https?:\/\/|^(mailto:|tel:)/i.test(trimmed)) return false;
+  if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(trimmed)) return false;
+  if (/^(rgb|rgba)\(/i.test(trimmed)) return false;
+  // Permit single words like "Open", "Close", etc.
+  // Require at least one letter
+  if (!/[a-z]/i.test(trimmed)) return false;
+  return true;
+}
+
 function isComponentName(name) {
   return typeof name === 'string' && /^[A-Z]/.test(name);
 }
@@ -726,6 +747,46 @@ function makeFindTextCallFromTemplateString(text, kwargsEntries) {
   return t.callExpression(t.identifier('findText'), args);
 }
 
+function deepWrapPlainStringsInExpression(expr, shouldWrapFn) {
+  // Recursively wrap StringLiteral nodes within arrays/objects
+  let changed = 0;
+
+  function visit(n) {
+    if (!n) return n;
+    if (t.isStringLiteral(n)) {
+      const raw = (n.value || '').trim();
+      if (raw.length === 0) return n;
+      if (!shouldWrapFn || shouldWrapFn(raw)) {
+        changed += 1;
+        return makeFindTextCallFromTemplateString(raw, null);
+      }
+      return n;
+    }
+    if (t.isArrayExpression(n)) {
+      const elems = n.elements.map((el) => visit(el));
+      if (elems.some((e, i) => e !== n.elements[i])) changed += 0; // changed already counted at leafs
+      return t.arrayExpression(elems);
+    }
+    if (t.isObjectExpression(n)) {
+      const props = n.properties.map((p) => {
+        if (t.isObjectProperty(p)) {
+          const newVal = visit(p.value);
+          if (newVal !== p.value) {
+            return t.objectProperty(p.key, newVal, p.computed, p.shorthand);
+          }
+          return p;
+        }
+        return p;
+      });
+      return t.objectExpression(props);
+    }
+    return n;
+  }
+
+  const out = visit(expr);
+  return { node: out, wrappedCount: changed };
+}
+
 function fromTemplateLiteral(node, source) {
   const { text, placeholders, sourceExprs } = normalizeTemplateLiteral(node, source);
   const entries = placeholders.map((ph, idx) => [ph, node.expressions[idx]]);
@@ -973,7 +1034,28 @@ async function rewriteFile(absPath, code, config) {
             attr.value = t.jsxExpressionContainer(call);
             changed = true; nodesRewritten++;
           } else {
-            // Not text-like; keep original expression
+            // Attempt nested string wrapping for arrays/objects inside attribute expressions
+            const allowOrHeuristic = (s) => allowedByName || allowedByThirdParty || isLikelyMicrocopy(s, attrName);
+            if (t.isArrayExpression(inner) || t.isObjectExpression(inner)) {
+              const { node: transformed, wrappedCount } = deepWrapPlainStringsInExpression(inner, allowOrHeuristic);
+              if (wrappedCount > 0) {
+                attr.value = t.jsxExpressionContainer(transformed);
+                changed = true; nodesRewritten += wrappedCount;
+              }
+            } else if (t.isIdentifier(inner)) {
+              const binding = path.scope.getBinding(inner.name);
+              if (binding && t.isVariableDeclarator(binding.path.node)) {
+                const init = binding.path.node.init;
+                if (t.isArrayExpression(init) || t.isObjectExpression(init)) {
+                  const cloned = t.cloneNode(init, true);
+                  const { node: transformed, wrappedCount } = deepWrapPlainStringsInExpression(cloned, allowOrHeuristic);
+                  if (wrappedCount > 0) {
+                    attr.value = t.jsxExpressionContainer(transformed);
+                    changed = true; nodesRewritten += wrappedCount;
+                  }
+                }
+              }
+            }
           }
         }
       }

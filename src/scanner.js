@@ -28,6 +28,30 @@ function isChildrenReference(expr) {
   return false;
 }
 
+function deepCollectPlainStringsInExpression(expr, pathCtx) {
+  const out = [];
+  function visit(n) {
+    if (!n) return;
+    if (t.isStringLiteral(n)) {
+      const val = n.value;
+      if (val && val.trim() !== '') out.push(val);
+      return;
+    }
+    if (t.isArrayExpression(n)) {
+      (n.elements || []).forEach(visit);
+      return;
+    }
+    if (t.isObjectExpression(n)) {
+      (n.properties || []).forEach((p) => {
+        if (t.isObjectProperty(p)) visit(p.value);
+      });
+      return;
+    }
+  }
+  visit(expr);
+  return out;
+}
+
 function isUppercaseName(name) {
   return typeof name === 'string' && /^[A-Z]/.test(name);
 }
@@ -139,7 +163,7 @@ function addOccurrence(state, occ) {
   }
 }
 
-function collectStringFromExpression(expr, pathCtx, source) {
+function collectStringFromExpression(expr, pathCtx, source, opts = {}) {
   // Returns array of { text, placeholders, sourceExprs }
   const out = [];
 
@@ -151,8 +175,8 @@ function collectStringFromExpression(expr, pathCtx, source) {
   function add(res) {
     if (!res) return;
     if (!res.text) return;
-    // Skip single placeholder-only expressions like {name}
-    if (/^\{[a-zA-Z0-9_]+\}$/.test(res.text)) return;
+    // Skip single placeholder-only expressions like {name} ONLY when requested (children context)
+    if (opts.skipPlaceholderOnly && /^\{[a-zA-Z0-9_]+\}$/.test(res.text)) return;
     out.push({ text: res.text, placeholders: res.placeholders || [], sourceExprs: res.sourceExprs || {} });
   }
 
@@ -287,10 +311,17 @@ function collectStringFromExpression(expr, pathCtx, source) {
       return normalizeBinaryExpression(node, source);
     }
     if (t.isIdentifier(node)) {
-      return resolveIdentifier(node);
+      const r = resolveIdentifier(node);
+      if (r) return r;
+      // Fallback: treat bare identifier as placeholder
+      return { text: `{${node.name}}`, placeholders: [node.name], sourceExprs: { [node.name]: node.name } };
     }
     if (t.isMemberExpression(node) || t.isOptionalMemberExpression(node)) {
-      return resolveMemberExpression(node);
+      const r = resolveMemberExpression(node);
+      if (r) return r;
+      // Fallback: use last segment as placeholder name
+      const ph = getPlaceholderName(node, 0, source);
+      return { text: `{${ph}}`, placeholders: [ph], sourceExprs: {} };
     }
     if (t.isCallExpression(node)) {
       return resolveCallExpression(node);
@@ -372,7 +403,7 @@ function scanFile(absPath, relPath, code, config, state) {
           if (isChildrenReference(expr)) continue; // skip React children
           if (isComponentReference(expr)) continue; // skip component refs
           if (isReactCreateElementCall(expr)) continue; // skip createElement
-          const results = collectStringFromExpression(expr, path, code);
+          const results = collectStringFromExpression(expr, path, code, { skipPlaceholderOnly: false });
           for (const res of results) {
             if (!res.text || res.text.trim() === '') continue;
             addOccurrence(state, {
@@ -384,6 +415,31 @@ function scanFile(absPath, relPath, code, config, state) {
               text: res.text,
               placeholders: res.placeholders,
               sourceExprs: res.sourceExprs,
+            });
+          }
+          // Deep collect nested plain strings in arrays/objects (and identifier bindings)
+          let deepStrings = [];
+          if (t.isArrayExpression(expr) || t.isObjectExpression(expr)) {
+            deepStrings = deepCollectPlainStringsInExpression(expr, path);
+          } else if (t.isIdentifier(expr)) {
+            const binding = path.scope.getBinding(expr.name);
+            if (binding && t.isVariableDeclarator(binding.path.node)) {
+              const init = binding.path.node.init;
+              if (t.isArrayExpression(init) || t.isObjectExpression(init)) {
+                deepStrings = deepCollectPlainStringsInExpression(init, path);
+              }
+            }
+          }
+          for (const s of deepStrings) {
+            addOccurrence(state, {
+              file: relPath,
+              loc: getLoc(val),
+              context: 'JSXAttribute',
+              element: elemName,
+              attribute: attrName,
+              text: s,
+              placeholders: [],
+              sourceExprs: {},
             });
           }
         }
@@ -410,7 +466,7 @@ function scanFile(absPath, relPath, code, config, state) {
           if (isChildrenReference(expr)) return; // skip React children
           if (isComponentReference(expr)) return; // skip component refs
           if (isReactCreateElementCall(expr)) return; // skip createElement
-          const results = collectStringFromExpression(expr, path, code);
+          const results = collectStringFromExpression(expr, path, code, { skipPlaceholderOnly: true });
           for (const res of results) {
             if (!res.text || res.text.trim() === '') continue;
             addOccurrence(state, {
@@ -760,7 +816,14 @@ async function runScan(config) {
     // Write root-level metadata so rewrite can auto-locate outputs later
     try {
       const metaPath = path.join(config.root, 'mc.json');
+      let existing = null;
+      try {
+        if (fs.existsSync(metaPath)) existing = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+      } catch (_) {
+        existing = null;
+      }
       const meta = {
+        ...(existing || {}),
         version: 1,
         lastScan: {
           root: config.root,
