@@ -111,6 +111,12 @@ async function loadConfig(cliConfig) {
       ? fileConfig.htmlCollapse.warnUntrusted
       : true);
 
+  const htmlApply = typeof cliConfig.htmlCollapseApply === 'boolean'
+    ? cliConfig.htmlCollapseApply
+    : (fileConfig && fileConfig.htmlCollapse && typeof fileConfig.htmlCollapse.apply === 'boolean'
+      ? fileConfig.htmlCollapse.apply
+      : false);
+
   const config = {
     root,
     mode,
@@ -128,6 +134,7 @@ async function loadConfig(cliConfig) {
         : false,
       inlineWhitelist: htmlInlineWhitelist,
       warnUntrusted: htmlWarnUntrusted,
+      apply: htmlApply,
     },
     // rewrite-specific passthroughs
     format: typeof cliConfig.format === 'boolean' ? cliConfig.format : true,

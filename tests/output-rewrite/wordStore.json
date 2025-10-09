@@ -1,7 +1,5 @@
 [
   "{children}",
-  "{gender}",
-  "{name}",
   "a",
   "A",
   "Add your first item",
@@ -11,6 +9,7 @@
   "Cute cat",
   "Describes the region",
   "Enter {firstName}",
+  "Hello {arg1} {role} from {site}",
   "Hello {name}",
   "Hello world",
   "Hi {firstName}",
@@ -19,7 +18,7 @@
   "Line 1 Line 2",
   "Name input",
   "No items yet",
-  "Obi is a boy",
+  "Obi is a boy {gender}",
   "Picture of cat",
   "Plain",
   "Price is $10",
@@ -28,7 +27,9 @@
   "Shown when true",
   "Something went wrong",
   "Submit",
-  "Welcome",
+  "Visit {site} now",
   "Welcome {firstName}",
+  "Welcome {highlight} and thanks",
+  "Welcome {name}",
   "مرحبا"
 ]

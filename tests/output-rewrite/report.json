@@ -1,7 +1,7 @@
 {
-  "filesScanned": 13,
-  "messagesCount": 32,
-  "occurrencesCount": 40,
+  "filesScanned": 16,
+  "messagesCount": 33,
+  "occurrencesCount": 41,
   "collisions": [
     {
       "text": "Hi {firstName}",
@@ -70,7 +70,11 @@
       "text": "EXPR(findText-arg1)"
     }
   ],
-  "unusedInCode": [],
+  "unusedInCode": [
+    "Welcome",
+    "{highlight}",
+    "and thanks"
+  ],
   "errors": [
     {
       "file": "complex-functions/Funcs.jsx",
@@ -79,5 +83,5 @@
   ],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 32
+  "wordStoreCount": 33
 }

@@ -289,6 +289,248 @@ async function rewriteFile(absPath, code, config) {
         }
       }
 
+      // HTML collapsing (opt-in): replace mixed text + inline children with a single HTML template
+      if (config.htmlCollapse && config.htmlCollapse.apply) {
+        const whitelist = (config.htmlCollapse.inlineWhitelist || []).map((s) => s.toLowerCase());
+
+        function isInlineAllowed(el) {
+          const name = getJsxNameName(el.openingElement.name);
+          if (!name) return false;
+          if (name[0] !== name[0].toLowerCase()) return false; // custom components not allowed
+          return whitelist.includes(name.toLowerCase());
+        }
+
+        function hasUnsafeAttrs(el) {
+          for (const a of el.openingElement.attributes) {
+            if (t.isJSXSpreadAttribute(a)) return true;
+            if (t.isJSXAttribute(a) && t.isJSXIdentifier(a.name) && /^on[A-Z]/.test(a.name.name)) return true;
+          }
+          return false;
+        }
+
+        function styleObjectToCss(objExpr) {
+          // Convert simple style object literal to inline CSS string
+          const segs = [];
+          for (const prop of objExpr.properties) {
+            if (!t.isObjectProperty(prop)) return null;
+            let key = '';
+            if (t.isIdentifier(prop.key)) key = prop.key.name; else if (t.isStringLiteral(prop.key)) key = prop.key.value; else return null;
+            // camelCase to kebab-case
+            key = key.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
+            const v = prop.value;
+            if (t.isStringLiteral(v)) segs.push(`${key}: ${v.value}`);
+            else if (t.isNumericLiteral(v)) segs.push(`${key}: ${v.value}`);
+            else return null;
+          }
+          return segs.join('; ');
+        }
+
+        function buildInlineFragment(el) {
+          // Returns TemplateLiteral for the inline fragment and a derived placeholder name (if any)
+          const tag = getJsxNameName(el.openingElement.name).toLowerCase();
+          if (hasUnsafeAttrs(el)) return null;
+
+          const strParts = [`<${tag}`];
+          const exprs = [];
+          let namingExpr = null; // prefer first content expression for placeholder naming
+
+          // Serialize attributes
+          for (const a of el.openingElement.attributes) {
+            if (!t.isJSXAttribute(a) || !t.isJSXIdentifier(a.name)) continue;
+            const name = a.name.name;
+            if (a.value == null) {
+              strParts[strParts.length - 1] += ` ${name}`;
+              continue;
+            }
+            if (t.isStringLiteral(a.value)) {
+              const esc = a.value.value.replace(/"/g, '&quot;');
+              strParts[strParts.length - 1] += ` ${name}="${esc}"`;
+              continue;
+            }
+            if (t.isJSXExpressionContainer(a.value)) {
+              const inner = a.value.expression;
+              if (name === 'style' && t.isObjectExpression(inner)) {
+                const css = styleObjectToCss(inner);
+                if (!css) return null; // complex style
+                const esc = css.replace(/"/g, '&quot;');
+                strParts[strParts.length - 1] += ` style="${esc}"`;
+              } else {
+                // dynamic attr
+                strParts[strParts.length - 1] += ` ${name}="`;
+                exprs.push(inner);
+                strParts.push('"');
+              }
+              continue;
+            }
+          }
+          strParts[strParts.length - 1] += '>';
+
+          // Utility: unwrap findText calls when safe
+          function unwrapFindText(exprNode) {
+            if (!t.isCallExpression(exprNode) || !t.isIdentifier(exprNode.callee, { name: 'findText' })) return { kind: 'expr', expr: exprNode };
+            const args = exprNode.arguments || [];
+            const first = args[0];
+            if (!first || !t.isStringLiteral(first)) return { kind: 'expr', expr: exprNode };
+            const text = first.value || '';
+            const phMatches = text.match(/\{([a-zA-Z0-9_]+)\}/g) || [];
+            if (phMatches.length === 0) {
+              // Pure static -> treat as text segment
+              return { kind: 'text', text };
+            }
+            if (phMatches.length === 1 && args[1] && t.isObjectExpression(args[1])) {
+              const name = phMatches[0].slice(1, -1);
+              const prop = args[1].properties.find(
+                (p) => t.isObjectProperty(p) && ((t.isIdentifier(p.key) && p.key.name === name) || (t.isStringLiteral(p.key) && p.key.value === name))
+              );
+              if (prop) return { kind: 'expr', expr: prop.value, name };
+            }
+            return { kind: 'expr', expr: exprNode };
+          }
+
+          // Recursively serialize children: text | expr | inline element
+          function serializeChildren(children) {
+            for (const ch of children) {
+              if (t.isJSXText(ch)) {
+                const txt = collapseJsxText(ch.value);
+                if (txt) strParts[strParts.length - 1] += txt;
+              } else if (t.isJSXExpressionContainer(ch)) {
+                let innerRes = unwrapFindText(ch.expression);
+                if (innerRes.kind === 'text') {
+                  strParts[strParts.length - 1] += innerRes.text;
+                } else {
+                  const expr = innerRes.expr;
+                  exprs.push(expr);
+                  if (!namingExpr && (t.isIdentifier(expr) || t.isMemberExpression(expr) || t.isOptionalMemberExpression(expr))) {
+                    namingExpr = expr;
+                  }
+                  strParts.push('');
+                }
+              } else if (t.isJSXElement(ch)) {
+                if (!isInlineAllowed(ch) || hasUnsafeAttrs(ch)) return false;
+                const name = getJsxNameName(ch.openingElement.name).toLowerCase();
+                // Open tag
+                strParts[strParts.length - 1] += `<${name}`;
+                // Serialize nested attributes on the same arrays
+                for (const a of ch.openingElement.attributes) {
+                  if (!t.isJSXAttribute(a) || !t.isJSXIdentifier(a.name)) continue;
+                  const an = a.name.name;
+                  if (a.value == null) { strParts[strParts.length - 1] += ` ${an}`; continue; }
+                  if (t.isStringLiteral(a.value)) {
+                    const esc = a.value.value.replace(/"/g, '&quot;');
+                    strParts[strParts.length - 1] += ` ${an}="${esc}"`;
+                  } else if (t.isJSXExpressionContainer(a.value)) {
+                    const inner = a.value.expression;
+                    if (an === 'style' && t.isObjectExpression(inner)) {
+                      const css = styleObjectToCss(inner);
+                      if (!css) return false;
+                      const esc = css.replace(/"/g, '&quot;');
+                      strParts[strParts.length - 1] += ` style="${esc}"`;
+                    } else {
+                      strParts[strParts.length - 1] += ` ${an}="`;
+                      exprs.push(inner);
+                      strParts.push('"');
+                    }
+                  }
+                }
+                strParts[strParts.length - 1] += '>';
+                // Recurse into nested children
+                if (!serializeChildren(ch.children || [])) return false;
+                // Close nested tag
+                strParts[strParts.length - 1] += `</${name}>`;
+              } else {
+                return false; // other node kinds not supported
+              }
+            }
+            return true;
+          }
+
+          if (!serializeChildren(el.children || [])) return null;
+          // Close tag
+          strParts[strParts.length - 1] += `</${tag}>`;
+
+          // Build TemplateLiteral
+          if (exprs.length === 0) {
+            return { tpl: t.templateLiteral([t.templateElement({ raw: strParts[0], cooked: strParts[0] }, true)], []), placeholderName: null };
+          }
+          const quasis = [];
+          for (let i = 0; i < strParts.length; i++) {
+            const tail = i === strParts.length - 1;
+            quasis.push(t.templateElement({ raw: strParts[i], cooked: strParts[i] }, tail));
+          }
+          const placeholderName = namingExpr ? getPlaceholderName(namingExpr, 0, code) : null;
+          return { tpl: t.templateLiteral(quasis, exprs), placeholderName };
+        }
+
+        // Determine eligibility: at least one text-like segment and at least one inline child; no non-text expressions
+        const kids = path.node.children || [];
+        let hasText = false;
+        let hasInline = false;
+        let eligible = true;
+        for (const ch of kids) {
+          if (t.isJSXText(ch)) {
+            if (collapseJsxText(ch.value)) hasText = true;
+          } else if (t.isJSXElement(ch)) {
+            if (!isInlineAllowed(ch)) { eligible = false; break; }
+            if (hasUnsafeAttrs(ch)) { eligible = false; break; }
+            hasInline = true;
+          } else if (t.isJSXExpressionContainer(ch)) {
+            // Treat findText("...") as text; allow whitespace-only string literal
+            const e = ch.expression;
+            if (t.isStringLiteral(e) && /^\s+$/.test(e.value)) {
+              continue;
+            }
+            if (t.isCallExpression(e) && t.isIdentifier(e.callee, { name: 'findText' }) && e.arguments && e.arguments[0] && t.isStringLiteral(e.arguments[0])) {
+              hasText = true;
+              continue;
+            }
+            eligible = false; break;
+          } else {
+            eligible = false; break;
+          }
+        }
+
+        if (eligible && hasText && hasInline) {
+          // Build template and kwargs
+          let templateText = '';
+          const entries = [];
+          for (const ch of kids) {
+            if (t.isJSXText(ch)) {
+              const txt = collapseJsxText(ch.value);
+              if (txt) templateText += (templateText && !templateText.endsWith(' ') ? ' ' : '') + txt;
+            } else if (t.isJSXExpressionContainer(ch)) {
+              const e = ch.expression;
+              if (t.isCallExpression(e) && t.isIdentifier(e.callee, { name: 'findText' }) && e.arguments && e.arguments[0] && t.isStringLiteral(e.arguments[0])) {
+                const txt = e.arguments[0].value || '';
+                if (txt) templateText += (templateText && !templateText.endsWith(' ') ? ' ' : '') + txt;
+              }
+            } else if (t.isJSXElement(ch)) {
+              const built = buildInlineFragment(ch);
+              if (!built) { eligible = false; break; }
+              const ph = built.placeholderName || 'arg' + (entries.length + 1);
+              entries.push([ph, built.tpl]);
+              templateText += (templateText && !templateText.endsWith(' ') ? ' ' : '') + `{${ph}}`;
+            }
+          }
+          if (eligible && templateText) {
+            // Replace children with dangerouslySetInnerHTML
+            const call = makeFindTextCallFromTemplateString(templateText.trim(), entries);
+            const obj = t.objectExpression([
+              t.objectProperty(t.identifier('__html'), call),
+            ]);
+            // Remove existing children
+            path.node.children = [];
+            // Add/replace dangerouslySetInnerHTML attribute
+            const existingIdx = opening.attributes.findIndex((a) => t.isJSXAttribute(a) && t.isJSXIdentifier(a.name, { name: 'dangerouslySetInnerHTML' }));
+            const attr = t.jsxAttribute(t.jsxIdentifier('dangerouslySetInnerHTML'), t.jsxExpressionContainer(obj));
+            if (existingIdx >= 0) opening.attributes[existingIdx] = attr; else opening.attributes.push(attr);
+
+            changed = true; nodesRewritten++;
+            path.skip();
+            return; // skip further child processing
+          }
+        }
+      }
+
       // Try to merge children into a single findText call when possible
       const kids = path.node.children || [];
 

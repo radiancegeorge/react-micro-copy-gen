@@ -17,6 +17,7 @@ async function main() {
     .option('--allow-attrs <names>', 'comma-separated attribute allowlist', undefined)
     .option('--third-party-config <path>', 'path to JSON config for third-party component text props', undefined)
     .option('--no-format', 'disable Prettier formatting of rewritten files')
+    .option('--html-collapse-apply', 'apply HTML collapsing (dangerouslySetInnerHTML) where eligible', false)
     .option('--dry', 'do not write files, just report', false)
     .parse(process.argv);
 
@@ -37,6 +38,7 @@ async function main() {
       : undefined,
     // rewrite-specific
     format: opts.format !== false,
+    htmlCollapseApply: !!opts.htmlCollapseApply,
     dryRun: !!opts.dry,
   };
 

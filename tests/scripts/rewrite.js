@@ -27,6 +27,7 @@ async function main() {
     root: WORKSPACE_DIR,
     mode: 'strict',
     thirdPartyConfigPath: THIRD_PARTY_CFG,
+    htmlCollapseApply: true,
     dryRun: false,
   });
   const rewriteRes = await runRewrite(rewriteConfig);

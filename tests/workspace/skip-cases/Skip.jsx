@@ -8,14 +8,13 @@ export default function Skip({ name }) {
           __html: '<b>Bold</b>',
         }}
       />
-      <p>
-        {findText('Welcome')}
-        <strong>
-          {findText('{name}', {
-            name: name,
-          })}
-        </strong>
-      </p>
+      <p
+        dangerouslySetInnerHTML={{
+          __html: findText('Welcome {name}', {
+            name: `<strong>${name}</strong>`,
+          }),
+        }}
+      ></p>
       <p>{findText('Hello world')}</p>
     </div>
   );
