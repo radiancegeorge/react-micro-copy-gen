@@ -1,7 +1,7 @@
 {
   "filesScanned": 30,
-  "messagesCount": 56,
-  "occurrencesCount": 72,
+  "messagesCount": 54,
+  "occurrencesCount": 70,
   "collisions": [
     {
       "text": "Hi {firstName}",
@@ -56,11 +56,11 @@
   ],
   "missingInStore": [],
   "unusedInCode": [
-    "{messageFromServer}",
-    ""
+    "مرحبا",
+    "/80"
   ],
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 56
+  "wordStoreCount": 54
 }

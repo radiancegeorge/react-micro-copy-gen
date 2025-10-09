@@ -1,7 +1,6 @@
 [
   "{arg1}:{arg2} min",
   "{mins}:{arg2} min",
-  "/80",
   "a",
   "A",
   "Abhore",
@@ -53,6 +52,5 @@
   "Visit {site} now",
   "Welcome {firstName}",
   "Welcome {highlight} and thanks",
-  "Welcome {name}",
-  "مرحبا"
+  "Welcome {name}"
 ]

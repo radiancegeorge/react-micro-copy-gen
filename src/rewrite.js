@@ -45,6 +45,19 @@ function isFileOrPathLike(text) {
   return false;
 }
 
+function shouldWrapText(text) {
+  const trimmed = String(text || '').trim();
+  if (!trimmed) return false;
+  if (trimmed.length === 1 && !/[a-z0-9]/i.test(trimmed)) return false;
+  if (isCssLike(trimmed)) return false;
+  if (isFileOrPathLike(trimmed)) return false;
+  // remove placeholders like {anything}
+  const withoutPlaceholders = trimmed.replace(/\{\s*[^{}]+\s*\}/g, '').trim();
+  if (!withoutPlaceholders) return false;
+  if (!/[a-z]/i.test(withoutPlaceholders)) return false;
+  return true;
+}
+
 function isLikelyMicrocopy(text, attrName) {
   if (!text) return false;
   const trimmed = String(text).trim();
@@ -53,8 +66,8 @@ function isLikelyMicrocopy(text, attrName) {
   if (/^https?:\/\/|^(mailto:|tel:)/i.test(trimmed)) return false;
   if (isFileOrPathLike(trimmed)) return false;
   if (isCssLike(trimmed)) return false;
-  // Require at least one letter
-  if (!/[a-z]/i.test(trimmed)) return false;
+  // Require meaningful content after stripping placeholders and symbols
+  if (!shouldWrapText(trimmed)) return false;
   return true;
 }
 
@@ -996,6 +1009,7 @@ function resolveCallExpressionStrict(call, pathCtx, source) {
 function wrapJsxTextNode(value) {
   const norm = collapseJsxText(value);
   if (!norm) return null;
+  if (!shouldWrapText(norm)) return null;
   const call = makeFindTextCallFromTemplateString(norm, null);
   return t.jsxExpressionContainer(call);
 }
@@ -1004,7 +1018,7 @@ function toFindTextExpr(expr, pathCtx, source, mode) {
   if (isFindTextCall(expr)) return expr; // idempotent
   // Conservative: only wrap if we can strictly normalize to text
   const strict = tryStrictNormalize(expr, pathCtx, source);
-  if (strict && strict.text != null) {
+  if (strict && strict.text != null && shouldWrapText(strict.text)) {
     return makeFindTextCallFromTemplateString(strict.text, strict.entries);
   }
   return null;
@@ -1089,7 +1103,7 @@ async function rewriteFile(absPath, code, config) {
           if (isFindTextCall(inner)) {
             const arg = inner.arguments && inner.arguments[0];
             const strict = arg ? tryStrictNormalize(arg, path, code) : null;
-            if (arg && (isChildrenReference(arg) || isComponentReference(arg) || isReactCreateElementCall(arg) || !strict)) {
+            if (arg && (isChildrenReference(arg) || isComponentReference(arg) || isReactCreateElementCall(arg) || !strict || (strict && strict.text != null && !shouldWrapText(strict.text)))) {
               attr.value = t.jsxExpressionContainer(arg);
               changed = true; nodesRewritten++;
               continue;
@@ -1503,7 +1517,7 @@ async function rewriteFile(absPath, code, config) {
           if (isFindTextCall(e)) {
             const arg = e.arguments && e.arguments[0];
             const strict = arg ? tryStrictNormalize(arg, path, code) : null;
-            if (arg && (isChildrenReference(arg) || isComponentReference(arg) || isReactCreateElementCall(arg) || !strict)) {
+            if (arg && (isChildrenReference(arg) || isComponentReference(arg) || isReactCreateElementCall(arg) || !strict || (strict && strict.text != null && !shouldWrapText(strict.text)))) {
               newChildren.push(t.jsxExpressionContainer(arg));
               changed = true; nodesRewritten++;
               continue;

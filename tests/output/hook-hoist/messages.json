@@ -44,27 +44,5 @@
         "attribute": "placeholder"
       }
     ]
-  },
-  {
-    "text": "/80",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "CheckoutTextList.jsx",
-        "loc": {
-          "start": {
-            "line": 21,
-            "column": 28
-          },
-          "end": {
-            "line": 21,
-            "column": 31
-          }
-        },
-        "context": "JSXText",
-        "element": "span",
-        "attribute": null
-      }
-    ]
   }
 ]

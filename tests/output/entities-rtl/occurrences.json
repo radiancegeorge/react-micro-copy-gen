@@ -21,24 +21,6 @@
     "file": "Entities.jsx",
     "loc": {
       "start": {
-        "line": 7,
-        "column": 9
-      },
-      "end": {
-        "line": 7,
-        "column": 18
-      }
-    },
-    "context": "JSXExpression",
-    "element": "p",
-    "text": "مرحبا",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "Entities.jsx",
-    "loc": {
-      "start": {
         "line": 8,
         "column": 9
       },

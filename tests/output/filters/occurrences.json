@@ -3,11 +3,11 @@
     "file": "Example.jsx",
     "loc": {
       "start": {
-        "line": 17,
+        "line": 24,
         "column": 9
       },
       "end": {
-        "line": 17,
+        "line": 24,
         "column": 15
       }
     },
@@ -21,11 +21,11 @@
     "file": "Example.jsx",
     "loc": {
       "start": {
-        "line": 18,
+        "line": 25,
         "column": 17
       },
       "end": {
-        "line": 18,
+        "line": 25,
         "column": 34
       }
     },

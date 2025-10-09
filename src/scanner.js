@@ -192,6 +192,11 @@ function shouldIndexText(text) {
   if (isCssLike(trimmed)) return false;
   // Skip file/path-like strings
   if (isFileOrPathLike(trimmed)) return false;
+  // Strip ALL placeholders like {anything} and test remaining content
+  const withoutPlaceholders = trimmed.replace(/\{\s*[^{}]+\s*\}/g, '').trim();
+  if (!withoutPlaceholders) return false; // only placeholders
+  // If the remaining content has no letters, treat as non-text (e.g., "%", "-", "()", etc.)
+  if (!/[a-z]/i.test(withoutPlaceholders)) return false;
   return true;
 }
 

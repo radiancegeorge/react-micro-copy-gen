@@ -22,28 +22,6 @@
     ]
   },
   {
-    "text": "مرحبا",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "Entities.jsx",
-        "loc": {
-          "start": {
-            "line": 7,
-            "column": 9
-          },
-          "end": {
-            "line": 7,
-            "column": 18
-          }
-        },
-        "context": "JSXExpression",
-        "element": "p",
-        "attribute": null
-      }
-    ]
-  },
-  {
     "text": "Line 1\nLine 2",
     "placeholders": [],
     "occurrences": [
