@@ -746,6 +746,7 @@ function toFindTextExpr(expr, pathCtx, source, mode) {
 }
 
 function wrapJsxExpression(expr, pathCtx, source, mode) {
+  if (t.isJSXEmptyExpression(expr)) return null;
   // Handle conditionals and logicals by wrapping branches
   if (t.isConditionalExpression(expr)) {
     const cons = toFindTextExpr(expr.consequent, pathCtx, source, mode);
@@ -796,6 +797,7 @@ async function rewriteFile(absPath, code, config) {
           changed = true; nodesRewritten++;
         } else if (t.isJSXExpressionContainer(attr.value)) {
           const inner = attr.value.expression;
+          if (t.isJSXEmptyExpression(inner)) continue;
           if (isFindTextCall(inner)) continue;
           // Try strict, else loose
           const strict = config.mode === 'strict' ? tryStrictNormalize(inner, path, code) : null;

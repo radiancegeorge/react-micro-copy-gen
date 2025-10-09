@@ -1,5 +1,5 @@
 {
-  "filesScanned": 19,
+  "filesScanned": 20,
   "messagesCount": 35,
   "occurrencesCount": 44,
   "collisions": [
@@ -79,6 +79,20 @@
         "end": {
           "line": 8,
           "column": 28
+        }
+      },
+      "text": "EXPR(findText-arg1)"
+    },
+    {
+      "file": "jsx-empty-expression/Component.jsx",
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 18
+        },
+        "end": {
+          "line": 10,
+          "column": 23
         }
       },
       "text": "EXPR(findText-arg1)"
