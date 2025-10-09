@@ -1,0 +1,20 @@
+[
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 18,
+        "column": 9
+      },
+      "end": {
+        "line": 18,
+        "column": 14
+      }
+    },
+    "context": "JSXText",
+    "element": "p",
+    "text": "Page",
+    "placeholders": [],
+    "sourceExprs": {}
+  }
+]

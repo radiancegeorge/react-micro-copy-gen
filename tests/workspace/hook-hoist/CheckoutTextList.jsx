@@ -17,10 +17,7 @@ export default function CheckoutTextList({ options }) {
               }))
             }
           />
-          <span>
-            {val.length}
-            {'/80'}
-          </span>
+          <span>{val.length}/80</span>
         </div>
       ))}
     </div>

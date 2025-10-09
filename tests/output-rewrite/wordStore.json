@@ -35,6 +35,7 @@
   "Obi is a boy {gender}",
   "Open",
   "Option {arg1}",
+  "Page {idx}{arg2}",
   "Panel Title",
   "Picture of cat",
   "Plain",

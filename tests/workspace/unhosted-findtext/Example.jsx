@@ -11,10 +11,9 @@ const jsx = (
 
 // lower-case function, not a host
 function renderToast() {
-  const { findText } = useTranslation(wordStore);
   return (
     <>
-      <img alt={findText('')} />
+      <img alt={''} />
     </>
   );
 }
