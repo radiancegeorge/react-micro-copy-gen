@@ -1,12 +1,23 @@
 import React from 'react';
-
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../output-rewrite/wordStore.json';
 export default function ThirdParty() {
-  const copy = { empty: { title: "No items yet", description: "Add your first item" } };
+  const { findText } = useTranslation(wordStore);
+  const copy = {
+    empty: {
+      title: 'No items yet',
+      description: 'Add your first item',
+    },
+  };
   return (
     <div>
-      <Empty title={copy.empty.title} description={copy.empty.description} />
+      <Empty
+        title={findText('No items yet')}
+        description={findText('Add your first item')}
+      />
     </div>
   );
 }
-
-function Empty(props) { return <div {...props} />; }
+function Empty(props) {
+  return <div {...props} />;
+}

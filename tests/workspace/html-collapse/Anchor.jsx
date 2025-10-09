@@ -1,10 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../output-rewrite/wordStore.json';
 export default function Anchor({ child }) {
+  const { findText } = useTranslation(wordStore);
   return (
-    <h4>
-      Visit 
-      <a href={child?.url} title={`Go to ${child?.site}`}>{child?.site}</a>
-      now
-    </h4>
+    <h4
+      dangerouslySetInnerHTML={{
+        __html: findText('Visit {site} now', {
+          site: `<a href="${child?.url}" title="${`Go to ${child?.site}`}">${child?.site}</a>`,
+        }),
+      }}
+    ></h4>
   );
 }

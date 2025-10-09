@@ -1,7 +1,7 @@
 {
-  "filesScanned": 21,
-  "messagesCount": 39,
-  "occurrencesCount": 48,
+  "filesScanned": 22,
+  "messagesCount": 40,
+  "occurrencesCount": 49,
   "collisions": [
     {
       "text": "Hi {firstName}",
@@ -16,11 +16,11 @@
           "file": "basic-jsx/App.jsx",
           "loc": {
             "start": {
-              "line": 16,
+              "line": 15,
               "column": 18
             },
             "end": {
-              "line": 16,
+              "line": 15,
               "column": 34
             }
           }
@@ -68,39 +68,15 @@
         }
       },
       "text": "EXPR(findText-arg1)"
-    },
-    {
-      "file": "complex-functions/Funcs.jsx",
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 19
-        },
-        "end": {
-          "line": 11,
-          "column": 40
-        }
-      },
-      "text": "EXPR(findText-arg1)"
-    },
-    {
-      "file": "jsx-empty-expression/Component.jsx",
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 18
-        },
-        "end": {
-          "line": 10,
-          "column": 23
-        }
-      },
-      "text": "EXPR(findText-arg1)"
     }
   ],
-  "unusedInCode": [],
+  "unusedInCode": [
+    "{children}",
+    "{length} /80",
+    "{value}"
+  ],
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 39
+  "wordStoreCount": 40
 }

@@ -1,11 +1,23 @@
 import React from 'react';
-
-function VisuallyHidden({ children }) { return <span style={{ position: 'absolute', left: -9999 }}>{children}</span>; }
-
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../output-rewrite/wordStore.json';
+function VisuallyHidden({ children }) {
+  return (
+    <span
+      style={{
+        position: 'absolute',
+        left: -9999,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
 export default function Acc() {
+  const { findText } = useTranslation(wordStore);
   return (
     <div>
-      <VisuallyHidden>Screen reader only</VisuallyHidden>
+      <VisuallyHidden>{findText('Screen reader only')}</VisuallyHidden>
     </div>
   );
 }

@@ -1,6 +1,28 @@
 [
   {
-    "text": "Hello {name}",
+    "text": "Screen reader only",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "accessibility/Acc.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 32
+          },
+          "end": {
+            "line": 20,
+            "column": 52
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello",
     "placeholders": [],
     "occurrences": [
       {
@@ -12,7 +34,7 @@
           },
           "end": {
             "line": 10,
-            "column": 34
+            "column": 27
           }
         },
         "context": "findText",
@@ -28,23 +50,7 @@
           },
           "end": {
             "line": 10,
-            "column": 32
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "basic-jsx/App.jsx",
-        "loc": {
-          "start": {
-            "line": 14,
-            "column": 19
-          },
-          "end": {
-            "line": 14,
-            "column": 33
+            "column": 25
           }
         },
         "context": "findText",
@@ -60,51 +66,7 @@
           },
           "end": {
             "line": 21,
-            "column": 32
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "{children}",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "accessibility/Acc.jsx",
-        "loc": {
-          "start": {
-            "line": 13,
-            "column": 16
-          },
-          "end": {
-            "line": 13,
-            "column": 28
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Screen reader only",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "accessibility/Acc.jsx",
-        "loc": {
-          "start": {
-            "line": 23,
-            "column": 32
-          },
-          "end": {
-            "line": 23,
-            "column": 52
+            "column": 25
           }
         },
         "context": "findText",
@@ -134,6 +96,22 @@
         "attribute": null
       },
       {
+        "file": "edge-react-nodes/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 19
+          },
+          "end": {
+            "line": 24,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
         "file": "skip-cases/Skip.jsx",
         "loc": {
           "start": {
@@ -152,6 +130,28 @@
     ]
   },
   {
+    "text": "Hello {name}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 19
+          },
+          "end": {
+            "line": 13,
+            "column": 33
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
     "text": "Hi {firstName}",
     "placeholders": [
       "firstName"
@@ -161,11 +161,11 @@
         "file": "basic-jsx/App.jsx",
         "loc": {
           "start": {
-            "line": 16,
+            "line": 15,
             "column": 18
           },
           "end": {
-            "line": 16,
+            "line": 15,
             "column": 34
           }
         },
@@ -199,6 +199,50 @@
           "end": {
             "line": 16,
             "column": 38
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Slot Inner",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "edge-react-nodes/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 24
+          },
+          "end": {
+            "line": 6,
+            "column": 36
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Head",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "edge-react-nodes/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 47
+          },
+          "end": {
+            "line": 10,
+            "column": 53
           }
         },
         "context": "findText",
@@ -379,16 +423,195 @@
         "file": "tsx/App.tsx",
         "loc": {
           "start": {
-            "line": 26,
+            "line": 25,
             "column": 18
           },
           "end": {
-            "line": 26,
+            "line": 25,
             "column": 39
           }
         },
         "context": "findText",
         "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Plain",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "findtext/Calls.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 11
+          },
+          "end": {
+            "line": 6,
+            "column": 18
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Shown when true",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 24
+          },
+          "end": {
+            "line": 8,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "A",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 23
+          },
+          "end": {
+            "line": 9,
+            "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "B",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 39
+          },
+          "end": {
+            "line": 9,
+            "column": 42
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "a",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 16
+          },
+          "end": {
+            "line": 10,
+            "column": 19
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "b",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 33
+          },
+          "end": {
+            "line": 10,
+            "column": 36
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "{arg1}:{arg2} min",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "function-analysis/Sample.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 18
+          },
+          "end": {
+            "line": 13,
+            "column": 37
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "{mins}:{arg2} min",
+    "placeholders": [
+      "mins",
+      "arg2"
+    ],
+    "occurrences": [
+      {
+        "file": "function-analysis/Sample.jsx",
+        "loc": {
+          "start": {
+            "line": 32,
+            "column": 9
+          },
+          "end": {
+            "line": 32,
+            "column": 30
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
         "attribute": null
       }
     ]
@@ -592,226 +815,6 @@
     ]
   },
   {
-    "text": "Shown when true",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 8,
-            "column": 24
-          },
-          "end": {
-            "line": 8,
-            "column": 41
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "A",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 9,
-            "column": 23
-          },
-          "end": {
-            "line": 9,
-            "column": 26
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "B",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 9,
-            "column": 39
-          },
-          "end": {
-            "line": 9,
-            "column": 42
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "a",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 10,
-            "column": 16
-          },
-          "end": {
-            "line": 10,
-            "column": 19
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "b",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 10,
-            "column": 33
-          },
-          "end": {
-            "line": 10,
-            "column": 36
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Plain",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "findtext/Calls.jsx",
-        "loc": {
-          "start": {
-            "line": 6,
-            "column": 11
-          },
-          "end": {
-            "line": 6,
-            "column": 18
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Option {arg1}",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "hook-hoist/CheckoutTextList.jsx",
-        "loc": {
-          "start": {
-            "line": 12,
-            "column": 22
-          },
-          "end": {
-            "line": 12,
-            "column": 37
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Abhore",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "hook-hoist/CheckoutTextList.jsx",
-        "loc": {
-          "start": {
-            "line": 17,
-            "column": 34
-          },
-          "end": {
-            "line": 17,
-            "column": 42
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "{length} /80",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "hook-hoist/CheckoutTextList.jsx",
-        "loc": {
-          "start": {
-            "line": 28,
-            "column": 22
-          },
-          "end": {
-            "line": 28,
-            "column": 36
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "{value}",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "hook-hoist/CheckoutTextList.jsx",
-        "loc": {
-          "start": {
-            "line": 42,
-            "column": 18
-          },
-          "end": {
-            "line": 42,
-            "column": 27
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
     "text": "Visit {site} now",
     "placeholders": [],
     "occurrences": [
@@ -900,18 +903,18 @@
     ]
   },
   {
-    "text": "{arg1}:{arg2} min",
+    "text": "Option {arg1}",
     "placeholders": [],
     "occurrences": [
       {
-        "file": "function-analysis/Sample.jsx",
+        "file": "hook-hoist/CheckoutTextList.jsx",
         "loc": {
           "start": {
-            "line": 13,
-            "column": 18
+            "line": 12,
+            "column": 22
           },
           "end": {
-            "line": 13,
+            "line": 12,
             "column": 37
           }
         },
@@ -922,22 +925,41 @@
     ]
   },
   {
-    "text": "{mins}:{arg2} min",
-    "placeholders": [
-      "mins",
-      "arg2"
-    ],
+    "text": "Abhore",
+    "placeholders": [],
     "occurrences": [
       {
-        "file": "function-analysis/Sample.jsx",
+        "file": "hook-hoist/CheckoutTextList.jsx",
         "loc": {
           "start": {
-            "line": 33,
-            "column": 19
+            "line": 17,
+            "column": 34
           },
           "end": {
-            "line": 33,
-            "column": 38
+            "line": 17,
+            "column": 42
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "/80",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "hook-hoist/CheckoutTextList.jsx",
+        "loc": {
+          "start": {
+            "line": 29,
+            "column": 22
+          },
+          "end": {
+            "line": 29,
+            "column": 27
           }
         },
         "context": "findText",

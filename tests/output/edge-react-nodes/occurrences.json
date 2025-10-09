@@ -1,0 +1,56 @@
+[
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 4,
+        "column": 14
+      },
+      "end": {
+        "line": 4,
+        "column": 24
+      }
+    },
+    "context": "JSXText",
+    "element": "div",
+    "text": "Slot Inner",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 37
+      },
+      "end": {
+        "line": 8,
+        "column": 41
+      }
+    },
+    "context": "JSXText",
+    "element": "strong",
+    "text": "Head",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 23,
+        "column": 9
+      },
+      "end": {
+        "line": 23,
+        "column": 23
+      }
+    },
+    "context": "JSXExpression",
+    "element": "p",
+    "text": "Hello world",
+    "placeholders": [],
+    "sourceExprs": {}
+  }
+]
