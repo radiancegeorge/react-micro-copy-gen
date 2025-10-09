@@ -21,14 +21,49 @@ const NON_TEXT_PROPS = new Set([
   'checked', 'required', 'name', 'value', 'defaultValue'
 ]);
 
+function isCssLike(text) {
+  const s = String(text || '').trim();
+  if (!s) return false;
+  // CSS color/functions/hex
+  if (/(?:^|\s)(rgba?|hsla?)\s*\(/i.test(s)) return true;
+  if (/(repeat|minmax|clamp|calc|var)\s*\(/i.test(s)) return true;
+  if (/#[0-9a-f]{3,8}\b/i.test(s)) return true;
+  // units and fr
+  const unitRe = /-?\d*\.?\d+(?:px|rem|em|vh|vw|vmin|vmax|%|ch|ex|cm|mm|in|pt|pc|fr)\b/i;
+  // single token like 400px or 20% or 1fr
+  const wholeUnitRe = /^-?\d*\.?\d+(?:px|rem|em|vh|vw|vmin|vmax|%|ch|ex|cm|mm|in|pt|pc|fr)$/i;
+  if (wholeUnitRe.test(s)) return true;
+  if (unitRe.test(s)) {
+    const matches = s.match(new RegExp(unitRe, 'gi')) || [];
+    if (matches.length >= 2) return true;
+    if (/\b\d*\.?\d+fr\b/i.test(s)) return true;
+    const tokens = s.split(/[\s,]+/).filter(Boolean);
+    if (tokens.length > 1 && tokens.every((t) => unitRe.test(t))) return true;
+  }
+  return false;
+}
+
+function isFileOrPathLike(text) {
+  const s = String(text || '').trim();
+  if (!s) return false;
+  // URLs and protocols already handled elsewhere but include data/blob
+  if (/^(data:|blob:)/i.test(s)) return true;
+  // Common file extensions
+  if (/\.(png|jpe?g|gif|svg|webp|bmp|ico|tiff?|pdf|txt|md|json|csv|html?|map|css|scss|sass|less|woff2?|ttf|eot|otf|mp4|mp3|wav|mov|avi|mkv)$/i.test(s)) return true;
+  // Path-like patterns: starts with ./, ../, /, ~/, contains directory separators without spaces
+  if (/^(\.\/|\.\.\/|\/~|\/).+/.test(s)) return true;
+  if (/[\\/]/.test(s) && !/\s/.test(s)) return true;
+  return false;
+}
+
 function isLikelyMicrocopy(text, attrName) {
   if (!text) return false;
   const trimmed = String(text).trim();
   if (!trimmed) return false;
   if (attrName && NON_TEXT_PROPS.has(attrName)) return false;
   if (/^https?:\/\/|^(mailto:|tel:)/i.test(trimmed)) return false;
-  if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(trimmed)) return false;
-  if (/^(rgb|rgba)\(/i.test(trimmed)) return false;
+  if (isFileOrPathLike(trimmed)) return false;
+  if (isCssLike(trimmed)) return false;
   if (!/[a-z]/i.test(trimmed)) return false;
   return true;
 }
@@ -149,10 +184,14 @@ function placeholderSetKey(placeholders) {
 function shouldIndexText(text) {
   const trimmed = (text || '').trim();
   if (!trimmed) return false;
-  // Skip single-symbol texts like ":", "@", "-"
-  if (trimmed === ':' || trimmed === '@' || trimmed === '-') return false;
+  // Skip single non-alphanumeric symbol like ":", "@", "-", "%", "•"
+  if (trimmed.length === 1 && !/[a-z0-9]/i.test(trimmed)) return false;
   // Skip single placeholder-only texts like "{name}" with nothing else
   if (/^\{\s*[a-zA-Z0-9_]+\s*\}$/.test(trimmed)) return false;
+  // Skip CSS-like tokens/expressions
+  if (isCssLike(trimmed)) return false;
+  // Skip file/path-like strings
+  if (isFileOrPathLike(trimmed)) return false;
   return true;
 }
 
