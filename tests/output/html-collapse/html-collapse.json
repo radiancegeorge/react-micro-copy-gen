@@ -1,0 +1,142 @@
+[
+  {
+    "file": "Anchor.jsx",
+    "element": "h4",
+    "loc": {
+      "start": {
+        "line": 4,
+        "column": 4
+      },
+      "end": {
+        "line": 8,
+        "column": 9
+      }
+    },
+    "template": "Visit {site} now",
+    "placeholders": [
+      "site"
+    ],
+    "kwargs": {
+      "site": "<a href=\"${child?.url}\" title=\"${`Go to ${child?.site}`}\">${child?.site}</a>"
+    },
+    "warnings": [
+      "Untrusted attribute href: child?.url",
+      "Untrusted HTML content expression in <a>: child?.site",
+      "Untrusted href in <a>: child?.url"
+    ],
+    "inlineWhitelist": [
+      "span",
+      "strong",
+      "em",
+      "b",
+      "i",
+      "u",
+      "small",
+      "sup",
+      "sub",
+      "code",
+      "kbd",
+      "samp",
+      "mark",
+      "abbr",
+      "time",
+      "br",
+      "wbr",
+      "a"
+    ]
+  },
+  {
+    "file": "Collapse.jsx",
+    "element": "h1",
+    "loc": {
+      "start": {
+        "line": 5,
+        "column": 4
+      },
+      "end": {
+        "line": 8,
+        "column": 9
+      }
+    },
+    "template": "Obi is a boy {gender}",
+    "placeholders": [
+      "gender"
+    ],
+    "kwargs": {
+      "gender": "<span style=\"${{color: \"green\"}}\">${child?.gender}</span>"
+    },
+    "warnings": [
+      "Untrusted attribute style: {color: \"green\"}",
+      "Untrusted HTML content expression in <span>: child?.gender"
+    ],
+    "inlineWhitelist": [
+      "span",
+      "strong",
+      "em",
+      "b",
+      "i",
+      "u",
+      "small",
+      "sup",
+      "sub",
+      "code",
+      "kbd",
+      "samp",
+      "mark",
+      "abbr",
+      "time",
+      "br",
+      "wbr",
+      "a"
+    ]
+  },
+  {
+    "file": "Multiple.jsx",
+    "element": "h2",
+    "loc": {
+      "start": {
+        "line": 4,
+        "column": 4
+      },
+      "end": {
+        "line": 9,
+        "column": 9
+      }
+    },
+    "template": "Hello <strong>dear</strong> {role} from {site}",
+    "placeholders": [
+      "role",
+      "site"
+    ],
+    "kwargs": {
+      "role": "<em>${child?.role}</em>",
+      "site": "<a href=\"${child?.url}\" target=\"_blank\" rel=\"noopener\">${child?.site}</a>"
+    },
+    "warnings": [
+      "Untrusted HTML content expression in <em>: child?.role",
+      "Untrusted attribute href: child?.url",
+      "Untrusted HTML content expression in <a>: child?.site",
+      "Untrusted href in <a>: child?.url"
+    ],
+    "inlineWhitelist": [
+      "span",
+      "strong",
+      "em",
+      "b",
+      "i",
+      "u",
+      "small",
+      "sup",
+      "sub",
+      "code",
+      "kbd",
+      "samp",
+      "mark",
+      "abbr",
+      "time",
+      "br",
+      "wbr",
+      "a"
+    ]
+  }
+]

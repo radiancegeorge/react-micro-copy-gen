@@ -1,5 +1,7 @@
 [
+  "{arg1}:{arg2} min",
   "{children}",
+  "{mins}:{arg2} min",
   "a",
   "A",
   "Add your first item",

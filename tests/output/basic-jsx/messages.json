@@ -1,0 +1,92 @@
+[
+  {
+    "text": "Hello world",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "App.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 9
+          },
+          "end": {
+            "line": 6,
+            "column": 20
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "App.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 9
+          },
+          "end": {
+            "line": 7,
+            "column": 15
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello {name}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "App.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 9
+          },
+          "end": {
+            "line": 8,
+            "column": 25
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hi {firstName}",
+    "placeholders": [
+      "firstName"
+    ],
+    "occurrences": [
+      {
+        "file": "App.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 9
+          },
+          "end": {
+            "line": 9,
+            "column": 33
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  }
+]

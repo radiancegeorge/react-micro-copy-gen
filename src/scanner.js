@@ -167,16 +167,23 @@ function collectStringFromExpression(expr, pathCtx, source) {
   }
 
   function analyzeFunctionReturn(funcNode) {
-    // Only simple single return with string-like or +/template
-    let ret = null;
-    traverse(funcNode, {
-      ReturnStatement(p) {
-        if (ret) return; // first only
-        ret = p.node.argument;
-      },
-    });
-    if (!ret) return null;
-    return resolveNode(ret, funcNode.params || []);
+    // Support simple arrow/function bodies without traversing non-Program/File nodes
+    // - ArrowFunctionExpression with expression body -> body is the return
+    // - BlockStatement body -> first top-level ReturnStatement
+    if (t.isArrowFunctionExpression(funcNode) && !t.isBlockStatement(funcNode.body)) {
+      const retExpr = funcNode.body;
+      return resolveNode(retExpr, funcNode.params || []);
+    }
+    const body = funcNode.body;
+    if (t.isBlockStatement(body)) {
+      const stmts = body.body || [];
+      for (const s of stmts) {
+        if (t.isReturnStatement(s)) {
+          return resolveNode(s.argument, funcNode.params || []);
+        }
+      }
+    }
+    return null;
   }
 
   function resolveCallExpression(call) {

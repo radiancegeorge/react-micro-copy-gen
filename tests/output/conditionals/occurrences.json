@@ -1,0 +1,92 @@
+[
+  {
+    "file": "Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 6,
+        "column": 6
+      },
+      "end": {
+        "line": 6,
+        "column": 33
+      }
+    },
+    "context": "JSXExpression",
+    "element": "div",
+    "text": "Shown when true",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 7,
+        "column": 6
+      },
+      "end": {
+        "line": 7,
+        "column": 24
+      }
+    },
+    "context": "JSXExpression",
+    "element": "div",
+    "text": "A",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 7,
+        "column": 6
+      },
+      "end": {
+        "line": 7,
+        "column": 24
+      }
+    },
+    "context": "JSXExpression",
+    "element": "div",
+    "text": "B",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 6
+      },
+      "end": {
+        "line": 8,
+        "column": 18
+      }
+    },
+    "context": "JSXExpression",
+    "element": "div",
+    "text": "a",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 6
+      },
+      "end": {
+        "line": 8,
+        "column": 18
+      }
+    },
+    "context": "JSXExpression",
+    "element": "div",
+    "text": "b",
+    "placeholders": [],
+    "sourceExprs": {}
+  }
+]

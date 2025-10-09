@@ -1,0 +1,68 @@
+[
+  {
+    "text": "Welcome",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Skip.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 9
+          },
+          "end": {
+            "line": 8,
+            "column": 17
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Skip.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 9
+          },
+          "end": {
+            "line": 9,
+            "column": 14
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "world",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Skip.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 19
+          },
+          "end": {
+            "line": 9,
+            "column": 24
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  }
+]

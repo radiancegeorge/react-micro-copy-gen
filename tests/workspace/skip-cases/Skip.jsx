@@ -1,5 +1,6 @@
-import wordStore from '../../output-rewrite/wordStore.json';
+import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../output-rewrite/wordStore.json';
 export default function Skip({ name }) {
   const { findText } = useTranslation(wordStore);
   const background = 'blue'; // Non-UI string
