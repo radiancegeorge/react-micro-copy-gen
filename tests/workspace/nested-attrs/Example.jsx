@@ -17,14 +17,23 @@ export default function Demo() {
         title={findText('Dialogue Question')}
         dropdownList={[
           {
-            value: 'View in a flow diagram',
+            value: findText('View in a flow diagram'),
           },
           {
-            value: 'View as dialogue',
+            value: findText('View as dialogue'),
           },
         ]}
       />
-      <Menu items={actions} />
+      <Menu
+        items={[
+          {
+            label: findText('Open'),
+          },
+          {
+            label: findText('Close'),
+          },
+        ]}
+      />
     </div>
   );
 }

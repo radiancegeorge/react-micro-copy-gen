@@ -1,0 +1,124 @@
+[
+  {
+    "text": "View details",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Example.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 18
+          },
+          "end": {
+            "line": 8,
+            "column": 66
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Panel",
+        "attribute": "menu"
+      },
+      {
+        "file": "Example.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 21
+          },
+          "end": {
+            "line": 9,
+            "column": 28
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Panel",
+        "attribute": "actions"
+      }
+    ]
+  },
+  {
+    "text": "Delete",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Example.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 18
+          },
+          "end": {
+            "line": 8,
+            "column": 66
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Panel",
+        "attribute": "menu"
+      },
+      {
+        "file": "Example.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 21
+          },
+          "end": {
+            "line": 9,
+            "column": 28
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Panel",
+        "attribute": "actions"
+      }
+    ]
+  },
+  {
+    "text": "{items}",
+    "placeholders": [
+      "items"
+    ],
+    "occurrences": [
+      {
+        "file": "Example.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 21
+          },
+          "end": {
+            "line": 9,
+            "column": 28
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Panel",
+        "attribute": "actions"
+      }
+    ]
+  },
+  {
+    "text": "Click to open",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Example.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 23
+          },
+          "end": {
+            "line": 10,
+            "column": 38
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Widget",
+        "attribute": "hintText"
+      }
+    ]
+  }
+]

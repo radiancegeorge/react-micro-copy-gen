@@ -22,25 +22,63 @@
     ]
   },
   {
-    "text": "Hello",
+    "text": "Hello world",
     "placeholders": [],
     "occurrences": [
       {
-        "file": "array-map/List.jsx",
+        "file": "basic-jsx/App.jsx",
         "loc": {
           "start": {
-            "line": 10,
-            "column": 20
+            "line": 8,
+            "column": 19
           },
           "end": {
-            "line": 10,
-            "column": 27
+            "line": 8,
+            "column": 32
           }
         },
         "context": "findText",
         "element": null,
         "attribute": null
       },
+      {
+        "file": "edge-react-nodes/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 19
+          },
+          "end": {
+            "line": 24,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "skip-cases/Skip.jsx",
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 19
+          },
+          "end": {
+            "line": 21,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello",
+    "placeholders": [],
+    "occurrences": [
       {
         "file": "basic-jsx/App.jsx",
         "loc": {
@@ -58,6 +96,22 @@
         "attribute": null
       },
       {
+        "file": "array-map/List.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 20
+          },
+          "end": {
+            "line": 10,
+            "column": 27
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
         "file": "tsx/App.tsx",
         "loc": {
           "start": {
@@ -67,6 +121,84 @@
           "end": {
             "line": 21,
             "column": 25
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello {name}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 19
+          },
+          "end": {
+            "line": 13,
+            "column": 33
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hi {firstName}",
+    "placeholders": [
+      "firstName"
+    ],
+    "occurrences": [
+      {
+        "file": "basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 18
+          },
+          "end": {
+            "line": 15,
+            "column": 34
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "findtext/Calls.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 11
+          },
+          "end": {
+            "line": 7,
+            "column": 33
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tsx/App.tsx",
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 22
+          },
+          "end": {
+            "line": 16,
+            "column": 38
           }
         },
         "context": "findText",
@@ -274,138 +406,6 @@
     ]
   },
   {
-    "text": "Hello world",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "basic-jsx/App.jsx",
-        "loc": {
-          "start": {
-            "line": 8,
-            "column": 19
-          },
-          "end": {
-            "line": 8,
-            "column": 32
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "edge-react-nodes/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 24,
-            "column": 19
-          },
-          "end": {
-            "line": 24,
-            "column": 32
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "skip-cases/Skip.jsx",
-        "loc": {
-          "start": {
-            "line": 21,
-            "column": 19
-          },
-          "end": {
-            "line": 21,
-            "column": 32
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Hello {name}",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "basic-jsx/App.jsx",
-        "loc": {
-          "start": {
-            "line": 13,
-            "column": 19
-          },
-          "end": {
-            "line": 13,
-            "column": 33
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Hi {firstName}",
-    "placeholders": [
-      "firstName"
-    ],
-    "occurrences": [
-      {
-        "file": "basic-jsx/App.jsx",
-        "loc": {
-          "start": {
-            "line": 15,
-            "column": 18
-          },
-          "end": {
-            "line": 15,
-            "column": 34
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "findtext/Calls.jsx",
-        "loc": {
-          "start": {
-            "line": 7,
-            "column": 11
-          },
-          "end": {
-            "line": 7,
-            "column": 33
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "tsx/App.tsx",
-        "loc": {
-          "start": {
-            "line": 16,
-            "column": 22
-          },
-          "end": {
-            "line": 16,
-            "column": 38
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
     "text": "Slot Inner",
     "placeholders": [],
     "occurrences": [
@@ -507,116 +507,6 @@
           "end": {
             "line": 10,
             "column": 34
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Shown when true",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 8,
-            "column": 24
-          },
-          "end": {
-            "line": 8,
-            "column": 41
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "A",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 9,
-            "column": 23
-          },
-          "end": {
-            "line": 9,
-            "column": 26
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "B",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 9,
-            "column": 39
-          },
-          "end": {
-            "line": 9,
-            "column": 42
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "a",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 10,
-            "column": 16
-          },
-          "end": {
-            "line": 10,
-            "column": 19
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "b",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "conditionals/Cond.jsx",
-        "loc": {
-          "start": {
-            "line": 10,
-            "column": 33
-          },
-          "end": {
-            "line": 10,
-            "column": 36
           }
         },
         "context": "findText",
@@ -792,6 +682,214 @@
     ]
   },
   {
+    "text": "Shown when true",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 24
+          },
+          "end": {
+            "line": 8,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "A",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 23
+          },
+          "end": {
+            "line": 9,
+            "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "B",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 39
+          },
+          "end": {
+            "line": 9,
+            "column": 42
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "a",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 16
+          },
+          "end": {
+            "line": 10,
+            "column": 19
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "b",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 33
+          },
+          "end": {
+            "line": 10,
+            "column": 36
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "View details",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 27
+          },
+          "end": {
+            "line": 20,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 27
+          },
+          "end": {
+            "line": 30,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Delete",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 27
+          },
+          "end": {
+            "line": 23,
+            "column": 35
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 33,
+            "column": 27
+          },
+          "end": {
+            "line": 33,
+            "column": 35
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Click to open",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 37,
+            "column": 33
+          },
+          "end": {
+            "line": 37,
+            "column": 48
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
     "text": "{arg1}:{arg2} min",
     "placeholders": [],
     "occurrences": [
@@ -834,72 +932,6 @@
         },
         "context": "JSXExpression",
         "element": "p",
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Option {arg1}",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "hook-hoist/CheckoutTextList.jsx",
-        "loc": {
-          "start": {
-            "line": 12,
-            "column": 22
-          },
-          "end": {
-            "line": 12,
-            "column": 37
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Abhore",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "hook-hoist/CheckoutTextList.jsx",
-        "loc": {
-          "start": {
-            "line": 17,
-            "column": 34
-          },
-          "end": {
-            "line": 17,
-            "column": 42
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "/80",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "hook-hoist/CheckoutTextList.jsx",
-        "loc": {
-          "start": {
-            "line": 29,
-            "column": 22
-          },
-          "end": {
-            "line": 29,
-            "column": 27
-          }
-        },
-        "context": "findText",
-        "element": null,
         "attribute": null
       }
     ]
@@ -993,6 +1025,72 @@
     ]
   },
   {
+    "text": "Option {arg1}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "hook-hoist/CheckoutTextList.jsx",
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 22
+          },
+          "end": {
+            "line": 12,
+            "column": 37
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Abhore",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "hook-hoist/CheckoutTextList.jsx",
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 34
+          },
+          "end": {
+            "line": 17,
+            "column": 42
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "/80",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "hook-hoist/CheckoutTextList.jsx",
+        "loc": {
+          "start": {
+            "line": 29,
+            "column": 22
+          },
+          "end": {
+            "line": 29,
+            "column": 27
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
     "text": "Dialogue Question",
     "placeholders": [],
     "occurrences": [
@@ -1015,19 +1113,85 @@
     ]
   },
   {
-    "text": "Add your first item",
+    "text": "View in a flow diagram",
     "placeholders": [],
     "occurrences": [
       {
-        "file": "object-literals/ThirdParty.jsx",
+        "file": "nested-attrs/Example.jsx",
         "loc": {
           "start": {
-            "line": 16,
-            "column": 30
+            "line": 20,
+            "column": 28
           },
           "end": {
-            "line": 16,
-            "column": 51
+            "line": 20,
+            "column": 52
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "View as dialogue",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 28
+          },
+          "end": {
+            "line": 23,
+            "column": 46
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Open",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 28
+          },
+          "end": {
+            "line": 30,
+            "column": 34
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Close",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 33,
+            "column": 28
+          },
+          "end": {
+            "line": 33,
+            "column": 35
           }
         },
         "context": "findText",
@@ -1066,6 +1230,28 @@
           "end": {
             "line": 16,
             "column": 43
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Add your first item",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "object-literals/ThirdParty.jsx",
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 30
+          },
+          "end": {
+            "line": 16,
+            "column": 51
           }
         },
         "context": "findText",

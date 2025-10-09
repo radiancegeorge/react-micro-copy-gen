@@ -1,7 +1,7 @@
 {
-  "filesScanned": 23,
-  "messagesCount": 42,
-  "occurrencesCount": 51,
+  "filesScanned": 24,
+  "messagesCount": 49,
+  "occurrencesCount": 60,
   "collisions": [
     {
       "text": "Hi {firstName}",
@@ -59,5 +59,5 @@
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 42
+  "wordStoreCount": 49
 }

@@ -1003,15 +1003,18 @@ async function rewriteFile(absPath, code, config) {
         const attrName = attr.name.name;
         const allowedByName = config.allowAttrs.includes(attrName);
         const allowedByThirdParty = elemName && thirdParty[elemName] && Array.isArray(thirdParty[elemName]) && thirdParty[elemName].includes(attrName);
-        if (!allowedByName && !allowedByThirdParty) continue;
 
         if (attr.value == null) continue;
 
         if (t.isStringLiteral(attr.value)) {
-          // placeholder-free literal -> findText("...")
-          const call = makeFindTextCallFromTemplateString(attr.value.value, null);
-          attr.value = t.jsxExpressionContainer(call);
-          changed = true; nodesRewritten++;
+          // placeholder-free literal -> findText("...") when allowlisted/third-party or heuristically microcopy
+          const literalText = attr.value.value;
+          const ok = allowedByName || allowedByThirdParty || isLikelyMicrocopy(literalText, attrName);
+          if (ok) {
+            const call = makeFindTextCallFromTemplateString(literalText.trim(), null);
+            attr.value = t.jsxExpressionContainer(call);
+            changed = true; nodesRewritten++;
+          }
         } else if (t.isJSXExpressionContainer(attr.value)) {
           const inner = attr.value.expression;
           if (t.isJSXEmptyExpression(inner)) continue;

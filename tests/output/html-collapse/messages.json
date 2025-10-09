@@ -156,6 +156,50 @@
     ]
   },
   {
+    "text": "_blank",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Multiple.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 34
+          },
+          "end": {
+            "line": 8,
+            "column": 42
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "a",
+        "attribute": "target"
+      }
+    ]
+  },
+  {
+    "text": "noopener",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Multiple.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 47
+          },
+          "end": {
+            "line": 8,
+            "column": 57
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "a",
+        "attribute": "rel"
+      }
+    ]
+  },
+  {
     "text": "Welcome",
     "placeholders": [],
     "occurrences": [

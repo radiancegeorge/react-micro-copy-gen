@@ -131,6 +131,44 @@
     "sourceExprs": {}
   },
   {
+    "file": "Multiple.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 34
+      },
+      "end": {
+        "line": 8,
+        "column": 42
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "a",
+    "attribute": "target",
+    "text": "_blank",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Multiple.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 47
+      },
+      "end": {
+        "line": 8,
+        "column": 57
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "a",
+    "attribute": "rel",
+    "text": "noopener",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
     "file": "Nested.jsx",
     "loc": {
       "start": {

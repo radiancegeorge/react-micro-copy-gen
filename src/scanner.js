@@ -14,6 +14,25 @@ const {
 } = require('./normalize');
 const { getPlaceholderName } = require('./normalize');
 
+const NON_TEXT_PROPS = new Set([
+  'class', 'className', 'style', 'id', 'htmlFor', 'role', 'type', 'src', 'href', 'to',
+  'd', 'viewBox', 'fill', 'stroke', 'width', 'height', 'color', 'bg', 'background',
+  'variant', 'size', 'key', 'data-testid', 'aria-hidden', 'tabIndex', 'disabled',
+  'checked', 'required', 'name', 'value', 'defaultValue'
+]);
+
+function isLikelyMicrocopy(text, attrName) {
+  if (!text) return false;
+  const trimmed = String(text).trim();
+  if (!trimmed) return false;
+  if (attrName && NON_TEXT_PROPS.has(attrName)) return false;
+  if (/^https?:\/\/|^(mailto:|tel:)/i.test(trimmed)) return false;
+  if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(trimmed)) return false;
+  if (/^(rgb|rgba)\(/i.test(trimmed)) return false;
+  if (!/[a-z]/i.test(trimmed)) return false;
+  return true;
+}
+
 function isChildrenReference(expr) {
   if (!expr) return false;
   if (t.isIdentifier(expr, { name: 'children' })) return true;
@@ -379,14 +398,14 @@ function scanFile(absPath, relPath, code, config, state) {
 
         const allowedByName = config.allowAttrs.includes(attrName);
         const allowedByThirdParty = elemName && thirdParty[elemName] && Array.isArray(thirdParty[elemName]) && thirdParty[elemName].includes(attrName);
-        if (!allowedByName && !allowedByThirdParty) continue;
 
         const val = attr.value;
         if (!val) continue; // boolean attrs
 
         if (t.isStringLiteral(val)) {
           const raw = val.value;
-          if (raw && raw.trim() !== '') {
+          const ok = (allowedByName || allowedByThirdParty || isLikelyMicrocopy(raw, attrName));
+          if (ok && raw && raw.trim() !== '') {
             addOccurrence(state, {
               file: relPath,
               loc: getLoc(val),
@@ -403,7 +422,10 @@ function scanFile(absPath, relPath, code, config, state) {
           if (isChildrenReference(expr)) continue; // skip React children
           if (isComponentReference(expr)) continue; // skip component refs
           if (isReactCreateElementCall(expr)) continue; // skip createElement
-          const results = collectStringFromExpression(expr, path, code, { skipPlaceholderOnly: false });
+          let results = collectStringFromExpression(expr, path, code, { skipPlaceholderOnly: false });
+          if (!allowedByName && !allowedByThirdParty) {
+            results = results.filter((r) => isLikelyMicrocopy(r.text, attrName));
+          }
           for (const res of results) {
             if (!res.text || res.text.trim() === '') continue;
             addOccurrence(state, {
@@ -431,6 +453,7 @@ function scanFile(absPath, relPath, code, config, state) {
             }
           }
           for (const s of deepStrings) {
+            if (!allowedByName && !allowedByThirdParty && !isLikelyMicrocopy(s, attrName)) continue;
             addOccurrence(state, {
               file: relPath,
               loc: getLoc(val),
