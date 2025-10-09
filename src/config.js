@@ -79,6 +79,10 @@ async function loadConfig(cliConfig) {
     }
   }
 
+  // Load root-level metadata from previous scans (mc.json)
+  const metaPath = path.join(root, 'mc.json');
+  const meta = readJsonIfExists(metaPath);
+
   // Optional third-party props mapping in a separate file
   let thirdParty = {};
   const thirdPartyFromConfig = fileConfig && fileConfig.thirdParty ? fileConfig.thirdParty : {};
@@ -97,7 +101,11 @@ async function loadConfig(cliConfig) {
   const allowAttrs = cliConfig.allowAttrs || (fileConfig && fileConfig.allowAttrs) || DEFAULT_ALLOW_ATTRS;
   const include = cliConfig.include || (fileConfig && fileConfig.include) || DEFAULT_INCLUDE;
   const exclude = cliConfig.exclude || (fileConfig && fileConfig.exclude) || DEFAULT_EXCLUDE;
-  const outDir = cliConfig.outDir || path.join(root, 'mc-out');
+  let outDir = cliConfig.outDir
+    || (fileConfig && fileConfig.outDir)
+    || (meta && meta.lastScan && meta.lastScan.outDir)
+    || path.join(root, 'mc-out');
+  if (!path.isAbsolute(outDir)) outDir = path.resolve(root, outDir);
 
   const htmlDetect = typeof cliConfig.htmlCollapseDetect === 'boolean'
     ? cliConfig.htmlCollapseDetect
@@ -130,10 +138,12 @@ async function loadConfig(cliConfig) {
     || DEFAULT_TRANSLATION_HOOK_NAME;
   const wordStoreImportSource = cliConfig.wordStoreImportSource
     || (fileConfig && fileConfig.translation && fileConfig.translation.wordStoreImportSource)
+    || (meta && meta.lastScan && meta.lastScan.wordStorePath)
     || DEFAULT_WORD_STORE_IMPORT_SOURCE;
   const wordStoreIdentifier = cliConfig.wordStoreIdentifier
     || (fileConfig && fileConfig.translation && fileConfig.translation.wordStoreIdentifier)
     || DEFAULT_WORD_STORE_IDENTIFIER;
+  const wordStoreExplicit = typeof cliConfig.wordStoreImportSource !== 'undefined';
 
   const config = {
     root,
@@ -163,6 +173,7 @@ async function loadConfig(cliConfig) {
       wordStoreImportSource,
       wordStoreIdentifier,
     },
+    wordStoreExplicit,
   };
 
   ensureDir(outDir);

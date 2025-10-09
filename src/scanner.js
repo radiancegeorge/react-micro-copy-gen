@@ -706,6 +706,30 @@ async function runScan(config) {
     if (config.htmlCollapse && config.htmlCollapse.detect) {
       fs.writeFileSync(htmlPath, JSON.stringify(state.htmlCollapseCandidates, null, 2));
     }
+
+    // Write root-level metadata so rewrite can auto-locate outputs later
+    try {
+      const metaPath = path.join(config.root, 'mc.json');
+      const meta = {
+        version: 1,
+        lastScan: {
+          root: config.root,
+          outDir: config.outDir,
+          reportPath: repPath,
+          messagesPath: msgPath,
+          occurrencesPath: occPath,
+          wordStorePath: wordStorePath,
+          htmlCollapsePath: (config.htmlCollapse && config.htmlCollapse.detect) ? htmlPath : null,
+          include: config.include,
+          exclude: config.exclude,
+          mode: config.mode,
+          scannedAt: new Date().toISOString(),
+        },
+      };
+      fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
+    } catch (e) {
+      // Non-fatal: continue even if metadata write fails
+    }
   }
 
   return {

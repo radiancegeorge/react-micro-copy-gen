@@ -6,6 +6,7 @@ const traverse = require('@babel/traverse').default;
 const generate = require('@babel/generator').default;
 const t = require('@babel/types');
 const prettier = require('prettier');
+const { runScan } = require('./scanner');
 const { collapseJsxText, normalizeTemplateLiteral, normalizeBinaryExpression, getPlaceholderName, normalizeStringLiteral } = require('./normalize');
 
 function isComponentName(name) {
@@ -1344,6 +1345,41 @@ async function rewriteFile(absPath, code, config) {
 }
 
 async function runRewrite(config) {
+  // Ensure wordStore is available: if not explicitly provided and missing on disk, run a quick scan to generate it
+  try {
+    if (config && config.findTextSetup && !config.wordStoreExplicit) {
+      const wsSrc = config.findTextSetup.wordStoreImportSource;
+      let wsAbs = wsSrc;
+      if (!path.isAbsolute(wsAbs)) wsAbs = path.resolve(config.root, wsSrc);
+      // If wsAbs points to a directory or non-existent, prefer the standard outDir wordStore.json
+      let targetWsAbs = wsAbs;
+      const looksLikeJson = /\.json$/i.test(wsAbs);
+      if (!looksLikeJson) {
+        targetWsAbs = path.join(config.outDir, 'wordStore.json');
+      }
+      if (!fs.existsSync(targetWsAbs)) {
+        // Run scan to produce outputs in outDir
+        await runScan({
+          root: config.root,
+          include: config.include,
+          exclude: config.exclude,
+          allowAttrs: config.allowAttrs,
+          thirdParty: config.thirdParty,
+          outDir: config.outDir,
+          mode: config.mode,
+          reportOnly: false,
+          htmlCollapse: { detect: false },
+        });
+      }
+      // After scan, ensure we reference the generated wordStore.json under outDir
+      const finalWs = path.join(config.outDir, 'wordStore.json');
+      if (fs.existsSync(finalWs)) {
+        config.findTextSetup.wordStoreImportSource = finalWs;
+      }
+    }
+  } catch (_) {
+    // Non-fatal: proceed; imports may still resolve if provided explicitly
+  }
   const patterns = config.include || ['**/*.{js,jsx,ts,tsx}'];
   const ignore = config.exclude || [];
   const files = await fg(patterns, { cwd: config.root, ignore, absolute: true, dot: false });
