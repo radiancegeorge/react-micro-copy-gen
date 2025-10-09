@@ -1,5 +1,23 @@
 [
   {
+    "file": "array-map/List.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 20
+      },
+      "end": {
+        "line": 10,
+        "column": 34
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello {name}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
     "file": "accessibility/Acc.jsx",
     "loc": {
       "start": {
@@ -108,20 +126,128 @@
     "sourceExprs": {}
   },
   {
-    "file": "array-map/List.jsx",
+    "file": "entities-rtl/Entities.jsx",
     "loc": {
       "start": {
-        "line": 11,
-        "column": 22
+        "line": 8,
+        "column": 19
       },
       "end": {
-        "line": 11,
-        "column": 36
+        "line": 8,
+        "column": 33
       }
     },
     "context": "findText",
     "element": null,
-    "text": "Hello {name}",
+    "text": "Price is $10",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "entities-rtl/Entities.jsx",
+    "loc": {
+      "start": {
+        "line": 9,
+        "column": 19
+      },
+      "end": {
+        "line": 9,
+        "column": 26
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "مرحبا",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "entities-rtl/Entities.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 19
+      },
+      "end": {
+        "line": 10,
+        "column": 34
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Line 1 Line 2",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "expressions/Expr.jsx",
+    "loc": {
+      "start": {
+        "line": 22,
+        "column": 18
+      },
+      "end": {
+        "line": 22,
+        "column": 29
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hi {name}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "expressions/Expr.jsx",
+    "loc": {
+      "start": {
+        "line": 26,
+        "column": 29
+      },
+      "end": {
+        "line": 26,
+        "column": 43
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "No items yet",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "expressions/Expr.jsx",
+    "loc": {
+      "start": {
+        "line": 28,
+        "column": 18
+      },
+      "end": {
+        "line": 28,
+        "column": 26
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hi {n}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "expressions/Expr.jsx",
+    "loc": {
+      "start": {
+        "line": 33,
+        "column": 18
+      },
+      "end": {
+        "line": 33,
+        "column": 39
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Welcome {firstName}",
     "placeholders": [],
     "sourceExprs": {}
   },
@@ -378,132 +504,6 @@
     "sourceExprs": {}
   },
   {
-    "file": "entities-rtl/Entities.jsx",
-    "loc": {
-      "start": {
-        "line": 8,
-        "column": 19
-      },
-      "end": {
-        "line": 8,
-        "column": 33
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Price is $10",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "entities-rtl/Entities.jsx",
-    "loc": {
-      "start": {
-        "line": 9,
-        "column": 19
-      },
-      "end": {
-        "line": 9,
-        "column": 26
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "مرحبا",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "entities-rtl/Entities.jsx",
-    "loc": {
-      "start": {
-        "line": 10,
-        "column": 19
-      },
-      "end": {
-        "line": 10,
-        "column": 34
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Line 1 Line 2",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "expressions/Expr.jsx",
-    "loc": {
-      "start": {
-        "line": 22,
-        "column": 18
-      },
-      "end": {
-        "line": 22,
-        "column": 29
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hi {name}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "expressions/Expr.jsx",
-    "loc": {
-      "start": {
-        "line": 26,
-        "column": 29
-      },
-      "end": {
-        "line": 26,
-        "column": 43
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "No items yet",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "expressions/Expr.jsx",
-    "loc": {
-      "start": {
-        "line": 28,
-        "column": 18
-      },
-      "end": {
-        "line": 28,
-        "column": 26
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hi {n}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "expressions/Expr.jsx",
-    "loc": {
-      "start": {
-        "line": 33,
-        "column": 18
-      },
-      "end": {
-        "line": 33,
-        "column": 39
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Welcome {firstName}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
     "file": "findtext/Calls.jsx",
     "loc": {
       "start": {
@@ -544,46 +544,76 @@
     }
   },
   {
-    "file": "function-analysis/Sample.jsx",
+    "file": "hook-hoist/CheckoutTextList.jsx",
     "loc": {
       "start": {
-        "line": 13,
-        "column": 18
+        "line": 12,
+        "column": 22
       },
       "end": {
-        "line": 13,
+        "line": 12,
         "column": 37
       }
     },
     "context": "findText",
     "element": null,
-    "text": "{arg1}:{arg2} min",
+    "text": "Option {arg1}",
     "placeholders": [],
     "sourceExprs": {}
   },
   {
-    "file": "function-analysis/Sample.jsx",
+    "file": "hook-hoist/CheckoutTextList.jsx",
     "loc": {
       "start": {
-        "line": 33,
-        "column": 19
+        "line": 17,
+        "column": 34
       },
       "end": {
-        "line": 33,
-        "column": 38
+        "line": 17,
+        "column": 42
       }
     },
     "context": "findText",
     "element": null,
-    "text": "{mins}:{arg2} min",
-    "placeholders": [
-      "mins",
-      "arg2"
-    ],
-    "sourceExprs": {
-      "mins": "mins",
-      "arg2": "secs.toString().padStart(2, '0')"
-    }
+    "text": "Abhore",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "hook-hoist/CheckoutTextList.jsx",
+    "loc": {
+      "start": {
+        "line": 28,
+        "column": 22
+      },
+      "end": {
+        "line": 28,
+        "column": 36
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "{length} /80",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "hook-hoist/CheckoutTextList.jsx",
+    "loc": {
+      "start": {
+        "line": 42,
+        "column": 18
+      },
+      "end": {
+        "line": 42,
+        "column": 27
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "{value}",
+    "placeholders": [],
+    "sourceExprs": {}
   },
   {
     "file": "html-collapse/Anchor.jsx",
@@ -656,6 +686,48 @@
     "text": "Welcome {highlight} and thanks",
     "placeholders": [],
     "sourceExprs": {}
+  },
+  {
+    "file": "function-analysis/Sample.jsx",
+    "loc": {
+      "start": {
+        "line": 13,
+        "column": 18
+      },
+      "end": {
+        "line": 13,
+        "column": 37
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "{arg1}:{arg2} min",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "function-analysis/Sample.jsx",
+    "loc": {
+      "start": {
+        "line": 33,
+        "column": 19
+      },
+      "end": {
+        "line": 33,
+        "column": 38
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "{mins}:{arg2} min",
+    "placeholders": [
+      "mins",
+      "arg2"
+    ],
+    "sourceExprs": {
+      "mins": "mins",
+      "arg2": "secs.toString().padStart(2, '0')"
+    }
   },
   {
     "file": "object-literals/ThirdParty.jsx",

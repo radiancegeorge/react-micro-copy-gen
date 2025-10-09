@@ -8,6 +8,58 @@ const t = require('@babel/types');
 const prettier = require('prettier');
 const { collapseJsxText, normalizeTemplateLiteral, normalizeBinaryExpression, getPlaceholderName, normalizeStringLiteral } = require('./normalize');
 
+function isComponentName(name) {
+  return typeof name === 'string' && /^[A-Z]/.test(name);
+}
+
+function isHookName(name) {
+  return typeof name === 'string' && /^use[A-Z0-9]/.test(name);
+}
+
+function calleeMatchesIdentifier(path, names) {
+  if (!path) return false;
+  if (path.isIdentifier()) return names.includes(path.node.name);
+  if (path.isMemberExpression() && !path.node.computed && path.get('property').isIdentifier()) {
+    const propertyName = path.node.property.name;
+    return names.includes(propertyName);
+  }
+  return false;
+}
+
+function isHookHostFunction(path) {
+  if (!path || !path.isFunction()) return false;
+
+  if (path.parentPath && path.parentPath.isExportDefaultDeclaration()) return true;
+
+  if (path.isFunctionDeclaration()) {
+    const name = path.node.id && path.node.id.name;
+    return isComponentName(name) || isHookName(name) || !path.parentPath || path.parentPath.isProgram();
+  }
+
+  const parent = path.parentPath;
+  if (!parent) return false;
+
+  if (parent.isVariableDeclarator()) {
+    if (t.isIdentifier(parent.node.id)) {
+      const name = parent.node.id.name;
+      return isComponentName(name) || isHookName(name);
+    }
+    return false;
+  }
+
+  if (parent.isAssignmentExpression() && t.isIdentifier(parent.node.left)) {
+    const name = parent.node.left.name;
+    return isComponentName(name) || isHookName(name);
+  }
+
+  if (parent.isCallExpression()) {
+    const calleePath = parent.get('callee');
+    return calleeMatchesIdentifier(calleePath, ['memo', 'forwardRef', 'React.memo', 'React.forwardRef']);
+  }
+
+  return false;
+}
+
 function parseFile(code, filename) {
   return parser.parse(code, {
     sourceType: 'module',
@@ -138,6 +190,59 @@ function unifyUseTranslationCalls(fnPath, hookLocalName, wordStoreLocalName) {
     changed = true;
     if (d.stmtPath && d.stmtPath.node && Array.isArray(d.stmtPath.node.declarations) && d.stmtPath.node.declarations.length === 0) {
       d.stmtPath.remove();
+    }
+  }
+
+  return changed;
+}
+
+function stripUseTranslationCalls(fnPath, hookLocalName) {
+  let changed = false;
+  let bodyPath = fnPath.get('body');
+  if (!bodyPath.isBlockStatement()) return false;
+  const bodyPaths = bodyPath.get('body');
+  const removedBindings = new Set();
+
+  for (const stmtPath of bodyPaths) {
+    if (!stmtPath.isVariableDeclaration()) continue;
+    const decls = stmtPath.get('declarations');
+    let removedAny = false;
+    for (const declPath of decls) {
+      const initPath = declPath.get('init');
+      if (!initPath || !initPath.node) continue;
+      if (initPath.isCallExpression() && t.isIdentifier(initPath.node.callee, { name: hookLocalName })) {
+        const idPath = declPath.get('id');
+        if (idPath.isIdentifier()) removedBindings.add(idPath.node.name);
+        declPath.remove();
+        removedAny = true;
+        changed = true;
+      }
+    }
+    if (removedAny && stmtPath.node.declarations.length === 0) {
+      stmtPath.remove();
+      changed = true;
+    }
+  }
+
+  if (removedBindings.size > 0) {
+    const remaining = bodyPath.get('body');
+    for (const stmtPath of remaining) {
+      if (!stmtPath.isVariableDeclaration()) continue;
+      const decls = stmtPath.get('declarations');
+      let removedAny = false;
+      for (const declPath of decls) {
+        const initPath = declPath.get('init');
+        if (!initPath || !initPath.isIdentifier()) continue;
+        if (removedBindings.has(initPath.node.name)) {
+          declPath.remove();
+          removedAny = true;
+          changed = true;
+        }
+      }
+      if (removedAny && stmtPath.node.declarations.length === 0) {
+        stmtPath.remove();
+        changed = true;
+      }
     }
   }
 
@@ -394,7 +499,7 @@ function hasFindTextUsage(ast) {
   return used;
 }
 
-function functionUsesFindText(path) {
+function functionUsesFindText(path, includeNested = false) {
   let used = false;
   path.traverse({
     CallExpression(callPath) {
@@ -404,7 +509,7 @@ function functionUsesFindText(path) {
       }
     },
     Function(inner) {
-      inner.skip();
+      if (!includeNested) inner.skip();
     },
   });
   return used;
@@ -464,9 +569,15 @@ function ensureFindTextImports(program, setup, currentFilePath, rootDir) {
 function ensureFindTextInitialization(ast, hookLocalName, wordStoreLocalName) {
   let changed = false;
   function processFunction(path) {
-    if (!functionUsesFindText(path)) return;
-    changed = unifyUseTranslationCalls(path, hookLocalName, wordStoreLocalName) || changed;
-    changed = dedupeFindTextInFunction(path) || changed;
+    const isHost = isHookHostFunction(path);
+    const usesFindText = functionUsesFindText(path, isHost);
+    if (!usesFindText) return;
+    if (isHost) {
+      changed = unifyUseTranslationCalls(path, hookLocalName, wordStoreLocalName) || changed;
+      changed = dedupeFindTextInFunction(path) || changed;
+    } else {
+      changed = stripUseTranslationCalls(path, hookLocalName) || changed;
+    }
   }
   traverse(ast, {
     FunctionDeclaration(path) {

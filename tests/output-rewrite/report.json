@@ -1,7 +1,7 @@
 {
-  "filesScanned": 20,
-  "messagesCount": 35,
-  "occurrencesCount": 44,
+  "filesScanned": 21,
+  "messagesCount": 39,
+  "occurrencesCount": 48,
   "collisions": [
     {
       "text": "Hi {firstName}",
@@ -56,20 +56,6 @@
   ],
   "missingInStore": [
     {
-      "file": "complex-functions/Funcs.jsx",
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 19
-        },
-        "end": {
-          "line": 11,
-          "column": 40
-        }
-      },
-      "text": "EXPR(findText-arg1)"
-    },
-    {
       "file": "findtext/Calls.jsx",
       "loc": {
         "start": {
@@ -79,6 +65,20 @@
         "end": {
           "line": 8,
           "column": 28
+        }
+      },
+      "text": "EXPR(findText-arg1)"
+    },
+    {
+      "file": "complex-functions/Funcs.jsx",
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 19
+        },
+        "end": {
+          "line": 11,
+          "column": 40
         }
       },
       "text": "EXPR(findText-arg1)"
@@ -102,5 +102,5 @@
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 35
+  "wordStoreCount": 39
 }
