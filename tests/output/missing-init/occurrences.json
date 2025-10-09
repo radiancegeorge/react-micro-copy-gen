@@ -1,0 +1,39 @@
+[
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 3,
+        "column": 18
+      },
+      "end": {
+        "line": 3,
+        "column": 26
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "button",
+    "attribute": "title",
+    "text": "Submit",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 3,
+        "column": 27
+      },
+      "end": {
+        "line": 3,
+        "column": 31
+      }
+    },
+    "context": "JSXText",
+    "element": "button",
+    "text": "Save",
+    "placeholders": [],
+    "sourceExprs": {}
+  }
+]

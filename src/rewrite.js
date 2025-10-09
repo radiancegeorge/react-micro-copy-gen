@@ -30,6 +30,30 @@ function isLikelyMicrocopy(text, attrName) {
   return true;
 }
 
+function unwrapFindTextOutsideHosts(ast) {
+  let changed = false;
+  traverse(ast, {
+    CallExpression(path) {
+      if (!t.isIdentifier(path.node.callee, { name: 'findText' })) return;
+      // Determine nearest function scope and whether it's a host
+      const fnPath = path.getFunctionParent();
+      let isHost = false;
+      if (fnPath && fnPath.isFunction()) {
+        isHost = isHookHostFunction(fnPath);
+      }
+      if (isHost) return;
+      const args = path.node.arguments || [];
+      const first = args[0];
+      if (t.isStringLiteral(first)) {
+        // Replace call with its literal argument
+        path.replaceWith(t.stringLiteral((first.value || '').trim()));
+        changed = true;
+      }
+    },
+  });
+  return changed;
+}
+
 function isComponentName(name) {
   return typeof name === 'string' && /^[A-Z]/.test(name);
 }
@@ -180,6 +204,10 @@ function unifyUseTranslationCalls(fnPath, hookLocalName, wordStoreLocalName) {
       if (!c.arguments || c.arguments.length === 0 || !t.isIdentifier(c.arguments[0], { name: wordStoreLocalName })) {
         c.arguments = [t.identifier(wordStoreLocalName)];
         changed = true;
+      }
+      // Ensure 'findText' binding exists when only a single call exists
+      if (!fnPath.scope.hasOwnBinding('findText')) {
+        changed = injectFindTextIntoFunction(fnPath, hookLocalName, wordStoreLocalName) || changed;
       }
     } else if (!fnPath.scope.hasOwnBinding('findText')) {
       // No call exists: inject const { findText } = useTranslation(wordStore);
@@ -995,6 +1023,17 @@ async function rewriteFile(absPath, code, config) {
       const elemName = getJsxNameName(opening.name);
       const thirdParty = config.thirdParty || {};
 
+      // Only rewrite inside component/hook host render trees
+      let withinHost = false;
+      let cur = path.parentPath;
+      while (cur) {
+        if (cur.isFunction()) {
+          if (isHookHostFunction(cur)) { withinHost = true; break; }
+        }
+        cur = cur.parentPath;
+      }
+      if (!withinHost) return; // skip rewriting in non-component contexts
+
       // Rewrite attributes that surface text
       for (const attr of opening.attributes) {
         if (!t.isJSXAttribute(attr)) continue;
@@ -1463,6 +1502,9 @@ async function rewriteFile(absPath, code, config) {
       }
     },
   });
+
+  // First unwrap any non-host findText calls to avoid injecting init in non-components
+  if (unwrapFindTextOutsideHosts(ast)) changed = true;
 
   const usesFindText = hasFindTextUsage(ast);
   if (usesFindText && config.findTextSetup) {

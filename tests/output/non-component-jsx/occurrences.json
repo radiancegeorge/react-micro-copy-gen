@@ -1,0 +1,94 @@
+[
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 4,
+        "column": 26
+      },
+      "end": {
+        "line": 4,
+        "column": 41
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "a",
+    "attribute": "title",
+    "text": "External link",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 4,
+        "column": 42
+      },
+      "end": {
+        "line": 4,
+        "column": 46
+      }
+    },
+    "context": "JSXText",
+    "element": "a",
+    "text": "Docs",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 18
+      },
+      "end": {
+        "line": 8,
+        "column": 22
+      }
+    },
+    "context": "JSXText",
+    "element": "section",
+    "text": "Open",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 15,
+        "column": 16
+      },
+      "end": {
+        "line": 15,
+        "column": 29
+      }
+    },
+    "context": "JSXAttribute",
+    "element": "h3",
+    "attribute": "title",
+    "text": "Panel Title",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 15,
+        "column": 30
+      },
+      "end": {
+        "line": 15,
+        "column": 38
+      }
+    },
+    "context": "JSXText",
+    "element": "h3",
+    "text": "Click me",
+    "placeholders": [],
+    "sourceExprs": {}
+  }
+]

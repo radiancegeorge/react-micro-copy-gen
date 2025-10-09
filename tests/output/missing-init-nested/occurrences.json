@@ -1,0 +1,20 @@
+[
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 4,
+        "column": 27
+      },
+      "end": {
+        "line": 4,
+        "column": 34
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Inner",
+    "placeholders": [],
+    "sourceExprs": {}
+  }
+]

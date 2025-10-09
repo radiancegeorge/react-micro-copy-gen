@@ -7,7 +7,7 @@ function Slot() {
 }
 export default function Panel({ children, label }) {
   const { findText } = useTranslation(wordStore);
-  const renderHeader = () => <strong>{findText('Head')}</strong>;
+  const renderHeader = () => <strong>{'Head'}</strong>;
   const renderText = () => 'Hello world';
   return (
     <div>

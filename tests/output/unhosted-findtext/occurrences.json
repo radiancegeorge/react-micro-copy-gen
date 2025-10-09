@@ -1,0 +1,56 @@
+[
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 6,
+        "column": 23
+      },
+      "end": {
+        "line": 6,
+        "column": 29
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Info",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 14,
+        "column": 25
+      },
+      "end": {
+        "line": 14,
+        "column": 27
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "Example.jsx",
+    "loc": {
+      "start": {
+        "line": 23,
+        "column": 19
+      },
+      "end": {
+        "line": 23,
+        "column": 26
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello",
+    "placeholders": [],
+    "sourceExprs": {}
+  }
+]
