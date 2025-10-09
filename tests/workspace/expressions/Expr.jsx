@@ -1,4 +1,5 @@
-import React from 'react';
+import wordStore from '../../output-rewrite/wordStore.json';
+import { useTranslation } from 'l-min-components/src/components';
 function greet(n) {
   return `Hi ${n}`;
 }
@@ -6,6 +7,7 @@ function formatName(n) {
   return n;
 }
 export default function Expr({ name, user }) {
+  const { findText } = useTranslation(wordStore);
   const msg = 'Hi ' + name;
   const copy = {
     empty: {

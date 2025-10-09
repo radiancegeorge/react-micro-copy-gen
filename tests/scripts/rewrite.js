@@ -28,6 +28,7 @@ async function main() {
     mode: 'strict',
     thirdPartyConfigPath: THIRD_PARTY_CFG,
     htmlCollapseApply: true,
+    wordStoreImportSource: '../output-rewrite/wordStore.json',
     dryRun: false,
   });
   const rewriteRes = await runRewrite(rewriteConfig);

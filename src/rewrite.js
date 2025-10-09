@@ -31,6 +31,214 @@ function parseFile(code, filename) {
   });
 }
 
+function unifyUseTranslationCalls(fnPath, hookLocalName, wordStoreLocalName) {
+  let changed = false;
+  let bodyPath = fnPath.get('body');
+  if (!bodyPath.isBlockStatement()) {
+    const original = bodyPath.node;
+    bodyPath.replaceWith(t.blockStatement([t.returnStatement(original)]));
+    bodyPath = fnPath.get('body');
+    changed = true;
+  }
+  const bodyPaths = bodyPath.get('body');
+  const calls = [];
+  const destructFromIds = [];
+
+  for (const stmtPath of bodyPaths) {
+    if (!stmtPath.isVariableDeclaration()) continue;
+    for (const declPath of stmtPath.get('declarations')) {
+      const idPath = declPath.get('id');
+      const initPath = declPath.get('init');
+      if (!initPath.node) continue;
+      if (initPath.isCallExpression() && t.isIdentifier(initPath.node.callee, { name: hookLocalName })) {
+        calls.push({ stmtPath, declPath, idPath, initPath, isDestruct: idPath.isObjectPattern() });
+      } else if (idPath.isObjectPattern() && initPath.isIdentifier()) {
+        // Destructure from an identifier like const { findText } = result
+        destructFromIds.push({ stmtPath, declPath, idPath, initName: initPath.node.name });
+      }
+    }
+  }
+
+  if (calls.length <= 1) {
+    // Ensure single call arg canonical even when one call
+    if (calls.length === 1) {
+      const call = calls[0];
+      // force canonical wordStore argument
+      const c = call.initPath.node;
+      if (!c.arguments || c.arguments.length === 0 || !t.isIdentifier(c.arguments[0], { name: wordStoreLocalName })) {
+        c.arguments = [t.identifier(wordStoreLocalName)];
+        changed = true;
+      }
+    } else if (!fnPath.scope.hasOwnBinding('findText')) {
+      // No call exists: inject const { findText } = useTranslation(wordStore);
+      const decl = t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.objectPattern([
+            t.objectProperty(t.identifier('findText'), t.identifier('findText'), false, true),
+          ]),
+          t.callExpression(t.identifier(hookLocalName), [t.identifier(wordStoreLocalName)])
+        ),
+      ]);
+      bodyPath.node.body.unshift(decl);
+      changed = true;
+    }
+    return changed;
+  }
+
+  // Choose canonical call: prefer a destructuring call, else the first one
+  const canonical = calls.find((c) => c.isDestruct) || calls[0];
+  // Ensure canonical uses wordStore
+  const canonCall = canonical.initPath.node;
+  if (!canonCall.arguments || canonCall.arguments.length === 0 || !t.isIdentifier(canonCall.arguments[0], { name: wordStoreLocalName })) {
+    canonCall.arguments = [t.identifier(wordStoreLocalName)];
+    changed = true;
+  }
+  // Ensure canonical destruct includes findText (and keep other keys)
+  if (canonical.idPath.isObjectPattern()) {
+    const props = canonical.idPath.node.properties;
+    const hasFT = props.some((p) => t.isObjectProperty(p) && !p.computed && t.isIdentifier(p.key, { name: 'findText' }));
+    if (!hasFT) {
+      props.push(t.objectProperty(t.identifier('findText'), t.identifier('findText'), false, true));
+      changed = true;
+    }
+  } else if (canonical.idPath.isIdentifier()) {
+    // Convert to destruct on the next line: const { findText } = <identifier>
+    const idName = canonical.idPath.node.name;
+    const destructDecl = t.variableDeclaration('const', [
+      t.variableDeclarator(
+        t.objectPattern([
+          t.objectProperty(t.identifier('findText'), t.identifier('findText'), false, true),
+        ]),
+        t.identifier(idName)
+      ),
+    ]);
+    canonical.stmtPath.insertAfter(destructDecl);
+    changed = true;
+  }
+
+  // Remove other useTranslation calls
+  for (const call of calls) {
+    if (call === canonical) continue;
+    call.declPath.remove();
+    changed = true;
+    if (call.stmtPath && call.stmtPath.node && Array.isArray(call.stmtPath.node.declarations) && call.stmtPath.node.declarations.length === 0) {
+      call.stmtPath.remove();
+    }
+  }
+
+  // Remove destructures from identifiers that referenced removed calls
+  const remainingIdNames = new Set();
+  // Collect identifiers from remaining call results (if canonical is identifier)
+  if (canonical.idPath.isIdentifier()) remainingIdNames.add(canonical.idPath.node.name);
+
+  for (const d of destructFromIds) {
+    if (remainingIdNames.has(d.initName)) continue; // keep if refers to remaining
+    // Otherwise remove destruct of findText etc., as we now destruct from canonical
+    d.declPath.remove();
+    changed = true;
+    if (d.stmtPath && d.stmtPath.node && Array.isArray(d.stmtPath.node.declarations) && d.stmtPath.node.declarations.length === 0) {
+      d.stmtPath.remove();
+    }
+  }
+
+  return changed;
+}
+
+function dedupeFindTextInFunction(fnPath) {
+  let changed = false;
+  const bodyPath = fnPath.get('body');
+  if (!bodyPath.isBlockStatement()) return false;
+  const bodyPaths = bodyPath.get('body');
+
+  // Collect all destructures that include findText
+  const ftDestructs = [];
+  for (const stmtPath of bodyPaths) {
+    if (!stmtPath.isVariableDeclaration()) continue;
+    for (const declPath of stmtPath.get('declarations')) {
+      const idPath = declPath.get('id');
+      if (!idPath.isObjectPattern()) continue;
+      const hasFT = idPath.node.properties.some(
+        (p) => t.isObjectProperty(p) && !p.computed && t.isIdentifier(p.key, { name: 'findText' })
+      );
+      if (!hasFT) continue;
+      const initPath = declPath.get('init');
+      ftDestructs.push({ stmtPath, declPath, idPath, initPath, initIsCall: initPath && initPath.isCallExpression() });
+    }
+  }
+
+  if (ftDestructs.length > 1) {
+    // Prefer destruct that destructures from an identifier (likely from an existing hook result)
+    const preferred = ftDestructs.find((d) => d.initPath && d.initPath.isIdentifier()) || ftDestructs[0];
+    for (const d of ftDestructs) {
+      if (d === preferred) continue;
+      const props = d.idPath.node.properties;
+      d.idPath.node.properties = props.filter(
+        (p) => !(t.isObjectProperty(p) && !p.computed && t.isIdentifier(p.key, { name: 'findText' }))
+      );
+      changed = true;
+      if (d.idPath.node.properties.length === 0) {
+        d.declPath.remove();
+        if (d.stmtPath && d.stmtPath.node && Array.isArray(d.stmtPath.node.declarations) && d.stmtPath.node.declarations.length === 0) {
+          d.stmtPath.remove();
+        }
+      }
+    }
+  }
+
+  // Remove duplicate findText destructs if still present by keeping the first in source order
+  let seen = false;
+  for (const stmtPath of bodyPath.get('body')) {
+    if (!stmtPath.isVariableDeclaration()) continue;
+    for (const declPath of stmtPath.get('declarations')) {
+      const idPath = declPath.get('id');
+      if (!idPath.isObjectPattern()) continue;
+      const props = idPath.node.properties;
+      const hasFT = props.some((p) => t.isObjectProperty(p) && !p.computed && t.isIdentifier(p.key, { name: 'findText' }));
+      if (!hasFT) continue;
+      if (!seen) { seen = true; continue; }
+      idPath.node.properties = props.filter((p) => !(t.isObjectProperty(p) && !p.computed && t.isIdentifier(p.key, { name: 'findText' })));
+      changed = true;
+      if (idPath.node.properties.length === 0) {
+        declPath.remove();
+        if (stmtPath && stmtPath.node && Array.isArray(stmtPath.node.declarations) && stmtPath.node.declarations.length === 0) {
+          stmtPath.remove();
+        }
+      }
+    }
+  }
+
+  // Remove unused useTranslation results that became dead after dedupe
+  for (const stmtPath of fnPath.get('body.body')) {
+    if (!stmtPath.isVariableDeclaration()) continue;
+    for (const declPath of stmtPath.get('declarations')) {
+      const id = declPath.node.id;
+      const init = declPath.node.init;
+      if (!t.isIdentifier(id)) continue;
+      if (!t.isCallExpression(init)) continue;
+      if (!t.isIdentifier(init.callee)) continue;
+      // Any hook name; we only remove if never referenced
+      const binding = fnPath.scope.getBinding(id.name);
+      if (binding && binding.referencePaths.length === 0) {
+        declPath.remove();
+        changed = true;
+        if (stmtPath && stmtPath.node && Array.isArray(stmtPath.node.declarations) && stmtPath.node.declarations.length === 0) {
+          if (stmtPath.parentPath && stmtPath.parentPath.node.type === 'BlockStatement') {
+            const blockStmt = stmtPath.parentPath.node;
+            if (blockStmt.body.length === 1) {
+              stmtPath.parentPath.replaceWith(blockStmt.body[0]);
+            } else {
+              stmtPath.remove();
+            }
+          } else {
+            stmtPath.remove();
+          }
+        }
+      }
+    }
+  }
+  return changed;
+}
+
 function getJsxNameName(nameNode) {
   if (t.isJSXIdentifier(nameNode)) return nameNode.name;
   if (t.isJSXMemberExpression(nameNode)) {
@@ -43,6 +251,320 @@ function getJsxNameName(nameNode) {
 
 function isFindTextCall(node) {
   return t.isCallExpression(node) && t.isIdentifier(node.callee) && node.callee.name === 'findText';
+}
+
+function insertImport(programBody, importNode) {
+  let directiveEnd = 0;
+  while (
+    directiveEnd < programBody.length &&
+    t.isExpressionStatement(programBody[directiveEnd]) &&
+    t.isStringLiteral(programBody[directiveEnd].expression)
+  ) {
+    directiveEnd += 1;
+  }
+  let lastImportIndex = -1;
+  for (let i = directiveEnd; i < programBody.length; i += 1) {
+    if (t.isImportDeclaration(programBody[i])) {
+      lastImportIndex = i;
+    } else {
+      break;
+    }
+  }
+  const insertIndex = lastImportIndex >= 0 ? lastImportIndex + 1 : directiveEnd;
+  programBody.splice(insertIndex, 0, importNode);
+}
+
+function ensureNamedImport(programBody, source, importedName) {
+  let changed = false;
+  let localName = importedName;
+
+  for (const node of programBody) {
+    if (!t.isImportDeclaration(node)) continue;
+    const spec = node.specifiers.find(
+      (s) => t.isImportSpecifier(s) && t.isIdentifier(s.imported, { name: importedName })
+    );
+    if (spec) {
+      localName = spec.local.name;
+      if (node.source.value !== source) {
+        node.source = t.stringLiteral(source);
+        changed = true;
+      }
+      return { changed, localName };
+    }
+  }
+
+  const existing = programBody.find(
+    (node) => t.isImportDeclaration(node) && node.source.value === source
+  );
+  if (existing) {
+    existing.specifiers.push(
+      t.importSpecifier(t.identifier(importedName), t.identifier(importedName))
+    );
+    changed = true;
+    return { changed, localName };
+  }
+
+  const newImport = t.importDeclaration(
+    [t.importSpecifier(t.identifier(importedName), t.identifier(importedName))],
+    t.stringLiteral(source)
+  );
+  insertImport(programBody, newImport);
+  changed = true;
+  return { changed, localName };
+}
+
+function ensureDefaultImport(programBody, source, desiredLocalName) {
+  let changed = false;
+  let localName = desiredLocalName;
+
+  const importNames = new Set();
+  for (const node of programBody) {
+    if (!t.isImportDeclaration(node)) continue;
+    for (const spec of node.specifiers) {
+      if (spec.local && t.isIdentifier(spec.local)) {
+        importNames.add(spec.local.name);
+      }
+    }
+  }
+
+  // 1) If an import already exists from the exact source, reuse/rename its default specifier
+  for (const node of programBody) {
+    if (!t.isImportDeclaration(node)) continue;
+    if (node.source.value !== source) continue;
+    const defaultSpec = node.specifiers.find((s) => t.isImportDefaultSpecifier(s));
+    if (defaultSpec) {
+      const local = defaultSpec.local.name;
+      localName = local;
+      if (desiredLocalName && local !== desiredLocalName && !importNames.has(desiredLocalName)) {
+        defaultSpec.local = t.identifier(desiredLocalName);
+        localName = desiredLocalName;
+        changed = true;
+      }
+      return { changed, localName };
+    }
+    // Import exists from source but no default specifier: add one
+    let uniqueName = desiredLocalName;
+    let counter = 1;
+    while (importNames.has(uniqueName)) uniqueName = `${desiredLocalName}${counter++}`;
+    node.specifiers.unshift(t.importDefaultSpecifier(t.identifier(uniqueName)));
+    changed = true;
+    return { changed, localName: uniqueName };
+  }
+
+  // 2) If there is a default import with the desired local name, repoint it to source
+  for (const node of programBody) {
+    if (!t.isImportDeclaration(node)) continue;
+    const defaultSpec = node.specifiers.find((s) => t.isImportDefaultSpecifier(s));
+    if (!defaultSpec) continue;
+    if (defaultSpec.local.name === desiredLocalName) {
+      if (node.source.value !== source) {
+        node.source = t.stringLiteral(source);
+        changed = true;
+      }
+      return { changed, localName: desiredLocalName };
+    }
+  }
+
+  // No matching import: ensure unique local name
+  let uniqueName = desiredLocalName;
+  let counter = 1;
+  while (importNames.has(uniqueName)) {
+    uniqueName = `${desiredLocalName}${counter++}`;
+  }
+
+  const newImport = t.importDeclaration(
+    [t.importDefaultSpecifier(t.identifier(uniqueName))],
+    t.stringLiteral(source)
+  );
+  insertImport(programBody, newImport);
+  changed = true;
+  return { changed, localName: uniqueName };
+}
+
+function hasFindTextUsage(ast) {
+  let used = false;
+  traverse(ast, {
+    CallExpression(path) {
+      if (t.isIdentifier(path.node.callee, { name: 'findText' })) {
+        used = true;
+        path.stop();
+      }
+    },
+  });
+  return used;
+}
+
+function functionUsesFindText(path) {
+  let used = false;
+  path.traverse({
+    CallExpression(callPath) {
+      if (t.isIdentifier(callPath.node.callee, { name: 'findText' })) {
+        used = true;
+        callPath.stop();
+      }
+    },
+    Function(inner) {
+      inner.skip();
+    },
+  });
+  return used;
+}
+
+function addFindTextProperty(patternNode) {
+  const has = patternNode.properties.some(
+    (prop) =>
+      t.isObjectProperty(prop) &&
+      !prop.computed &&
+      t.isIdentifier(prop.key, { name: 'findText' })
+  );
+  if (has) return false;
+  patternNode.properties.push(
+    t.objectProperty(t.identifier('findText'), t.identifier('findText'), false, true)
+  );
+  return true;
+}
+
+function createFindTextInitDeclaration(calleeName, argumentName) {
+  return t.variableDeclaration('const', [
+    t.variableDeclarator(
+      t.objectPattern([
+        t.objectProperty(t.identifier('findText'), t.identifier('findText'), false, true),
+      ]),
+      t.callExpression(t.identifier(calleeName), [t.identifier(argumentName)])
+    ),
+  ]);
+}
+
+function ensureFindTextImports(program, setup, currentFilePath, rootDir) {
+  const programBody = program.body;
+  const hookImport = ensureNamedImport(programBody, setup.hookSource, setup.hookName);
+  // Resolve canonical absolute path for wordStore and compute file-relative specifier
+  let resolvedAbs = setup.wordStoreImportSource;
+  if (!path.isAbsolute(resolvedAbs)) {
+    const base = rootDir || process.cwd();
+    resolvedAbs = path.resolve(base, resolvedAbs);
+  }
+  let relativeSpec = path.relative(path.dirname(currentFilePath), resolvedAbs);
+  if (path.sep === '\\') relativeSpec = relativeSpec.split('\\').join('/');
+  else relativeSpec = relativeSpec.split(path.sep).join('/');
+  if (!relativeSpec.startsWith('.')) relativeSpec = './' + relativeSpec;
+
+  const wordStoreImport = ensureDefaultImport(
+    programBody,
+    relativeSpec,
+    setup.wordStoreIdentifier
+  );
+  return {
+    changed: hookImport.changed || wordStoreImport.changed,
+    hookLocalName: hookImport.localName,
+    wordStoreLocalName: wordStoreImport.localName,
+  };
+}
+
+function ensureFindTextInitialization(ast, hookLocalName, wordStoreLocalName) {
+  let changed = false;
+  function processFunction(path) {
+    if (!functionUsesFindText(path)) return;
+    changed = unifyUseTranslationCalls(path, hookLocalName, wordStoreLocalName) || changed;
+    changed = dedupeFindTextInFunction(path) || changed;
+  }
+  traverse(ast, {
+    FunctionDeclaration(path) {
+      processFunction(path);
+    },
+    FunctionExpression(path) {
+      processFunction(path);
+    },
+    ArrowFunctionExpression(path) {
+      processFunction(path);
+    },
+  });
+  return changed;
+}
+
+function injectFindTextIntoFunction(path, hookLocalName, wordStoreLocalName) {
+  let changed = false;
+  let bodyPath = path.get('body');
+  if (!bodyPath.isBlockStatement()) {
+    const original = bodyPath.node;
+    bodyPath.replaceWith(t.blockStatement([t.returnStatement(original)]));
+    bodyPath = path.get('body');
+    changed = true;
+  }
+
+  const bodyStatements = bodyPath.get('body');
+  let callIdentifier = null;
+  let callStatementPath = null;
+
+  function ensureCallUsesWordStore(callExpr) {
+    if (!callExpr.arguments || callExpr.arguments.length === 0) {
+      callExpr.arguments = [t.identifier(wordStoreLocalName)];
+      changed = true;
+      return;
+    }
+    const firstArg = callExpr.arguments[0];
+    if (t.isIdentifier(firstArg, { name: wordStoreLocalName })) return;
+    callExpr.arguments[0] = t.identifier(wordStoreLocalName);
+    changed = true;
+  }
+
+  for (const stmtPath of bodyStatements) {
+    if (!stmtPath.isVariableDeclaration()) continue;
+    for (const declPath of stmtPath.get('declarations')) {
+      const init = declPath.node.init;
+      if (!t.isCallExpression(init)) continue;
+      if (!t.isIdentifier(init.callee, { name: hookLocalName })) continue;
+      ensureCallUsesWordStore(init);
+
+      if (t.isObjectPattern(declPath.node.id)) {
+        if (addFindTextProperty(declPath.node.id)) changed = true;
+        return changed;
+      }
+      if (t.isIdentifier(declPath.node.id)) {
+        callIdentifier = declPath.node.id.name;
+        callStatementPath = stmtPath;
+      }
+    }
+  }
+
+  if (callIdentifier && callStatementPath) {
+    for (const stmtPath of bodyStatements) {
+      if (!stmtPath.isVariableDeclaration()) continue;
+      for (const declPath of stmtPath.get('declarations')) {
+        if (!t.isObjectPattern(declPath.node.id)) continue;
+        if (!t.isIdentifier(declPath.node.init, { name: callIdentifier })) continue;
+        if (addFindTextProperty(declPath.node.id)) changed = true;
+        return changed;
+      }
+    }
+
+    const destructDecl = t.variableDeclaration('const', [
+      t.variableDeclarator(
+        t.objectPattern([
+          t.objectProperty(t.identifier('findText'), t.identifier('findText'), false, true),
+        ]),
+        t.identifier(callIdentifier)
+      ),
+    ]);
+    callStatementPath.insertAfter(destructDecl);
+    changed = true;
+    return changed;
+  }
+
+  const fallbackDecl = createFindTextInitDeclaration(hookLocalName, wordStoreLocalName);
+  const bodyNode = bodyPath.node.body;
+  let insertIndex = 0;
+  while (
+    insertIndex < bodyNode.length &&
+    t.isExpressionStatement(bodyNode[insertIndex]) &&
+    t.isStringLiteral(bodyNode[insertIndex].expression) &&
+    bodyNode[insertIndex].expression.value.startsWith('use')
+  ) {
+    insertIndex += 1;
+  }
+  bodyNode.splice(insertIndex, 0, fallbackDecl);
+  changed = true;
+  return changed;
 }
 
 function makeFindTextCallFromTemplateString(text, kwargsEntries) {
@@ -678,6 +1200,17 @@ async function rewriteFile(absPath, code, config) {
       }
     },
   });
+
+  const usesFindText = hasFindTextUsage(ast);
+  if (usesFindText && config.findTextSetup) {
+    const importRes = ensureFindTextImports(ast.program, config.findTextSetup, absPath, config.root);
+    const initChanged = ensureFindTextInitialization(
+      ast,
+      importRes.hookLocalName,
+      importRes.wordStoreLocalName
+    );
+    if (importRes.changed || initChanged) changed = true;
+  }
 
   if (!changed) return { changed: false, code };
   let output = generate(ast, { jsescOption: { minimal: true } }, code).code;

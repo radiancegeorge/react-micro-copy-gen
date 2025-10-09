@@ -1,5 +1,7 @@
-import React from 'react';
+import wordStore from '../../output-rewrite/wordStore.json';
+import { useTranslation } from 'l-min-components/src/components';
 export default function Nested({ child }) {
+  const { findText } = useTranslation(wordStore);
   return (
     <h3
       dangerouslySetInnerHTML={{

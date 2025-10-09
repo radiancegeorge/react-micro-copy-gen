@@ -18,6 +18,10 @@ async function main() {
     .option('--third-party-config <path>', 'path to JSON config for third-party component text props', undefined)
     .option('--no-format', 'disable Prettier formatting of rewritten files')
     .option('--html-collapse-apply', 'apply HTML collapsing (dangerouslySetInnerHTML) where eligible', false)
+    .option('--translation-hook-source <path>', 'module path providing the translation hook', undefined)
+    .option('--translation-hook-name <name>', 'import name for the translation hook (e.g. useTranslation)', undefined)
+    .option('--word-store-import-source <path>', 'module path for importing the word store data', undefined)
+    .option('--word-store-identifier <name>', 'local identifier name for the imported word store', undefined)
     .option('--dry', 'do not write files, just report', false)
     .parse(process.argv);
 
@@ -39,6 +43,10 @@ async function main() {
     // rewrite-specific
     format: opts.format !== false,
     htmlCollapseApply: !!opts.htmlCollapseApply,
+    translationHookSource: opts.translationHookSource,
+    translationHookName: opts.translationHookName,
+    wordStoreImportSource: opts.wordStoreImportSource,
+    wordStoreIdentifier: opts.wordStoreIdentifier,
     dryRun: !!opts.dry,
   };
 

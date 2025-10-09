@@ -1,8 +1,10 @@
-import React from 'react';
+import wordStore from '../../output-rewrite/wordStore.json';
+import { useTranslation } from 'l-min-components/src/components';
 function Button(props) {
   return <button {...props} />;
 }
 export default function Attrs({ user }) {
+  const { findText } = useTranslation(wordStore);
   return (
     <div>
       <img alt={findText('Picture of cat')} title={findText('Cute cat')} />

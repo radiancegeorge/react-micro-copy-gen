@@ -1,5 +1,7 @@
-import React from 'react';
+import wordStore from '../../output-rewrite/wordStore.json';
+import { useTranslation } from 'l-min-components/src/components';
 function VisuallyHidden({ children }) {
+  const { findText } = useTranslation(wordStore);
   return (
     <span
       style={{
@@ -14,6 +16,7 @@ function VisuallyHidden({ children }) {
   );
 }
 export default function Acc() {
+  const { findText } = useTranslation(wordStore);
   return (
     <div>
       <VisuallyHidden>{findText('Screen reader only')}</VisuallyHidden>

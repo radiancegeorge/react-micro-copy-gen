@@ -38,6 +38,11 @@ const DEFAULT_HTML_INLINE_WHITELIST = [
   'code', 'kbd', 'samp', 'mark', 'abbr', 'time', 'br', 'wbr', 'a'
 ];
 
+const DEFAULT_TRANSLATION_HOOK_SOURCE = 'l-min-components/src/components';
+const DEFAULT_TRANSLATION_HOOK_NAME = 'useTranslation';
+const DEFAULT_WORD_STORE_IMPORT_SOURCE = './wordStore';
+const DEFAULT_WORD_STORE_IDENTIFIER = 'wordStore';
+
 function readJsonIfExists(filePath) {
   try {
     if (fs.existsSync(filePath)) {
@@ -117,6 +122,19 @@ async function loadConfig(cliConfig) {
       ? fileConfig.htmlCollapse.apply
       : false);
 
+  const translationHookSource = cliConfig.translationHookSource
+    || (fileConfig && fileConfig.translation && fileConfig.translation.hookSource)
+    || DEFAULT_TRANSLATION_HOOK_SOURCE;
+  const translationHookName = cliConfig.translationHookName
+    || (fileConfig && fileConfig.translation && fileConfig.translation.hookName)
+    || DEFAULT_TRANSLATION_HOOK_NAME;
+  const wordStoreImportSource = cliConfig.wordStoreImportSource
+    || (fileConfig && fileConfig.translation && fileConfig.translation.wordStoreImportSource)
+    || DEFAULT_WORD_STORE_IMPORT_SOURCE;
+  const wordStoreIdentifier = cliConfig.wordStoreIdentifier
+    || (fileConfig && fileConfig.translation && fileConfig.translation.wordStoreIdentifier)
+    || DEFAULT_WORD_STORE_IDENTIFIER;
+
   const config = {
     root,
     mode,
@@ -139,6 +157,12 @@ async function loadConfig(cliConfig) {
     // rewrite-specific passthroughs
     format: typeof cliConfig.format === 'boolean' ? cliConfig.format : true,
     dryRun: !!cliConfig.dryRun,
+    findTextSetup: {
+      hookSource: translationHookSource,
+      hookName: translationHookName,
+      wordStoreImportSource,
+      wordStoreIdentifier,
+    },
   };
 
   ensureDir(outDir);

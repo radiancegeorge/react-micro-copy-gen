@@ -1,5 +1,7 @@
-import React from 'react';
+import wordStore from '../../output-rewrite/wordStore.json';
+import { useTranslation } from 'l-min-components/src/components';
 export default function Multiple({ child }) {
+  const { findText } = useTranslation(wordStore);
   return (
     <h2
       dangerouslySetInnerHTML={{

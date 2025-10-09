@@ -1,4 +1,5 @@
-import React from 'react';
+import wordStore from '../../output-rewrite/wordStore.json';
+import { useTranslation } from 'l-min-components/src/components';
 type User = {
   firstName: string;
 };
@@ -7,6 +8,7 @@ type Props = {
   user: User;
 };
 const App: React.FC<Props> = ({ name, user }) => {
+  const { findText } = useTranslation(wordStore);
   const label: string = `Hi ${user.firstName}`;
   return (
     <section

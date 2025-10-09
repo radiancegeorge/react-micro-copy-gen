@@ -3,11 +3,11 @@
     "file": "accessibility/Acc.jsx",
     "loc": {
       "start": {
-        "line": 10,
+        "line": 12,
         "column": 16
       },
       "end": {
-        "line": 10,
+        "line": 12,
         "column": 28
       }
     },
@@ -21,11 +21,11 @@
     "file": "accessibility/Acc.jsx",
     "loc": {
       "start": {
-        "line": 19,
+        "line": 22,
         "column": 32
       },
       "end": {
-        "line": 19,
+        "line": 22,
         "column": 52
       }
     },
@@ -36,14 +36,32 @@
     "sourceExprs": {}
   },
   {
+    "file": "array-map/List.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 22
+      },
+      "end": {
+        "line": 10,
+        "column": 36
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello {name}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
-        "line": 8,
+        "line": 10,
         "column": 25
       },
       "end": {
-        "line": 8,
+        "line": 10,
         "column": 41
       }
     },
@@ -57,11 +75,11 @@
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
-        "line": 8,
+        "line": 10,
         "column": 60
       },
       "end": {
-        "line": 8,
+        "line": 10,
         "column": 70
       }
     },
@@ -75,11 +93,11 @@
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
-        "line": 10,
+        "line": 12,
         "column": 30
       },
       "end": {
-        "line": 10,
+        "line": 12,
         "column": 49
       }
     },
@@ -93,11 +111,11 @@
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
-        "line": 13,
+        "line": 15,
         "column": 29
       },
       "end": {
-        "line": 13,
+        "line": 15,
         "column": 41
       }
     },
@@ -111,11 +129,11 @@
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
-        "line": 16,
+        "line": 18,
         "column": 24
       },
       "end": {
-        "line": 16,
+        "line": 18,
         "column": 32
       }
     },
@@ -129,11 +147,11 @@
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
-        "line": 17,
+        "line": 19,
         "column": 26
       },
       "end": {
-        "line": 17,
+        "line": 19,
         "column": 43
       }
     },
@@ -147,11 +165,11 @@
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
-        "line": 18,
+        "line": 20,
         "column": 24
       },
       "end": {
-        "line": 18,
+        "line": 20,
         "column": 46
       }
     },
@@ -165,11 +183,11 @@
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
-        "line": 20,
+        "line": 22,
         "column": 38
       },
       "end": {
-        "line": 20,
+        "line": 22,
         "column": 60
       }
     },
@@ -183,11 +201,11 @@
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
-        "line": 21,
+        "line": 23,
         "column": 18
       },
       "end": {
-        "line": 21,
+        "line": 23,
         "column": 26
       }
     },
@@ -198,32 +216,14 @@
     "sourceExprs": {}
   },
   {
-    "file": "array-map/List.jsx",
-    "loc": {
-      "start": {
-        "line": 7,
-        "column": 20
-      },
-      "end": {
-        "line": 7,
-        "column": 34
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hello {name}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
     "file": "basic-jsx/App.jsx",
     "loc": {
       "start": {
-        "line": 5,
+        "line": 7,
         "column": 19
       },
       "end": {
-        "line": 5,
+        "line": 7,
         "column": 32
       }
     },
@@ -237,11 +237,11 @@
     "file": "basic-jsx/App.jsx",
     "loc": {
       "start": {
-        "line": 7,
+        "line": 9,
         "column": 18
       },
       "end": {
-        "line": 7,
+        "line": 9,
         "column": 32
       }
     },
@@ -255,11 +255,11 @@
     "file": "basic-jsx/App.jsx",
     "loc": {
       "start": {
-        "line": 11,
+        "line": 13,
         "column": 19
       },
       "end": {
-        "line": 11,
+        "line": 13,
         "column": 33
       }
     },
@@ -273,11 +273,11 @@
     "file": "basic-jsx/App.jsx",
     "loc": {
       "start": {
-        "line": 13,
+        "line": 15,
         "column": 18
       },
       "end": {
-        "line": 13,
+        "line": 15,
         "column": 34
       }
     },
@@ -291,11 +291,11 @@
     "file": "entities-rtl/Entities.jsx",
     "loc": {
       "start": {
-        "line": 5,
+        "line": 7,
         "column": 19
       },
       "end": {
-        "line": 5,
+        "line": 7,
         "column": 33
       }
     },
@@ -309,11 +309,11 @@
     "file": "entities-rtl/Entities.jsx",
     "loc": {
       "start": {
-        "line": 6,
+        "line": 8,
         "column": 19
       },
       "end": {
-        "line": 6,
+        "line": 8,
         "column": 26
       }
     },
@@ -327,11 +327,11 @@
     "file": "entities-rtl/Entities.jsx",
     "loc": {
       "start": {
-        "line": 7,
+        "line": 9,
         "column": 19
       },
       "end": {
-        "line": 7,
+        "line": 9,
         "column": 34
       }
     },
@@ -342,14 +342,176 @@
     "sourceExprs": {}
   },
   {
+    "file": "expressions/Expr.jsx",
+    "loc": {
+      "start": {
+        "line": 21,
+        "column": 18
+      },
+      "end": {
+        "line": 21,
+        "column": 29
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hi {name}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "expressions/Expr.jsx",
+    "loc": {
+      "start": {
+        "line": 25,
+        "column": 29
+      },
+      "end": {
+        "line": 25,
+        "column": 43
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "No items yet",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "expressions/Expr.jsx",
+    "loc": {
+      "start": {
+        "line": 27,
+        "column": 18
+      },
+      "end": {
+        "line": 27,
+        "column": 26
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hi {n}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "expressions/Expr.jsx",
+    "loc": {
+      "start": {
+        "line": 32,
+        "column": 18
+      },
+      "end": {
+        "line": 32,
+        "column": 39
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Welcome {firstName}",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "conditionals/Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 7,
+        "column": 24
+      },
+      "end": {
+        "line": 7,
+        "column": 41
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Shown when true",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "conditionals/Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 23
+      },
+      "end": {
+        "line": 8,
+        "column": 26
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "A",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "conditionals/Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 39
+      },
+      "end": {
+        "line": 8,
+        "column": 42
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "B",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "conditionals/Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 9,
+        "column": 16
+      },
+      "end": {
+        "line": 9,
+        "column": 19
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "a",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "conditionals/Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 9,
+        "column": 33
+      },
+      "end": {
+        "line": 9,
+        "column": 36
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "b",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
     "file": "findtext/Calls.jsx",
     "loc": {
       "start": {
-        "line": 4,
+        "line": 5,
         "column": 11
       },
       "end": {
-        "line": 4,
+        "line": 5,
         "column": 18
       }
     },
@@ -363,11 +525,11 @@
     "file": "findtext/Calls.jsx",
     "loc": {
       "start": {
-        "line": 5,
+        "line": 6,
         "column": 11
       },
       "end": {
-        "line": 5,
+        "line": 6,
         "column": 33
       }
     },
@@ -385,11 +547,11 @@
     "file": "html-collapse/Anchor.jsx",
     "loc": {
       "start": {
-        "line": 6,
+        "line": 8,
         "column": 25
       },
       "end": {
-        "line": 6,
+        "line": 8,
         "column": 43
       }
     },
@@ -403,11 +565,11 @@
     "file": "html-collapse/Collapse.jsx",
     "loc": {
       "start": {
-        "line": 6,
+        "line": 8,
         "column": 25
       },
       "end": {
-        "line": 6,
+        "line": 8,
         "column": 48
       }
     },
@@ -421,11 +583,11 @@
     "file": "html-collapse/Multiple.jsx",
     "loc": {
       "start": {
-        "line": 6,
+        "line": 8,
         "column": 25
       },
       "end": {
-        "line": 6,
+        "line": 8,
         "column": 58
       }
     },
@@ -439,11 +601,11 @@
     "file": "html-collapse/Nested.jsx",
     "loc": {
       "start": {
-        "line": 6,
+        "line": 8,
         "column": 25
       },
       "end": {
-        "line": 6,
+        "line": 8,
         "column": 57
       }
     },
@@ -454,92 +616,56 @@
     "sourceExprs": {}
   },
   {
-    "file": "conditionals/Cond.jsx",
+    "file": "object-literals/ThirdParty.jsx",
     "loc": {
       "start": {
-        "line": 5,
+        "line": 14,
         "column": 24
       },
       "end": {
-        "line": 5,
-        "column": 41
+        "line": 14,
+        "column": 38
       }
     },
     "context": "findText",
     "element": null,
-    "text": "Shown when true",
+    "text": "No items yet",
     "placeholders": [],
     "sourceExprs": {}
   },
   {
-    "file": "conditionals/Cond.jsx",
+    "file": "object-literals/ThirdParty.jsx",
     "loc": {
       "start": {
-        "line": 6,
-        "column": 23
+        "line": 15,
+        "column": 30
       },
       "end": {
-        "line": 6,
-        "column": 26
+        "line": 15,
+        "column": 51
       }
     },
     "context": "findText",
     "element": null,
-    "text": "A",
+    "text": "Add your first item",
     "placeholders": [],
     "sourceExprs": {}
   },
   {
-    "file": "conditionals/Cond.jsx",
+    "file": "preexisting-translation/Component.jsx",
     "loc": {
       "start": {
-        "line": 6,
-        "column": 39
-      },
-      "end": {
-        "line": 6,
-        "column": 42
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "B",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "conditionals/Cond.jsx",
-    "loc": {
-      "start": {
-        "line": 7,
+        "line": 8,
         "column": 16
       },
       "end": {
-        "line": 7,
-        "column": 19
+        "line": 8,
+        "column": 32
       }
     },
     "context": "findText",
     "element": null,
-    "text": "a",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "conditionals/Cond.jsx",
-    "loc": {
-      "start": {
-        "line": 7,
-        "column": 33
-      },
-      "end": {
-        "line": 7,
-        "column": 36
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "b",
+    "text": "Welcome {name}",
     "placeholders": [],
     "sourceExprs": {}
   },
@@ -547,11 +673,11 @@
     "file": "skip-cases/Skip.jsx",
     "loc": {
       "start": {
-        "line": 13,
+        "line": 15,
         "column": 27
       },
       "end": {
-        "line": 13,
+        "line": 15,
         "column": 43
       }
     },
@@ -565,11 +691,11 @@
     "file": "skip-cases/Skip.jsx",
     "loc": {
       "start": {
-        "line": 18,
+        "line": 20,
         "column": 19
       },
       "end": {
-        "line": 18,
+        "line": 20,
         "column": 32
       }
     },
@@ -580,86 +706,14 @@
     "sourceExprs": {}
   },
   {
-    "file": "expressions/Expr.jsx",
-    "loc": {
-      "start": {
-        "line": 19,
-        "column": 18
-      },
-      "end": {
-        "line": 19,
-        "column": 29
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hi {name}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "expressions/Expr.jsx",
-    "loc": {
-      "start": {
-        "line": 23,
-        "column": 29
-      },
-      "end": {
-        "line": 23,
-        "column": 43
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "No items yet",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "expressions/Expr.jsx",
-    "loc": {
-      "start": {
-        "line": 25,
-        "column": 18
-      },
-      "end": {
-        "line": 25,
-        "column": 26
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hi {n}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "expressions/Expr.jsx",
-    "loc": {
-      "start": {
-        "line": 30,
-        "column": 18
-      },
-      "end": {
-        "line": 30,
-        "column": 39
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Welcome {firstName}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
     "file": "tsx/App.tsx",
     "loc": {
       "start": {
-        "line": 13,
+        "line": 15,
         "column": 22
       },
       "end": {
-        "line": 13,
+        "line": 15,
         "column": 38
       }
     },
@@ -673,11 +727,11 @@
     "file": "tsx/App.tsx",
     "loc": {
       "start": {
-        "line": 18,
+        "line": 20,
         "column": 18
       },
       "end": {
-        "line": 18,
+        "line": 20,
         "column": 32
       }
     },
@@ -691,53 +745,17 @@
     "file": "tsx/App.tsx",
     "loc": {
       "start": {
-        "line": 23,
+        "line": 25,
         "column": 18
       },
       "end": {
-        "line": 23,
+        "line": 25,
         "column": 39
       }
     },
     "context": "findText",
     "element": null,
     "text": "Welcome {firstName}",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "object-literals/ThirdParty.jsx",
-    "loc": {
-      "start": {
-        "line": 12,
-        "column": 24
-      },
-      "end": {
-        "line": 12,
-        "column": 38
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "No items yet",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "object-literals/ThirdParty.jsx",
-    "loc": {
-      "start": {
-        "line": 13,
-        "column": 30
-      },
-      "end": {
-        "line": 13,
-        "column": 51
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Add your first item",
     "placeholders": [],
     "sourceExprs": {}
   }
