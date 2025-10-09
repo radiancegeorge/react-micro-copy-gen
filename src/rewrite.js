@@ -29,13 +29,38 @@ function calleeMatchesIdentifier(path, names) {
 
 function isChildrenReference(expr) {
   if (t.isIdentifier(expr, { name: 'children' })) return true;
-  if (t.isMemberExpression(expr) && !expr.computed) {
-    // any .children access
-    let cur = expr;
-    while (t.isMemberExpression(cur) && !cur.computed) {
-      if (t.isIdentifier(cur.property, { name: 'children' })) return true;
-      cur = cur.object;
-    }
+  const isMem = (n) => t.isMemberExpression(n) || t.isOptionalMemberExpression(n);
+  let cur = expr;
+  while (isMem(cur)) {
+    const prop = cur.property;
+    if (cur.computed && t.isStringLiteral(prop) && prop.value === 'children') return true;
+    if (!cur.computed && t.isIdentifier(prop, { name: 'children' })) return true;
+    cur = cur.object;
+  }
+  return false;
+}
+
+function isUppercaseName(name) {
+  return typeof name === 'string' && /^[A-Z]/.test(name);
+}
+
+function isComponentReference(expr) {
+  if (!expr) return false;
+  if (t.isIdentifier(expr)) return isUppercaseName(expr.name);
+  if (t.isMemberExpression(expr) || t.isOptionalMemberExpression(expr)) {
+    const prop = expr.property;
+    if (!expr.computed && t.isIdentifier(prop)) return isUppercaseName(prop.name);
+    if (expr.computed && t.isStringLiteral(prop)) return isUppercaseName(prop.value);
+  }
+  return false;
+}
+
+function isReactCreateElementCall(expr) {
+  if (!t.isCallExpression(expr)) return false;
+  const callee = expr.callee;
+  if (t.isIdentifier(callee, { name: 'createElement' })) return true;
+  if (t.isMemberExpression(callee) && !callee.computed) {
+    if (t.isIdentifier(callee.property, { name: 'createElement' })) return true;
   }
   return false;
 }
@@ -871,6 +896,8 @@ function toFindTextExpr(expr, pathCtx, source, mode) {
 function wrapJsxExpression(expr, pathCtx, source, mode) {
   if (t.isJSXEmptyExpression(expr)) return null;
   if (isChildrenReference(expr)) return null; // never wrap React children
+  if (isComponentReference(expr)) return null; // skip component refs
+  if (isReactCreateElementCall(expr)) return null; // skip createElement
   // Handle conditionals and logicals conservatively
   if (t.isConditionalExpression(expr)) {
     const cons = toFindTextExpr(expr.consequent, pathCtx, source, mode);
@@ -931,7 +958,7 @@ async function rewriteFile(absPath, code, config) {
           if (isFindTextCall(inner)) {
             const arg = inner.arguments && inner.arguments[0];
             const strict = arg ? tryStrictNormalize(arg, path, code) : null;
-            if (arg && (isChildrenReference(arg) || !strict)) {
+            if (arg && (isChildrenReference(arg) || isComponentReference(arg) || isReactCreateElementCall(arg) || !strict)) {
               attr.value = t.jsxExpressionContainer(arg);
               changed = true; nodesRewritten++;
               continue;
@@ -1226,6 +1253,8 @@ async function rewriteFile(absPath, code, config) {
             if (t.isConditionalExpression(e) || t.isLogicalExpression(e)) return false; // handle separately
             if (exprContainsJSX(e) || isMapCall(e)) return false;
             if (isChildrenReference(e)) return false;
+            if (isComponentReference(e)) return false;
+            if (isReactCreateElementCall(e)) return false;
             // Only if we can strictly normalize to text
             const strict = tryStrictNormalize(e, path, code);
             return !!strict;
@@ -1322,7 +1351,7 @@ async function rewriteFile(absPath, code, config) {
           if (isFindTextCall(e)) {
             const arg = e.arguments && e.arguments[0];
             const strict = arg ? tryStrictNormalize(arg, path, code) : null;
-            if (arg && (isChildrenReference(arg) || !strict)) {
+            if (arg && (isChildrenReference(arg) || isComponentReference(arg) || isReactCreateElementCall(arg) || !strict)) {
               newChildren.push(t.jsxExpressionContainer(arg));
               changed = true; nodesRewritten++;
               continue;

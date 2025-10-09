@@ -17,12 +17,38 @@ const { getPlaceholderName } = require('./normalize');
 function isChildrenReference(expr) {
   if (!expr) return false;
   if (t.isIdentifier(expr, { name: 'children' })) return true;
-  if (t.isMemberExpression(expr) && !expr.computed) {
-    let cur = expr;
-    while (t.isMemberExpression(cur) && !cur.computed) {
-      if (t.isIdentifier(cur.property, { name: 'children' })) return true;
-      cur = cur.object;
-    }
+  const isMem = (n) => t.isMemberExpression(n) || t.isOptionalMemberExpression(n);
+  let cur = expr;
+  while (isMem(cur)) {
+    const prop = cur.property;
+    if (cur.computed && t.isStringLiteral(prop) && prop.value === 'children') return true;
+    if (!cur.computed && t.isIdentifier(prop, { name: 'children' })) return true;
+    cur = cur.object;
+  }
+  return false;
+}
+
+function isUppercaseName(name) {
+  return typeof name === 'string' && /^[A-Z]/.test(name);
+}
+
+function isComponentReference(expr) {
+  if (!expr) return false;
+  if (t.isIdentifier(expr)) return isUppercaseName(expr.name);
+  if (t.isMemberExpression(expr) || t.isOptionalMemberExpression(expr)) {
+    const prop = expr.property;
+    if (!expr.computed && t.isIdentifier(prop)) return isUppercaseName(prop.name);
+    if (expr.computed && t.isStringLiteral(prop)) return isUppercaseName(prop.value);
+  }
+  return false;
+}
+
+function isReactCreateElementCall(expr) {
+  if (!t.isCallExpression(expr)) return false;
+  const callee = expr.callee;
+  if (t.isIdentifier(callee, { name: 'createElement' })) return true;
+  if (t.isMemberExpression(callee) && !callee.computed) {
+    if (t.isIdentifier(callee.property, { name: 'createElement' })) return true;
   }
   return false;
 }
@@ -119,6 +145,8 @@ function collectStringFromExpression(expr, pathCtx, source) {
 
   // Never treat React children references as text
   if (isChildrenReference(expr)) return out;
+  if (isComponentReference(expr)) return out;
+  if (isReactCreateElementCall(expr)) return out;
 
   function add(res) {
     if (!res) return;
@@ -342,6 +370,8 @@ function scanFile(absPath, relPath, code, config, state) {
         } else if (t.isJSXExpressionContainer(val)) {
           const expr = val.expression;
           if (isChildrenReference(expr)) continue; // skip React children
+          if (isComponentReference(expr)) continue; // skip component refs
+          if (isReactCreateElementCall(expr)) continue; // skip createElement
           const results = collectStringFromExpression(expr, path, code);
           for (const res of results) {
             if (!res.text || res.text.trim() === '') continue;
@@ -378,6 +408,8 @@ function scanFile(absPath, relPath, code, config, state) {
         } else if (t.isJSXExpressionContainer(child)) {
           const expr = child.expression;
           if (isChildrenReference(expr)) return; // skip React children
+          if (isComponentReference(expr)) return; // skip component refs
+          if (isReactCreateElementCall(expr)) return; // skip createElement
           const results = collectStringFromExpression(expr, path, code);
           for (const res of results) {
             if (!res.text || res.text.trim() === '') continue;
