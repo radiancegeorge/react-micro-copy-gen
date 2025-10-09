@@ -1,0 +1,48 @@
+[
+  {
+    "text": "Hello",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "Example.jsx",
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 9
+          },
+          "end": {
+            "line": 17,
+            "column": 15
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Click-{name}",
+    "placeholders": [
+      "name"
+    ],
+    "occurrences": [
+      {
+        "file": "Example.jsx",
+        "loc": {
+          "start": {
+            "line": 18,
+            "column": 17
+          },
+          "end": {
+            "line": 18,
+            "column": 34
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "img",
+        "attribute": "title"
+      }
+    ]
+  }
+]

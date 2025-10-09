@@ -1,5 +1,27 @@
 [
   {
+    "text": "Screen reader only",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "accessibility/Acc.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 32
+          },
+          "end": {
+            "line": 20,
+            "column": 52
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
     "text": "Hello",
     "placeholders": [],
     "occurrences": [
@@ -36,6 +58,22 @@
         "attribute": null
       },
       {
+        "file": "filters/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 18
+          },
+          "end": {
+            "line": 20,
+            "column": 25
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
         "file": "missing-init-existing-hook/Example.jsx",
         "loc": {
           "start": {
@@ -45,6 +83,22 @@
           "end": {
             "line": 8,
             "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tsx/App.tsx",
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 18
+          },
+          "end": {
+            "line": 21,
+            "column": 25
           }
         },
         "context": "findText",
@@ -66,17 +120,215 @@
         "context": "findText",
         "element": null,
         "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Picture of cat",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 25
+          },
+          "end": {
+            "line": 11,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Cute cat",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 60
+          },
+          "end": {
+            "line": 11,
+            "column": 70
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Enter {firstName}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 30
+          },
+          "end": {
+            "line": 13,
+            "column": 49
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Name input",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 29
+          },
+          "end": {
+            "line": 16,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Submit",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 24
+          },
+          "end": {
+            "line": 19,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
       },
       {
-        "file": "tsx/App.tsx",
+        "file": "missing-init/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 33
+          },
+          "end": {
+            "line": 5,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Click to submit",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 26
+          },
+          "end": {
+            "line": 20,
+            "column": 43
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Something went wrong",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "attributes/Attrs.jsx",
         "loc": {
           "start": {
             "line": 21,
-            "column": 18
+            "column": 24
           },
           "end": {
             "line": 21,
-            "column": 25
+            "column": 46
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Describes the region",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 38
+          },
+          "end": {
+            "line": 23,
+            "column": 60
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Region",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 18
+          },
+          "end": {
+            "line": 24,
+            "column": 26
           }
         },
         "context": "findText",
@@ -372,242 +624,6 @@
     ]
   },
   {
-    "text": "Screen reader only",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "accessibility/Acc.jsx",
-        "loc": {
-          "start": {
-            "line": 20,
-            "column": 32
-          },
-          "end": {
-            "line": 20,
-            "column": 52
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Picture of cat",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "attributes/Attrs.jsx",
-        "loc": {
-          "start": {
-            "line": 11,
-            "column": 25
-          },
-          "end": {
-            "line": 11,
-            "column": 41
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Cute cat",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "attributes/Attrs.jsx",
-        "loc": {
-          "start": {
-            "line": 11,
-            "column": 60
-          },
-          "end": {
-            "line": 11,
-            "column": 70
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Enter {firstName}",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "attributes/Attrs.jsx",
-        "loc": {
-          "start": {
-            "line": 13,
-            "column": 30
-          },
-          "end": {
-            "line": 13,
-            "column": 49
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Name input",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "attributes/Attrs.jsx",
-        "loc": {
-          "start": {
-            "line": 16,
-            "column": 29
-          },
-          "end": {
-            "line": 16,
-            "column": 41
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Submit",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "attributes/Attrs.jsx",
-        "loc": {
-          "start": {
-            "line": 19,
-            "column": 24
-          },
-          "end": {
-            "line": 19,
-            "column": 32
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "missing-init/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 5,
-            "column": 33
-          },
-          "end": {
-            "line": 5,
-            "column": 41
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Click to submit",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "attributes/Attrs.jsx",
-        "loc": {
-          "start": {
-            "line": 20,
-            "column": 26
-          },
-          "end": {
-            "line": 20,
-            "column": 43
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Something went wrong",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "attributes/Attrs.jsx",
-        "loc": {
-          "start": {
-            "line": 21,
-            "column": 24
-          },
-          "end": {
-            "line": 21,
-            "column": 46
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Describes the region",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "attributes/Attrs.jsx",
-        "loc": {
-          "start": {
-            "line": 23,
-            "column": 38
-          },
-          "end": {
-            "line": 23,
-            "column": 60
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Region",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "attributes/Attrs.jsx",
-        "loc": {
-          "start": {
-            "line": 24,
-            "column": 18
-          },
-          "end": {
-            "line": 24,
-            "column": 26
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
     "text": "Price is $10",
     "placeholders": [],
     "occurrences": [
@@ -794,6 +810,28 @@
     ]
   },
   {
+    "text": "Click-{name}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "filters/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 24
+          },
+          "end": {
+            "line": 24,
+            "column": 38
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
     "text": "Plain",
     "placeholders": [],
     "occurrences": [
@@ -807,30 +845,6 @@
           "end": {
             "line": 6,
             "column": 18
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "{messageFromServer}",
-    "placeholders": [
-      "messageFromServer"
-    ],
-    "occurrences": [
-      {
-        "file": "findtext/Calls.jsx",
-        "loc": {
-          "start": {
-            "line": 8,
-            "column": 11
-          },
-          "end": {
-            "line": 8,
-            "column": 28
           }
         },
         "context": "findText",
@@ -882,6 +896,104 @@
         },
         "context": "JSXExpression",
         "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "View details",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 27
+          },
+          "end": {
+            "line": 20,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 27
+          },
+          "end": {
+            "line": 30,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Delete",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 27
+          },
+          "end": {
+            "line": 23,
+            "column": 35
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 33,
+            "column": 27
+          },
+          "end": {
+            "line": 33,
+            "column": 35
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Click to open",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 37,
+            "column": 33
+          },
+          "end": {
+            "line": 37,
+            "column": 48
+          }
+        },
+        "context": "findText",
+        "element": null,
         "attribute": null
       }
     ]
@@ -1041,104 +1153,6 @@
     ]
   },
   {
-    "text": "View details",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "heuristic-attrs/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 20,
-            "column": 27
-          },
-          "end": {
-            "line": 20,
-            "column": 41
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "heuristic-attrs/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 30,
-            "column": 27
-          },
-          "end": {
-            "line": 30,
-            "column": 41
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Delete",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "heuristic-attrs/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 23,
-            "column": 27
-          },
-          "end": {
-            "line": 23,
-            "column": 35
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "heuristic-attrs/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 33,
-            "column": 27
-          },
-          "end": {
-            "line": 33,
-            "column": 35
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Click to open",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "heuristic-attrs/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 37,
-            "column": 33
-          },
-          "end": {
-            "line": 37,
-            "column": 48
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
     "text": "Save",
     "placeholders": [],
     "occurrences": [
@@ -1152,170 +1166,6 @@
           "end": {
             "line": 5,
             "column": 60
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "External link",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "non-component-jsx/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 6,
-            "column": 26
-          },
-          "end": {
-            "line": 6,
-            "column": 41
-          }
-        },
-        "context": "JSXAttribute",
-        "element": "a",
-        "attribute": "title"
-      }
-    ]
-  },
-  {
-    "text": "Docs",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "non-component-jsx/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 6,
-            "column": 42
-          },
-          "end": {
-            "line": 6,
-            "column": 46
-          }
-        },
-        "context": "JSXText",
-        "element": "a",
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Open",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "non-component-jsx/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 11,
-            "column": 28
-          },
-          "end": {
-            "line": 11,
-            "column": 34
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "nested-attrs/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 30,
-            "column": 28
-          },
-          "end": {
-            "line": 30,
-            "column": 34
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Panel Title",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "non-component-jsx/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 19,
-            "column": 26
-          },
-          "end": {
-            "line": 19,
-            "column": 39
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Click me",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "non-component-jsx/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 19,
-            "column": 52
-          },
-          "end": {
-            "line": 19,
-            "column": 62
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Welcome {name}",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "preexisting-translation/Component.jsx",
-        "loc": {
-          "start": {
-            "line": 9,
-            "column": 16
-          },
-          "end": {
-            "line": 9,
-            "column": 32
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      },
-      {
-        "file": "skip-cases/Skip.jsx",
-        "loc": {
-          "start": {
-            "line": 16,
-            "column": 27
-          },
-          "end": {
-            "line": 16,
-            "column": 43
           }
         },
         "context": "findText",
@@ -1413,6 +1263,44 @@
     ]
   },
   {
+    "text": "Open",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 28
+          },
+          "end": {
+            "line": 30,
+            "column": 34
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 28
+          },
+          "end": {
+            "line": 11,
+            "column": 34
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
     "text": "Close",
     "placeholders": [],
     "occurrences": [
@@ -1435,19 +1323,123 @@
     ]
   },
   {
-    "text": "Add your first item",
+    "text": "External link",
     "placeholders": [],
     "occurrences": [
       {
-        "file": "object-literals/ThirdParty.jsx",
+        "file": "non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 26
+          },
+          "end": {
+            "line": 6,
+            "column": 41
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "a",
+        "attribute": "title"
+      }
+    ]
+  },
+  {
+    "text": "Docs",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 42
+          },
+          "end": {
+            "line": 6,
+            "column": 46
+          }
+        },
+        "context": "JSXText",
+        "element": "a",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Panel Title",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 26
+          },
+          "end": {
+            "line": 19,
+            "column": 39
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Click me",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 52
+          },
+          "end": {
+            "line": 19,
+            "column": 62
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Welcome {name}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "preexisting-translation/Component.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 16
+          },
+          "end": {
+            "line": 9,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "skip-cases/Skip.jsx",
         "loc": {
           "start": {
             "line": 16,
-            "column": 30
+            "column": 27
           },
           "end": {
             "line": 16,
-            "column": 51
+            "column": 43
           }
         },
         "context": "findText",
@@ -1479,19 +1471,19 @@
     ]
   },
   {
-    "text": "",
+    "text": "Add your first item",
     "placeholders": [],
     "occurrences": [
       {
-        "file": "unhosted-findtext/Example.jsx",
+        "file": "object-literals/ThirdParty.jsx",
         "loc": {
           "start": {
-            "line": 17,
-            "column": 25
+            "line": 16,
+            "column": 30
           },
           "end": {
-            "line": 17,
-            "column": 27
+            "line": 16,
+            "column": 51
           }
         },
         "context": "findText",

@@ -44,29 +44,5 @@
         "attribute": null
       }
     ]
-  },
-  {
-    "text": "{messageFromServer}",
-    "placeholders": [
-      "messageFromServer"
-    ],
-    "occurrences": [
-      {
-        "file": "Calls.jsx",
-        "loc": {
-          "start": {
-            "line": 6,
-            "column": 11
-          },
-          "end": {
-            "line": 6,
-            "column": 28
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
   }
 ]

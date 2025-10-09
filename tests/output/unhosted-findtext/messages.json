@@ -22,28 +22,6 @@
     ]
   },
   {
-    "text": "",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "Example.jsx",
-        "loc": {
-          "start": {
-            "line": 14,
-            "column": 25
-          },
-          "end": {
-            "line": 14,
-            "column": 27
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
     "text": "Hello",
     "placeholders": [],
     "occurrences": [

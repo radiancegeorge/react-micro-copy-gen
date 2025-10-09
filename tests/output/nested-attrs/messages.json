@@ -66,30 +66,6 @@
     ]
   },
   {
-    "text": "{actions}",
-    "placeholders": [
-      "actions"
-    ],
-    "occurrences": [
-      {
-        "file": "Example.jsx",
-        "loc": {
-          "start": {
-            "line": 15,
-            "column": 18
-          },
-          "end": {
-            "line": 15,
-            "column": 27
-          }
-        },
-        "context": "JSXAttribute",
-        "element": "Menu",
-        "attribute": "items"
-      }
-    ]
-  },
-  {
     "text": "Open",
     "placeholders": [],
     "occurrences": [

@@ -21,24 +21,6 @@
     "file": "Example.jsx",
     "loc": {
       "start": {
-        "line": 14,
-        "column": 25
-      },
-      "end": {
-        "line": 14,
-        "column": 27
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "Example.jsx",
-    "loc": {
-      "start": {
         "line": 23,
         "column": 19
       },

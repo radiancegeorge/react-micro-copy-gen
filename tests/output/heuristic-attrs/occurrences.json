@@ -52,29 +52,6 @@
     "context": "JSXAttribute",
     "element": "Panel",
     "attribute": "actions",
-    "text": "{items}",
-    "placeholders": [
-      "items"
-    ],
-    "sourceExprs": {
-      "items": "items"
-    }
-  },
-  {
-    "file": "Example.jsx",
-    "loc": {
-      "start": {
-        "line": 9,
-        "column": 21
-      },
-      "end": {
-        "line": 9,
-        "column": 28
-      }
-    },
-    "context": "JSXAttribute",
-    "element": "Panel",
-    "attribute": "actions",
     "text": "View details",
     "placeholders": [],
     "sourceExprs": {}

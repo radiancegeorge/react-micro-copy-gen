@@ -1,6 +1,6 @@
 {
-  "filesScanned": 29,
-  "messagesCount": 57,
+  "filesScanned": 30,
+  "messagesCount": 56,
   "occurrencesCount": 72,
   "collisions": [
     {
@@ -55,9 +55,12 @@
     }
   ],
   "missingInStore": [],
-  "unusedInCode": [],
+  "unusedInCode": [
+    "{messageFromServer}",
+    ""
+  ],
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 57
+  "wordStoreCount": 56
 }

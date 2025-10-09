@@ -146,7 +146,18 @@ function placeholderSetKey(placeholders) {
   return JSON.stringify([...new Set(placeholders)].sort());
 }
 
+function shouldIndexText(text) {
+  const trimmed = (text || '').trim();
+  if (!trimmed) return false;
+  // Skip single-symbol texts like ":", "@", "-"
+  if (trimmed === ':' || trimmed === '@' || trimmed === '-') return false;
+  // Skip single placeholder-only texts like "{name}" with nothing else
+  if (/^\{\s*[a-zA-Z0-9_]+\s*\}$/.test(trimmed)) return false;
+  return true;
+}
+
 function addOccurrence(state, occ) {
+  if (!shouldIndexText(occ.text)) return;
   state.occurrences.push(occ);
   // messages dedupe by text
   const key = occ.text;
@@ -528,54 +539,29 @@ function scanFile(absPath, relPath, code, config, state) {
         const loc = getLoc(first);
         if (t.isStringLiteral(first)) {
           const val = normalizeStringLiteral(first);
-          path.state.findTextCalls.push({
-            file: relPath,
-            loc,
-            text: val,
-            placeholders: [],
-            sourceExprs: {},
-            ok: true,
-          });
-          // Add to store
-          addOccurrence(path.state, {
-            file: relPath,
-            loc,
-            context: 'findText',
-            element: null,
-            text: val,
-            placeholders: [],
-            sourceExprs: {},
-          });
+          if (shouldIndexText(val)) {
+            path.state.findTextCalls.push({
+              file: relPath,
+              loc,
+              text: val,
+              placeholders: [],
+              sourceExprs: {},
+              ok: true,
+            });
+            // Add to store
+            addOccurrence(path.state, {
+              file: relPath,
+              loc,
+              context: 'findText',
+              element: null,
+              text: val,
+              placeholders: [],
+              sourceExprs: {},
+            });
+          }
         } else if (t.isTemplateLiteral(first)) {
           const res = normalizeTemplateLiteral(first, code);
-          path.state.findTextCalls.push({ file: relPath, loc, ...res, ok: true });
-          addOccurrence(path.state, {
-            file: relPath,
-            loc,
-            context: 'findText',
-            element: null,
-            text: res.text,
-            placeholders: res.placeholders,
-            sourceExprs: res.sourceExprs,
-          });
-        } else if (t.isBinaryExpression(first) && first.operator === '+') {
-          const res = normalizeBinaryExpression(first, code);
-          path.state.findTextCalls.push({ file: relPath, loc, ...res, ok: true });
-          addOccurrence(path.state, {
-            file: relPath,
-            loc,
-            context: 'findText',
-            element: null,
-            text: res.text,
-            placeholders: res.placeholders,
-            sourceExprs: res.sourceExprs,
-          });
-        } else {
-          // Try trivial resolution
-          const tries = collectStringFromExpression(first, path, code);
-          if (tries && tries.length > 0) {
-            // Take first as best-effort
-            const res = tries[0];
+          if (shouldIndexText(res.text)) {
             path.state.findTextCalls.push({ file: relPath, loc, ...res, ok: true });
             addOccurrence(path.state, {
               file: relPath,
@@ -586,6 +572,39 @@ function scanFile(absPath, relPath, code, config, state) {
               placeholders: res.placeholders,
               sourceExprs: res.sourceExprs,
             });
+          }
+        } else if (t.isBinaryExpression(first) && first.operator === '+') {
+          const res = normalizeBinaryExpression(first, code);
+          if (shouldIndexText(res.text)) {
+            path.state.findTextCalls.push({ file: relPath, loc, ...res, ok: true });
+            addOccurrence(path.state, {
+              file: relPath,
+              loc,
+              context: 'findText',
+              element: null,
+              text: res.text,
+              placeholders: res.placeholders,
+              sourceExprs: res.sourceExprs,
+            });
+          }
+        } else {
+          // Try trivial resolution
+          const tries = collectStringFromExpression(first, path, code);
+          if (tries && tries.length > 0) {
+            // Take first as best-effort
+            const res = tries[0];
+            if (shouldIndexText(res.text)) {
+              path.state.findTextCalls.push({ file: relPath, loc, ...res, ok: true });
+              addOccurrence(path.state, {
+                file: relPath,
+                loc,
+                context: 'findText',
+                element: null,
+                text: res.text,
+                placeholders: res.placeholders,
+                sourceExprs: res.sourceExprs,
+              });
+            }
           } else {
             const ref = `EXPR(findText-arg1)`;
             path.state.findTextCalls.push({ file: relPath, loc, text: ref, placeholders: [], sourceExprs: {}, ok: false });

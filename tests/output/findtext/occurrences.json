@@ -38,27 +38,5 @@
     "sourceExprs": {
       "firstName": "user.firstName"
     }
-  },
-  {
-    "file": "Calls.jsx",
-    "loc": {
-      "start": {
-        "line": 6,
-        "column": 11
-      },
-      "end": {
-        "line": 6,
-        "column": 28
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "{messageFromServer}",
-    "placeholders": [
-      "messageFromServer"
-    ],
-    "sourceExprs": {
-      "messageFromServer": "messageFromServer"
-    }
   }
 ]

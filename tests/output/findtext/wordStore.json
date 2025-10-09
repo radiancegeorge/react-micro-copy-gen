@@ -1,5 +1,4 @@
 [
-  "{messageFromServer}",
   "Hi {firstName}",
   "Plain"
 ]
