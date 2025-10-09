@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite/wordStore.json';
+import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
 export default function FiltersDemo({ name }) {
   const { findText } = useTranslation(wordStore);
   return (
@@ -11,27 +11,19 @@ export default function FiltersDemo({ name }) {
       <img alt="@" />
       <img alt="-" />
       <img alt="%" />
-      <span>{findText('•')}</span>
+      <span>•</span>
 
       {/* Placeholder-only should NOT be indexed */}
       <p>{name}</p>
       <p>{user.firstName}</p>
       {/* Placeholder + symbol-only should NOT be indexed */}
-      <p>
-        {findText('{name}%', {
-          name: name,
-        })}
-      </p>
+      <p>{`${name}%`}</p>
       <img
         title={findText('{name}%', {
           name: name,
         })}
       />
-      <p>
-        {findText('{name}%', {
-          name: name,
-        })}
-      </p>
+      <p>{name + '%'}</p>
       <p>
         {a}
         {b}

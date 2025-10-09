@@ -13,14 +13,22 @@ const NON_TEXT_PROPS = new Set([
   'class', 'className', 'style', 'id', 'htmlFor', 'role', 'type', 'src', 'href', 'to',
   'd', 'viewBox', 'fill', 'stroke', 'width', 'height', 'color', 'bg', 'background',
   'variant', 'size', 'key', 'data-testid', 'aria-hidden', 'tabIndex', 'disabled',
-  'checked', 'required', 'name', 'value', 'defaultValue'
+  'checked', 'required', 'name', 'value', 'defaultValue',
+  // SVG and non-text attrs (camelCase and dash-case)
+  'clipPath', 'clip-path', 'clipRule', 'clip-rule', 'mask', 'filter',
+  'gradientUnits', 'gradientTransform', 'stopColor', 'stop-color', 'stopOpacity', 'stop-opacity',
+  'strokeLinecap', 'stroke-linecap', 'strokeLinejoin', 'stroke-linejoin', 'strokeWidth', 'stroke-width',
+  'strokeMiterlimit', 'stroke-miterlimit', 'strokeDasharray', 'stroke-dasharray', 'strokeDashoffset', 'stroke-dashoffset',
+  'fillRule', 'fill-rule', 'fillOpacity', 'fill-opacity',
+  'x', 'y', 'x1', 'y1', 'x2', 'y2', 'rx', 'ry', 'cx', 'cy', 'r', 'dx', 'dy', 'points',
+  'preserveAspectRatio', 'transform', 'xmlns', 'xmlSpace', 'xlinkHref', 'xlink:href'
 ]);
 
 function isCssLike(text) {
   const s = String(text || '').trim();
   if (!s) return false;
   if (/(?:^|\s)(rgba?|hsla?)\s*\(/i.test(s)) return true;
-  if (/(repeat|minmax|clamp|calc|var)\s*\(/i.test(s)) return true;
+  if (/(repeat|minmax|clamp|calc|var|translate|translateX|translateY|scale|scaleX|scaleY|rotate|skewX|skewY|matrix|url)\s*\(/i.test(s)) return true;
   if (/#[0-9a-f]{3,8}\b/i.test(s)) return true;
   const unitRe = /-?\d*\.?\d+(?:px|rem|em|vh|vw|vmin|vmax|%|ch|ex|cm|mm|in|pt|pc|fr)\b/i;
   const wholeUnitRe = /^-?\d*\.?\d+(?:px|rem|em|vh|vw|vmin|vmax|%|ch|ex|cm|mm|in|pt|pc|fr)$/i;
@@ -76,13 +84,9 @@ function unwrapFindTextOutsideHosts(ast) {
   traverse(ast, {
     CallExpression(path) {
       if (!t.isIdentifier(path.node.callee, { name: 'findText' })) return;
-      // Determine nearest function scope and whether it's a host
+      // Only keep findText when the NEAREST function parent is a host
       const fnPath = path.getFunctionParent();
-      let isHost = false;
-      if (fnPath && fnPath.isFunction()) {
-        isHost = isHookHostFunction(fnPath);
-      }
-      if (isHost) return;
+      if (fnPath && fnPath.isFunction() && isHookHostFunction(fnPath)) return;
       const args = path.node.arguments || [];
       const first = args[0];
       if (t.isStringLiteral(first)) {
@@ -90,6 +94,29 @@ function unwrapFindTextOutsideHosts(ast) {
         path.replaceWith(t.stringLiteral((first.value || '').trim()));
         changed = true;
       }
+    },
+  });
+  return changed;
+}
+
+function fallbackWrapStringExpressions(ast) {
+  let changed = false;
+  traverse(ast, {
+    JSXExpressionContainer(path) {
+      const expr = path.node.expression;
+      if (!t.isStringLiteral(expr)) return;
+      const val = (expr.value || '').trim();
+      if (!val) return;
+      // Skip attribute values; attribute wrapping is handled in the main JSXAttribute branch with heuristics
+      if (path.parentPath && path.parentPath.isJSXAttribute && path.parentPath.isJSXAttribute()) return;
+      // Only when the NEAREST function parent is a host/component
+      const fnPath = path.getFunctionParent();
+      if (!fnPath || !fnPath.isFunction() || !isHookHostFunction(fnPath)) return;
+      if (!shouldWrapText(val)) return;
+      // replace with findText call
+      const call = makeFindTextCallFromTemplateString(val, null);
+      path.replaceWith(t.jsxExpressionContainer(call));
+      changed = true;
     },
   });
   return changed;
@@ -1065,16 +1092,9 @@ async function rewriteFile(absPath, code, config) {
       const elemName = getJsxNameName(opening.name);
       const thirdParty = config.thirdParty || {};
 
-      // Only rewrite inside component/hook host render trees
-      let withinHost = false;
-      let cur = path.parentPath;
-      while (cur) {
-        if (cur.isFunction()) {
-          if (isHookHostFunction(cur)) { withinHost = true; break; }
-        }
-        cur = cur.parentPath;
-      }
-      if (!withinHost) return; // skip rewriting in non-component contexts
+      // Only rewrite when the NEAREST function parent is a host/component
+      const fnPath = path.getFunctionParent();
+      if (!fnPath || !fnPath.isFunction() || !isHookHostFunction(fnPath)) return; // skip rewriting in non-component or nested-callback contexts
 
       // Rewrite attributes that surface text
       for (const attr of opening.attributes) {
@@ -1103,7 +1123,17 @@ async function rewriteFile(absPath, code, config) {
           if (isFindTextCall(inner)) {
             const arg = inner.arguments && inner.arguments[0];
             const strict = arg ? tryStrictNormalize(arg, path, code) : null;
-            if (arg && (isChildrenReference(arg) || isComponentReference(arg) || isReactCreateElementCall(arg) || !strict || (strict && strict.text != null && !shouldWrapText(strict.text)))) {
+            // Unwrap if non-hosty arg or attrName is non-text or the text shouldn't be wrapped
+            if (
+              arg && (
+                isChildrenReference(arg) ||
+                isComponentReference(arg) ||
+                isReactCreateElementCall(arg) ||
+                !strict ||
+                (attrName && NON_TEXT_PROPS.has(attrName)) ||
+                (strict && strict.text != null && (!shouldWrapText(strict.text) || isCssLike(strict.text) || isFileOrPathLike(strict.text)))
+              )
+            ) {
               attr.value = t.jsxExpressionContainer(arg);
               changed = true; nodesRewritten++;
               continue;
@@ -1144,8 +1174,8 @@ async function rewriteFile(absPath, code, config) {
         }
       }
 
-      // HTML collapsing (opt-in): replace mixed text + inline children with a single HTML template
-      if (config.htmlCollapse && config.htmlCollapse.apply) {
+      // HTML collapsing disabled: rely on per-child wrapping only
+      if (false && config.htmlCollapse && config.htmlCollapse.apply) {
         const whitelist = (config.htmlCollapse.inlineWhitelist || []).map((s) => s.toLowerCase());
 
         function isInlineAllowed(el) {
@@ -1366,7 +1396,7 @@ async function rewriteFile(absPath, code, config) {
               templateText += (templateText && !templateText.endsWith(' ') ? ' ' : '') + `{${ph}}`;
             }
           }
-          if (eligible && templateText) {
+          if (eligible && templateText && shouldWrapText(templateText.trim())) {
             // Replace children with dangerouslySetInnerHTML
             const call = makeFindTextCallFromTemplateString(templateText.trim(), entries);
             const obj = t.objectExpression([
@@ -1408,26 +1438,7 @@ async function rewriteFile(absPath, code, config) {
         return t.isCallExpression(n) && t.isMemberExpression(n.callee) && t.isIdentifier(n.callee.property, { name: 'map' });
       }
 
-      const canMerge = (
-        kids.length > 0 &&
-        !kids.some((ch) => t.isJSXElement(ch)) &&
-        kids.every((ch) => {
-          if (t.isJSXText(ch)) return true;
-          if (t.isJSXExpressionContainer(ch)) {
-            const e = ch.expression;
-            if (isFindTextCall(e)) return false;
-            if (t.isConditionalExpression(e) || t.isLogicalExpression(e)) return false; // handle separately
-            if (exprContainsJSX(e) || isMapCall(e)) return false;
-            if (isChildrenReference(e)) return false;
-            if (isComponentReference(e)) return false;
-            if (isReactCreateElementCall(e)) return false;
-            // Only if we can strictly normalize to text
-            const strict = tryStrictNormalize(e, path, code);
-            return !!strict;
-          }
-          return false;
-        })
-      );
+      const canMerge = false;
 
       if (canMerge) {
         let template = '';
@@ -1489,13 +1500,7 @@ async function rewriteFile(absPath, code, config) {
           }
         }
 
-        template = template.replace(/\s+/g, ' ').trim();
-        if (template) {
-          const call = makeFindTextCallFromTemplateString(template, entries);
-          path.node.children = [t.jsxExpressionContainer(call)];
-          changed = true; nodesRewritten++;
-          return; // skip per-child rewrite when merged
-        }
+        // Merge disabled; fall back to per-child wrapping
       }
 
       // Rewrite children
@@ -1547,6 +1552,9 @@ async function rewriteFile(absPath, code, config) {
 
   // First unwrap any non-host findText calls to avoid injecting init in non-components
   if (unwrapFindTextOutsideHosts(ast)) changed = true;
+
+  // Fallback: wrap stray {'text'} expressions inside hosts
+  if (fallbackWrapStringExpressions(ast)) changed = true;
 
   const usesFindText = hasFindTextUsage(ast);
   if (usesFindText && config.findTextSetup) {

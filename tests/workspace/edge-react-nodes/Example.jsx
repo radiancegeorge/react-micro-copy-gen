@@ -1,13 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite/wordStore.json';
+import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
 function Slot() {
   const { findText } = useTranslation(wordStore);
   return <div>{findText('Slot Inner')}</div>;
 }
 export default function Panel({ children, label }) {
   const { findText } = useTranslation(wordStore);
-  const renderHeader = () => <strong>{'Head'}</strong>;
+  const renderHeader = () => <strong>Head</strong>;
   const renderText = () => 'Hello world';
   return (
     <div>

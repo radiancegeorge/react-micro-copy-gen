@@ -18,7 +18,15 @@ const NON_TEXT_PROPS = new Set([
   'class', 'className', 'style', 'id', 'htmlFor', 'role', 'type', 'src', 'href', 'to',
   'd', 'viewBox', 'fill', 'stroke', 'width', 'height', 'color', 'bg', 'background',
   'variant', 'size', 'key', 'data-testid', 'aria-hidden', 'tabIndex', 'disabled',
-  'checked', 'required', 'name', 'value', 'defaultValue'
+  'checked', 'required', 'name', 'value', 'defaultValue',
+  // SVG and non-text attrs (camelCase and dash-case)
+  'clipPath', 'clip-path', 'clipRule', 'clip-rule', 'mask', 'filter',
+  'gradientUnits', 'gradientTransform', 'stopColor', 'stop-color', 'stopOpacity', 'stop-opacity',
+  'strokeLinecap', 'stroke-linecap', 'strokeLinejoin', 'stroke-linejoin', 'strokeWidth', 'stroke-width',
+  'strokeMiterlimit', 'stroke-miterlimit', 'strokeDasharray', 'stroke-dasharray', 'strokeDashoffset', 'stroke-dashoffset',
+  'fillRule', 'fill-rule', 'fillOpacity', 'fill-opacity',
+  'x', 'y', 'x1', 'y1', 'x2', 'y2', 'rx', 'ry', 'cx', 'cy', 'r', 'dx', 'dy', 'points',
+  'preserveAspectRatio', 'transform', 'xmlns', 'xmlSpace', 'xlinkHref', 'xlink:href'
 ]);
 
 function isCssLike(text) {
@@ -26,7 +34,7 @@ function isCssLike(text) {
   if (!s) return false;
   // CSS color/functions/hex
   if (/(?:^|\s)(rgba?|hsla?)\s*\(/i.test(s)) return true;
-  if (/(repeat|minmax|clamp|calc|var)\s*\(/i.test(s)) return true;
+  if (/(repeat|minmax|clamp|calc|var|translate|translateX|translateY|scale|scaleX|scaleY|rotate|skewX|skewY|matrix|url)\s*\(/i.test(s)) return true;
   if (/#[0-9a-f]{3,8}\b/i.test(s)) return true;
   // units and fr
   const unitRe = /-?\d*\.?\d+(?:px|rem|em|vh|vw|vmin|vmax|%|ch|ex|cm|mm|in|pt|pc|fr)\b/i;
@@ -40,6 +48,58 @@ function isCssLike(text) {
     const tokens = s.split(/[\s,]+/).filter(Boolean);
     if (tokens.length > 1 && tokens.every((t) => unitRe.test(t))) return true;
   }
+  return false;
+}
+
+function isComponentName(name) {
+  return typeof name === 'string' && /^[A-Z]/.test(name);
+}
+
+function isHookName(name) {
+  return typeof name === 'string' && /^use[A-Z0-9]/.test(name);
+}
+
+function calleeMatchesIdentifier(path, names) {
+  if (!path) return false;
+  if (path.isIdentifier()) return names.includes(path.node.name);
+  if (path.isMemberExpression() && !path.node.computed && path.get('property').isIdentifier()) {
+    const propertyName = path.node.property.name;
+    return names.includes(propertyName);
+  }
+  return false;
+}
+
+function isHookHostFunction(path) {
+  if (!path || !path.isFunction()) return false;
+
+  if (path.parentPath && path.parentPath.isExportDefaultDeclaration()) return true;
+
+  if (path.isFunctionDeclaration()) {
+    const name = path.node.id && path.node.id.name;
+    return isComponentName(name) || isHookName(name) || !path.parentPath || path.parentPath.isProgram();
+  }
+
+  const parent = path.parentPath;
+  if (!parent) return false;
+
+  if (parent.isVariableDeclarator()) {
+    if (t.isIdentifier(parent.node.id)) {
+      const name = parent.node.id.name;
+      return isComponentName(name) || isHookName(name);
+    }
+    return false;
+  }
+
+  if (parent.isAssignmentExpression() && t.isIdentifier(parent.node.left)) {
+    const name = parent.node.left.name;
+    return isComponentName(name) || isHookName(name);
+  }
+
+  if (parent.isCallExpression()) {
+    const calleePath = parent.get('callee');
+    return calleeMatchesIdentifier(calleePath, ['memo', 'forwardRef', 'React.memo', 'React.forwardRef']);
+  }
+
   return false;
 }
 
@@ -444,6 +504,10 @@ function scanFile(absPath, relPath, code, config, state) {
       const opening = path.node.openingElement;
       const elemName = getJsxNameName(opening.name);
 
+      // Only scan when the NEAREST function parent is a host/component
+      const fnPath = path.getFunctionParent();
+      if (!fnPath || !fnPath.isFunction() || !isHookHostFunction(fnPath)) return;
+
       // Attributes
       for (const attr of opening.attributes) {
         if (!t.isJSXAttribute(attr)) continue;
@@ -577,6 +641,9 @@ function scanFile(absPath, relPath, code, config, state) {
     CallExpression(path) {
       // Existing findText() calls
       if (t.isIdentifier(path.node.callee) && path.node.callee.name === 'findText') {
+        // Only record findText when the NEAREST function parent is a host/component
+        const fnPath = path.getFunctionParent();
+        if (!fnPath || !fnPath.isFunction() || !isHookHostFunction(fnPath)) return;
         const args = path.node.arguments || [];
         const first = args[0];
         if (!first) return;

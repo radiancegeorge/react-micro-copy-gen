@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite/wordStore.json';
+import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
 export default function Skip({ name }) {
   const { findText } = useTranslation(wordStore);
   const background = 'blue'; // Non-UI string
@@ -11,14 +11,13 @@ export default function Skip({ name }) {
           __html: '<b>Bold</b>',
         }}
       />
-      <p
-        dangerouslySetInnerHTML={{
-          __html: findText('Welcome {name}', {
-            name: `<strong>${name}</strong>`,
-          }),
-        }}
-      ></p>
-      <p>{findText('Hello world')}</p>
+      <p>
+        {findText('Welcome')}
+        <strong>{name}</strong>
+      </p>
+      <p>
+        {findText('Hello')} {findText('world')}
+      </p>
     </div>
   );
 }

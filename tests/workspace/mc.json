@@ -2,12 +2,12 @@
   "version": 1,
   "lastScan": {
     "root": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/workspace",
-    "outDir": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite",
-    "reportPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite/report.json",
-    "messagesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite/messages.json",
-    "occurrencesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite/occurrences.json",
-    "wordStorePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite/wordStore.json",
-    "htmlCollapsePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite/html-collapse.json",
+    "outDir": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite-nocollapse",
+    "reportPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite-nocollapse/report.json",
+    "messagesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite-nocollapse/messages.json",
+    "occurrencesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite-nocollapse/occurrences.json",
+    "wordStorePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/output-rewrite-nocollapse/wordStore.json",
+    "htmlCollapsePath": null,
     "include": [
       "**/*.{js,jsx,ts,tsx}"
     ],
@@ -26,6 +26,6 @@
       "**/storybook/**"
     ],
     "mode": "loose",
-    "scannedAt": "2025-10-09T12:26:34.963Z"
+    "scannedAt": "2025-10-09T13:54:56.828Z"
   }
 }
