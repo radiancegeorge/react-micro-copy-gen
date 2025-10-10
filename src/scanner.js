@@ -132,6 +132,8 @@ function isLikelyMicrocopy(text, attrName) {
   if (/^https?:\/\/|^(mailto:|tel:)/i.test(trimmed)) return false;
   if (isFileOrPathLike(trimmed)) return false;
   if (isCssLike(trimmed)) return false;
+  // Skip single hyphenated token like "instructor-affiliate"
+  if (/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$/.test(trimmed)) return false;
   if (!/[a-z]/i.test(trimmed)) return false;
   return true;
 }
@@ -254,6 +256,8 @@ function shouldIndexText(text) {
   if (!trimmed) return false;
   // Skip single non-alphanumeric symbol like ":", "@", "-", "%", "•"
   if (trimmed.length === 1 && !/[a-z0-9]/i.test(trimmed)) return false;
+  // Skip single hyphenated token like "instructor-affiliate" (slug-like)
+  if (/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$/.test(trimmed)) return false;
   // Skip single placeholder-only texts like "{name}" with nothing else
   if (/^\{\s*[a-zA-Z0-9_]+\s*\}$/.test(trimmed)) return false;
   // Skip CSS-like tokens/expressions

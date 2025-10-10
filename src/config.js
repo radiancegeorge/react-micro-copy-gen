@@ -153,6 +153,13 @@ async function loadConfig(cliConfig) {
   const translationHookName = cliConfig.translationHookName
     || (fileConfig && fileConfig.translation && fileConfig.translation.hookName)
     || DEFAULT_TRANSLATION_HOOK_NAME;
+  const translationHookIsDefault = typeof cliConfig.translationHookDefault === 'boolean'
+    ? !!cliConfig.translationHookDefault
+    : (fileConfig && fileConfig.translation && typeof fileConfig.translation.hookIsDefault === 'boolean'
+      ? !!fileConfig.translation.hookIsDefault
+      : (fileConfig && fileConfig.translation && typeof fileConfig.translation.hookDefault === 'boolean'
+        ? !!fileConfig.translation.hookDefault
+        : false));
   const wordStoreImportSource = cliConfig.wordStoreImportSource
     || (fileConfig && fileConfig.translation && fileConfig.translation.wordStoreImportSource)
     || (meta && meta.lastScan && meta.lastScan.wordStorePath)
@@ -187,6 +194,7 @@ async function loadConfig(cliConfig) {
     findTextSetup: {
       hookSource: translationHookSource,
       hookName: translationHookName,
+      hookIsDefault: translationHookIsDefault,
       wordStoreImportSource,
       wordStoreIdentifier,
     },

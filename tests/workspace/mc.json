@@ -1,4 +1,37 @@
 {
+  "settings": {
+    "translation": {
+      "hookSource": "l-min-components/src/components",
+      "hookName": "useTranslation",
+      "hookIsDefault": false
+    }
+  },
+  "lastRewrite": {
+    "timestamp": "2025-10-10T15:57:24.940Z",
+    "mode": "strict",
+    "include": [
+      "**/*.{js,jsx,ts,tsx}"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/coverage/**",
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.stories.*",
+      "**/__tests__/**",
+      "**/__mocks__/**",
+      "**/storybook/**"
+    ],
+    "outDir": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/workspace/mc-out",
+    "filesProcessed": 38,
+    "filesChanged": 30,
+    "nodesRewritten": 77,
+    "wordStorePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/workspace/mc-out/wordStore.json"
+  },
   "version": 1,
   "lastScan": {
     "root": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/workspace",
@@ -26,6 +59,6 @@
       "**/storybook/**"
     ],
     "mode": "loose",
-    "scannedAt": "2025-10-10T12:45:19.463Z"
+    "scannedAt": "2025-10-10T15:57:25.004Z"
   }
 }

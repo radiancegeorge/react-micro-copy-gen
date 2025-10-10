@@ -1,7 +1,7 @@
 {
-  "filesScanned": 35,
+  "filesScanned": 38,
   "messagesCount": 60,
-  "occurrencesCount": 77,
+  "occurrencesCount": 78,
   "collisions": [
     {
       "text": "Hi {firstName}",

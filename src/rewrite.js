@@ -65,6 +65,8 @@ function shouldWrapText(text) {
   const trimmed = String(text || '').trim();
   if (!trimmed) return false;
   if (trimmed.length === 1 && !/[a-z0-9]/i.test(trimmed)) return false;
+  // Skip single hyphenated token like "instructor-affiliate" (slug-like)
+  if (/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$/.test(trimmed)) return false;
   if (isCssLike(trimmed)) return false;
   if (isFileOrPathLike(trimmed)) return false;
   // remove placeholders like {anything}
@@ -706,7 +708,44 @@ function createFindTextInitDeclaration(calleeName, argumentName) {
 
 function ensureFindTextImports(program, setup, currentFilePath, rootDir) {
   const programBody = program.body;
-  const hookImport = ensureNamedImport(programBody, setup.hookSource, setup.hookName);
+
+  // Determine if hookSource is a file path (absolute or root-relative), otherwise treat as module specifier
+  let hookSpecifier = setup.hookSource;
+  let hookIsPath = false;
+  try {
+    if (path.isAbsolute(hookSpecifier)) {
+      hookIsPath = true;
+    } else if (hookSpecifier.startsWith('./') || hookSpecifier.startsWith('../')) {
+      hookIsPath = true;
+    } else if (hookSpecifier.startsWith('/')) {
+      hookIsPath = true;
+    } else {
+      const base = rootDir || process.cwd();
+      const absTry = path.resolve(base, hookSpecifier);
+      // Treat as path if it exists on disk
+      if (fs.existsSync(absTry)) hookIsPath = true;
+    }
+  } catch (_) {
+    hookIsPath = false;
+  }
+
+  if (hookIsPath) {
+    let absHook = hookSpecifier;
+    if (!path.isAbsolute(absHook)) {
+      const base = rootDir || process.cwd();
+      absHook = path.resolve(base, absHook);
+    }
+    let relHook = path.relative(path.dirname(currentFilePath), absHook);
+    relHook = (path.sep === '\\') ? relHook.split('\\').join('/') : relHook.split(path.sep).join('/');
+    if (!relHook.startsWith('.')) relHook = './' + relHook;
+    hookSpecifier = relHook;
+  }
+
+  // Import hook: default or named
+  const hookImport = setup.hookIsDefault
+    ? ensureDefaultImport(programBody, hookSpecifier, setup.hookName)
+    : ensureNamedImport(programBody, hookSpecifier, setup.hookName);
+
   // Resolve canonical absolute path for wordStore and compute file-relative specifier
   let resolvedAbs = setup.wordStoreImportSource;
   if (!path.isAbsolute(resolvedAbs)) {
@@ -1594,6 +1633,34 @@ async function rewriteFile(absPath, code, config) {
 }
 
 async function runRewrite(config) {
+  // Validate translation hook configuration
+  try {
+    if (config && config.findTextSetup) {
+      const { hookSource, hookName } = config.findTextSetup;
+      // Validate hookName as identifier
+      if (!hookName || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(hookName)) {
+        throw new Error(`Invalid translation hook name: ${hookName}`);
+      }
+      // If hookSource appears to be a path, ensure it exists
+      let isPath = false;
+      if (path.isAbsolute(hookSource) || hookSource.startsWith('./') || hookSource.startsWith('../') || hookSource.startsWith('/')) {
+        isPath = true;
+      } else {
+        const tryAbs = path.resolve(config.root || process.cwd(), hookSource);
+        if (fs.existsSync(tryAbs)) isPath = true;
+      }
+      if (isPath) {
+        let abs = hookSource;
+        if (!path.isAbsolute(abs)) abs = path.resolve(config.root || process.cwd(), abs);
+        if (!fs.existsSync(abs)) {
+          throw new Error(`Translation hook path not found: ${abs}`);
+        }
+      }
+    }
+  } catch (e) {
+    throw e;
+  }
+
   // Ensure wordStore is available: if not explicitly provided and missing on disk, run a quick scan to generate it
   try {
     if (config && config.findTextSetup && !config.wordStoreExplicit) {
@@ -1646,6 +1713,35 @@ async function runRewrite(config) {
       nodesRewritten += (n || 0);
       if (!config.dryRun) fs.writeFileSync(abs, newCode);
     }
+  }
+
+  // Persist settings to mc.json
+  try {
+    const metaPath = path.join(config.root, 'mc.json');
+    let meta = {};
+    if (fs.existsSync(metaPath)) {
+      try { meta = JSON.parse(fs.readFileSync(metaPath, 'utf8')); } catch (_) { meta = {}; }
+    }
+    if (!meta.settings) meta.settings = {};
+    meta.settings.translation = {
+      hookSource: config.findTextSetup && config.findTextSetup.hookSource,
+      hookName: config.findTextSetup && config.findTextSetup.hookName,
+      hookIsDefault: config.findTextSetup && !!config.findTextSetup.hookIsDefault,
+    };
+    meta.lastRewrite = {
+      timestamp: new Date().toISOString(),
+      mode: config.mode,
+      include: config.include,
+      exclude: config.exclude,
+      outDir: config.outDir,
+      filesProcessed,
+      filesChanged,
+      nodesRewritten,
+      wordStorePath: path.join(config.outDir, 'wordStore.json'),
+    };
+    if (!config.dryRun) fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
+  } catch (_) {
+    // non-fatal
   }
 
   return { filesProcessed, filesChanged, nodesRewritten };

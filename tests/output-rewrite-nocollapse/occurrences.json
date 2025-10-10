@@ -90,96 +90,6 @@
     "sourceExprs": {}
   },
   {
-    "file": "conditionals/Cond.jsx",
-    "loc": {
-      "start": {
-        "line": 8,
-        "column": 24
-      },
-      "end": {
-        "line": 8,
-        "column": 41
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Shown when true",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "conditionals/Cond.jsx",
-    "loc": {
-      "start": {
-        "line": 9,
-        "column": 23
-      },
-      "end": {
-        "line": 9,
-        "column": 26
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "A",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "conditionals/Cond.jsx",
-    "loc": {
-      "start": {
-        "line": 9,
-        "column": 39
-      },
-      "end": {
-        "line": 9,
-        "column": 42
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "B",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "conditionals/Cond.jsx",
-    "loc": {
-      "start": {
-        "line": 10,
-        "column": 16
-      },
-      "end": {
-        "line": 10,
-        "column": 19
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "a",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "conditionals/Cond.jsx",
-    "loc": {
-      "start": {
-        "line": 10,
-        "column": 33
-      },
-      "end": {
-        "line": 10,
-        "column": 36
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "b",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
     "file": "attributes/Attrs.jsx",
     "loc": {
       "start": {
@@ -342,38 +252,92 @@
     "sourceExprs": {}
   },
   {
-    "file": "edge-react-nodes/Example.jsx",
+    "file": "conditionals/Cond.jsx",
     "loc": {
       "start": {
-        "line": 6,
+        "line": 8,
         "column": 24
       },
       "end": {
-        "line": 6,
+        "line": 8,
+        "column": 41
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Shown when true",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "conditionals/Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 9,
+        "column": 23
+      },
+      "end": {
+        "line": 9,
+        "column": 26
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "A",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "conditionals/Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 9,
+        "column": 39
+      },
+      "end": {
+        "line": 9,
+        "column": 42
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "B",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "conditionals/Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 16
+      },
+      "end": {
+        "line": 10,
+        "column": 19
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "a",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "conditionals/Cond.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 33
+      },
+      "end": {
+        "line": 10,
         "column": 36
       }
     },
     "context": "findText",
     "element": null,
-    "text": "Slot Inner",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "edge-react-nodes/Example.jsx",
-    "loc": {
-      "start": {
-        "line": 24,
-        "column": 19
-      },
-      "end": {
-        "line": 24,
-        "column": 32
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hello world",
+    "text": "b",
     "placeholders": [],
     "sourceExprs": {}
   },
@@ -410,6 +374,42 @@
     "context": "findText",
     "element": null,
     "text": "Line 1\nLine 2",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "edge-react-nodes/Example.jsx",
+    "loc": {
+      "start": {
+        "line": 6,
+        "column": 24
+      },
+      "end": {
+        "line": 6,
+        "column": 36
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Slot Inner",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "edge-react-nodes/Example.jsx",
+    "loc": {
+      "start": {
+        "line": 24,
+        "column": 19
+      },
+      "end": {
+        "line": 24,
+        "column": 32
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello world",
     "placeholders": [],
     "sourceExprs": {}
   },
@@ -484,46 +484,6 @@
     "text": "Welcome {firstName}",
     "placeholders": [],
     "sourceExprs": {}
-  },
-  {
-    "file": "findtext/Calls.jsx",
-    "loc": {
-      "start": {
-        "line": 6,
-        "column": 11
-      },
-      "end": {
-        "line": 6,
-        "column": 18
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Plain",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "findtext/Calls.jsx",
-    "loc": {
-      "start": {
-        "line": 7,
-        "column": 11
-      },
-      "end": {
-        "line": 7,
-        "column": 33
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hi {firstName}",
-    "placeholders": [
-      "firstName"
-    ],
-    "sourceExprs": {
-      "firstName": "user.firstName"
-    }
   },
   {
     "file": "filters/Example.jsx",
@@ -601,6 +561,46 @@
     "sourceExprs": {
       "mins": "mins",
       "arg2": "secs.toString().padStart(2, '0')"
+    }
+  },
+  {
+    "file": "findtext/Calls.jsx",
+    "loc": {
+      "start": {
+        "line": 6,
+        "column": 11
+      },
+      "end": {
+        "line": 6,
+        "column": 18
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Plain",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "findtext/Calls.jsx",
+    "loc": {
+      "start": {
+        "line": 7,
+        "column": 11
+      },
+      "end": {
+        "line": 7,
+        "column": 33
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hi {firstName}",
+    "placeholders": [
+      "firstName"
+    ],
+    "sourceExprs": {
+      "firstName": "user.firstName"
     }
   },
   {
@@ -690,6 +690,24 @@
     "context": "findText",
     "element": null,
     "text": "Click to open",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "hook-default/App.jsx",
+    "loc": {
+      "start": {
+        "line": 6,
+        "column": 24
+      },
+      "end": {
+        "line": 6,
+        "column": 37
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello world",
     "placeholders": [],
     "sourceExprs": {}
   },
@@ -1234,24 +1252,6 @@
     "sourceExprs": {}
   },
   {
-    "file": "unhosted-findtext/Example.jsx",
-    "loc": {
-      "start": {
-        "line": 25,
-        "column": 19
-      },
-      "end": {
-        "line": 25,
-        "column": 26
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hello",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
     "file": "tsx/App.tsx",
     "loc": {
       "start": {
@@ -1392,6 +1392,24 @@
     "context": "findText",
     "element": null,
     "text": "English",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "unhosted-findtext/Example.jsx",
+    "loc": {
+      "start": {
+        "line": 25,
+        "column": 19
+      },
+      "end": {
+        "line": 25,
+        "column": 26
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello",
     "placeholders": [],
     "sourceExprs": {}
   }
