@@ -36,8 +36,9 @@ function isCssLike(text) {
   if (/^[.#][A-Za-z0-9_-]/.test(s)) return true;
   // CSS color/functions/hex
   if (/(?:^|\s)(rgba?|hsla?)\s*\(/i.test(s)) return true;
-  if (/(repeat|minmax|clamp|calc|var|translate|translateX|translateY|scale|scaleX|scaleY|rotate|skewX|skewY|matrix|url|linear-gradient|radial-gradient|conic-gradient|cubic-bezier|steps|hsl|rgb|lab|lch|oklch|color|drop-shadow|blur|brightness|contrast|saturate|sepia|grayscale|hue-rotate)\s*\(/i.test(s)) return true;
-  if (/#[0-9a-f]{3,8}\b/i.test(s)) return true;
+  if (/(repeat|minmax|clamp|calc|var|translate|translateX|translateY|scale|scaleX|scaleY|rotate|skewX|skewY|matrix|url|linear-gradient|radial-gradient|conic-gradient|cubic-bezier|steps|hsl|rgb|lab|lch|oklch|oklab|hwb|color-mix|device-cmyk|color|drop-shadow|blur|brightness|contrast|saturate|sepia|grayscale|hue-rotate)\s*\(/i.test(s)) return true;
+  // Hex colors including 3/4/6/8 digits and optional slash alpha e.g. #fff/80%
+  if (/#[0-9a-f]{3,8}(?:\s*\/\s*\d+(?:\.\d+)?%?)?\b/i.test(s)) return true;
   // units and fr
   const unitRe = /-?\d*\.?\d+(?:px|rem|em|vh|vw|vmin|vmax|%|ch|ex|cm|mm|in|pt|pc|fr)\b/i;
   // single token like 400px or 20% or 1fr
@@ -53,9 +54,11 @@ function isCssLike(text) {
   // Keyword/numeric combos like "0 auto", "1px solid #ccc", "left center", "50%/auto"
   const keywordRe = /^(auto|inherit|initial|unset|none|solid|dashed|dotted|double|groove|ridge|inset|outset|thin|medium|thick|transparent|currentColor|cover|contain|no-repeat|repeat(?:-x|-y)?|space-(?:between|around|evenly)|left|center|right|top|bottom|middle|block|inline(?:-block)?|flex|grid|row|column|wrap|nowrap|uppercase|lowercase|capitalize|ellipsis|scroll|hidden|visible|collapse|absolute|relative|fixed|sticky|static)$/i;
   const numRe = /^-?\d*\.?\d+$/;
-  const hexRe = /^#[0-9a-f]{3,8}$/i;
+  const hexRe = /^#[0-9a-f]{3,8}(?:\s*\/\s*\d+(?:\.\d+)?%?)?$/i;
   const tokens2 = s.split(/[\s,\/]+/).filter(Boolean);
-  if (tokens2.length > 1 && tokens2.every((t) => unitRe.test(t) || numRe.test(t) || hexRe.test(t) || keywordRe.test(t))) return true;
+  // Named CSS colors (subset widely used); only for combos, not for single tokens (to avoid blocking real text like "red").
+  const colorNameRe = /^(?:aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen)$/i;
+  if (tokens2.length > 1 && tokens2.every((t) => unitRe.test(t) || numRe.test(t) || hexRe.test(t) || keywordRe.test(t) || colorNameRe.test(t))) return true;
   return false;
 }
 

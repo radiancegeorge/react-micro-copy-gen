@@ -342,42 +342,6 @@
     "sourceExprs": {}
   },
   {
-    "file": "entities-rtl/Entities.jsx",
-    "loc": {
-      "start": {
-        "line": 8,
-        "column": 19
-      },
-      "end": {
-        "line": 8,
-        "column": 39
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Price is $10",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "entities-rtl/Entities.jsx",
-    "loc": {
-      "start": {
-        "line": 10,
-        "column": 19
-      },
-      "end": {
-        "line": 10,
-        "column": 35
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Line 1\nLine 2",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
     "file": "edge-react-nodes/Example.jsx",
     "loc": {
       "start": {
@@ -410,6 +374,42 @@
     "context": "findText",
     "element": null,
     "text": "Hello world",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "entities-rtl/Entities.jsx",
+    "loc": {
+      "start": {
+        "line": 8,
+        "column": 19
+      },
+      "end": {
+        "line": 8,
+        "column": 39
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Price is $10",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "entities-rtl/Entities.jsx",
+    "loc": {
+      "start": {
+        "line": 10,
+        "column": 19
+      },
+      "end": {
+        "line": 10,
+        "column": 35
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Line 1\nLine 2",
     "placeholders": [],
     "sourceExprs": {}
   },
@@ -522,6 +522,46 @@
     "sourceExprs": {}
   },
   {
+    "file": "findtext/Calls.jsx",
+    "loc": {
+      "start": {
+        "line": 6,
+        "column": 11
+      },
+      "end": {
+        "line": 6,
+        "column": 18
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Plain",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
+    "file": "findtext/Calls.jsx",
+    "loc": {
+      "start": {
+        "line": 7,
+        "column": 11
+      },
+      "end": {
+        "line": 7,
+        "column": 33
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hi {firstName}",
+    "placeholders": [
+      "firstName"
+    ],
+    "sourceExprs": {
+      "firstName": "user.firstName"
+    }
+  },
+  {
     "file": "function-analysis/Sample.jsx",
     "loc": {
       "start": {
@@ -561,46 +601,6 @@
     "sourceExprs": {
       "mins": "mins",
       "arg2": "secs.toString().padStart(2, '0')"
-    }
-  },
-  {
-    "file": "findtext/Calls.jsx",
-    "loc": {
-      "start": {
-        "line": 6,
-        "column": 11
-      },
-      "end": {
-        "line": 6,
-        "column": 18
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Plain",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "findtext/Calls.jsx",
-    "loc": {
-      "start": {
-        "line": 7,
-        "column": 11
-      },
-      "end": {
-        "line": 7,
-        "column": 33
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hi {firstName}",
-    "placeholders": [
-      "firstName"
-    ],
-    "sourceExprs": {
-      "firstName": "user.firstName"
     }
   },
   {
@@ -1306,6 +1306,24 @@
     "sourceExprs": {}
   },
   {
+    "file": "unhosted-findtext/Example.jsx",
+    "loc": {
+      "start": {
+        "line": 25,
+        "column": 19
+      },
+      "end": {
+        "line": 25,
+        "column": 26
+      }
+    },
+    "context": "findText",
+    "element": null,
+    "text": "Hello",
+    "placeholders": [],
+    "sourceExprs": {}
+  },
+  {
     "file": "user-card/CardContainer.jsx",
     "loc": {
       "start": {
@@ -1392,24 +1410,6 @@
     "context": "findText",
     "element": null,
     "text": "English",
-    "placeholders": [],
-    "sourceExprs": {}
-  },
-  {
-    "file": "unhosted-findtext/Example.jsx",
-    "loc": {
-      "start": {
-        "line": 25,
-        "column": 19
-      },
-      "end": {
-        "line": 25,
-        "column": 26
-      }
-    },
-    "context": "findText",
-    "element": null,
-    "text": "Hello",
     "placeholders": [],
     "sourceExprs": {}
   }

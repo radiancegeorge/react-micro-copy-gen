@@ -7,7 +7,7 @@
     }
   },
   "lastRewrite": {
-    "timestamp": "2025-10-10T15:57:24.940Z",
+    "timestamp": "2025-10-10T19:04:59.134Z",
     "mode": "strict",
     "include": [
       "**/*.{js,jsx,ts,tsx}"
@@ -27,7 +27,7 @@
       "**/storybook/**"
     ],
     "outDir": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/workspace/mc-out",
-    "filesProcessed": 38,
+    "filesProcessed": 39,
     "filesChanged": 30,
     "nodesRewritten": 77,
     "wordStorePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/tests/workspace/mc-out/wordStore.json"
@@ -59,6 +59,6 @@
       "**/storybook/**"
     ],
     "mode": "loose",
-    "scannedAt": "2025-10-10T15:57:25.004Z"
+    "scannedAt": "2025-10-10T19:04:59.168Z"
   }
 }

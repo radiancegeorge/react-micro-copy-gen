@@ -596,6 +596,28 @@
     ]
   },
   {
+    "text": "Slot Inner",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "edge-react-nodes/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 24
+          },
+          "end": {
+            "line": 6,
+            "column": 36
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
     "text": "Price is $10",
     "placeholders": [],
     "occurrences": [
@@ -631,28 +653,6 @@
           "end": {
             "line": 10,
             "column": 35
-          }
-        },
-        "context": "findText",
-        "element": null,
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Slot Inner",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "edge-react-nodes/Example.jsx",
-        "loc": {
-          "start": {
-            "line": 6,
-            "column": 24
-          },
-          "end": {
-            "line": 6,
-            "column": 36
           }
         },
         "context": "findText",
@@ -804,6 +804,28 @@
     ]
   },
   {
+    "text": "Plain",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "findtext/Calls.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 11
+          },
+          "end": {
+            "line": 6,
+            "column": 18
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
     "text": "{arg1}:{arg2} min",
     "placeholders": [],
     "occurrences": [
@@ -846,28 +868,6 @@
         },
         "context": "JSXExpression",
         "element": "p",
-        "attribute": null
-      }
-    ]
-  },
-  {
-    "text": "Plain",
-    "placeholders": [],
-    "occurrences": [
-      {
-        "file": "findtext/Calls.jsx",
-        "loc": {
-          "start": {
-            "line": 6,
-            "column": 11
-          },
-          "end": {
-            "line": 6,
-            "column": 18
-          }
-        },
-        "context": "findText",
-        "element": null,
         "attribute": null
       }
     ]
