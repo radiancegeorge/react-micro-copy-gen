@@ -26,15 +26,17 @@ const NON_TEXT_PROPS = new Set([
   'strokeMiterlimit', 'stroke-miterlimit', 'strokeDasharray', 'stroke-dasharray', 'strokeDashoffset', 'stroke-dashoffset',
   'fillRule', 'fill-rule', 'fillOpacity', 'fill-opacity',
   'x', 'y', 'x1', 'y1', 'x2', 'y2', 'rx', 'ry', 'cx', 'cy', 'r', 'dx', 'dy', 'points',
-  'preserveAspectRatio', 'transform', 'xmlns', 'xmlSpace', 'xlinkHref', 'xlink:href'
+  'preserveAspectRatio', 'transform', 'xmlns', 'xmlSpace', 'xlinkHref', 'xlink:href', 'anchorSelect'
 ]);
 
 function isCssLike(text) {
   const s = String(text || '').trim();
   if (!s) return false;
+  // Simple CSS selectors like .class or #id
+  if (/^[.#][A-Za-z0-9_-]/.test(s)) return true;
   // CSS color/functions/hex
   if (/(?:^|\s)(rgba?|hsla?)\s*\(/i.test(s)) return true;
-  if (/(repeat|minmax|clamp|calc|var|translate|translateX|translateY|scale|scaleX|scaleY|rotate|skewX|skewY|matrix|url)\s*\(/i.test(s)) return true;
+  if (/(repeat|minmax|clamp|calc|var|translate|translateX|translateY|scale|scaleX|scaleY|rotate|skewX|skewY|matrix|url|linear-gradient|radial-gradient|conic-gradient|cubic-bezier|steps|hsl|rgb|lab|lch|oklch|color|drop-shadow|blur|brightness|contrast|saturate|sepia|grayscale|hue-rotate)\s*\(/i.test(s)) return true;
   if (/#[0-9a-f]{3,8}\b/i.test(s)) return true;
   // units and fr
   const unitRe = /-?\d*\.?\d+(?:px|rem|em|vh|vw|vmin|vmax|%|ch|ex|cm|mm|in|pt|pc|fr)\b/i;
@@ -45,9 +47,15 @@ function isCssLike(text) {
     const matches = s.match(new RegExp(unitRe, 'gi')) || [];
     if (matches.length >= 2) return true;
     if (/\b\d*\.?\d+fr\b/i.test(s)) return true;
-    const tokens = s.split(/[\s,]+/).filter(Boolean);
+    const tokens = s.split(/[\s,\/]+/).filter(Boolean);
     if (tokens.length > 1 && tokens.every((t) => unitRe.test(t))) return true;
   }
+  // Keyword/numeric combos like "0 auto", "1px solid #ccc", "left center", "50%/auto"
+  const keywordRe = /^(auto|inherit|initial|unset|none|solid|dashed|dotted|double|groove|ridge|inset|outset|thin|medium|thick|transparent|currentColor|cover|contain|no-repeat|repeat(?:-x|-y)?|space-(?:between|around|evenly)|left|center|right|top|bottom|middle|block|inline(?:-block)?|flex|grid|row|column|wrap|nowrap|uppercase|lowercase|capitalize|ellipsis|scroll|hidden|visible|collapse|absolute|relative|fixed|sticky|static)$/i;
+  const numRe = /^-?\d*\.?\d+$/;
+  const hexRe = /^#[0-9a-f]{3,8}$/i;
+  const tokens2 = s.split(/[\s,\/]+/).filter(Boolean);
+  if (tokens2.length > 1 && tokens2.every((t) => unitRe.test(t) || numRe.test(t) || hexRe.test(t) || keywordRe.test(t))) return true;
   return false;
 }
 

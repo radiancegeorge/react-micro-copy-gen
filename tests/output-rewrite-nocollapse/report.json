@@ -1,7 +1,7 @@
 {
-  "filesScanned": 34,
-  "messagesCount": 59,
-  "occurrencesCount": 76,
+  "filesScanned": 35,
+  "messagesCount": 60,
+  "occurrencesCount": 77,
   "collisions": [
     {
       "text": "Hi {firstName}",
@@ -55,22 +55,9 @@
     }
   ],
   "missingInStore": [],
-  "unusedInCode": [
-    "Head",
-    "Option {arg1}",
-    "Abhore",
-    "Inner",
-    "External link",
-    "Docs",
-    "Info",
-    "Part of speech:",
-    "The imparting or exchanging of information by speaking, writing, or using some other medium.",
-    "Example(s):",
-    "He is studying insect",
-    "communication."
-  ],
+  "unusedInCode": [],
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 59
+  "wordStoreCount": 60
 }
