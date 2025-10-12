@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
+import wordStore from '../../output-rewrite/wordStore.json';
 export default function FiltersDemo({ name }) {
   const { findText } = useTranslation(wordStore);
   return (
@@ -31,8 +31,9 @@ export default function FiltersDemo({ name }) {
 
       {/* Mixed content should be indexed */}
       <p>
-        {findText('Hello')}
-        {name}
+        {findText('Hello {name}', {
+          name: name,
+        })}
       </p>
       <img
         title={findText('Click-{name}', {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
+import wordStore from '../../output-rewrite/wordStore.json';
 export default function NumericDemo({ idx, count, price }) {
   const { findText } = useTranslation(wordStore);
   return (
@@ -26,8 +26,10 @@ export default function NumericDemo({ idx, count, price }) {
 
       {/* Mixed content with letters can be indexed */}
       <p>
-        {findText('Page')}
-        {idx + 1}
+        {findText('Page {idx}{arg2}', {
+          idx: idx,
+          arg2: 1,
+        })}
       </p>
     </div>
   );

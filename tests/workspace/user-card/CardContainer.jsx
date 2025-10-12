@@ -18,7 +18,7 @@ import {
   GeneralTabWordMeaningContent,
 } from './style';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
+import wordStore from '../../output-rewrite/wordStore.json';
 const cardProps = [
   {
     title: 'Speech Rate',

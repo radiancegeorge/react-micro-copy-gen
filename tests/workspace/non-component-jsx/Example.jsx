@@ -2,7 +2,7 @@ import React from 'react';
 
 // Top-level JSX outside any component
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
+import wordStore from '../../output-rewrite/wordStore.json';
 const topLevel = <a title="External link">Docs</a>;
 
 // Lowercase-named helper returning JSX: not a component host

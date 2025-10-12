@@ -1,14 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
+import wordStore from '../../output-rewrite/wordStore.json';
 export default function App({ name, user }) {
   const { findText } = useTranslation(wordStore);
   return (
     <div>
       <p>{findText('Hello world')}</p>
       <p>
-        {findText('Hello')}
-        {name}
+        {findText('Hello {name}', {
+          name: name,
+        })}
       </p>
       <p>{findText('Hello {name}')}</p>
       <p>

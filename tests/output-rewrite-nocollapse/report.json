@@ -1,7 +1,7 @@
 {
-  "filesScanned": 39,
-  "messagesCount": 60,
-  "occurrencesCount": 78,
+  "filesScanned": 40,
+  "messagesCount": 56,
+  "occurrencesCount": 72,
   "collisions": [
     {
       "text": "Hi {firstName}",
@@ -16,11 +16,11 @@
           "file": "basic-jsx/App.jsx",
           "loc": {
             "start": {
-              "line": 15,
+              "line": 16,
               "column": 18
             },
             "end": {
-              "line": 15,
+              "line": 16,
               "column": 34
             }
           }
@@ -55,9 +55,20 @@
     }
   ],
   "missingInStore": [],
-  "unusedInCode": [],
+  "unusedInCode": [
+    "Visit",
+    "Go to {site}",
+    "now",
+    "dear",
+    "from",
+    "_blank",
+    "noopener",
+    "and thanks",
+    "Page",
+    "world"
+  ],
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 60
+  "wordStoreCount": 56
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
+import wordStore from '../../output-rewrite/wordStore.json';
 type User = {
   firstName: string;
 };
@@ -18,8 +18,9 @@ const App: React.FC<Props> = ({ name, user }) => {
       })}
     >
       <h1>
-        {findText('Hello')}
-        {name}
+        {findText('Hello {name}', {
+          name: name,
+        })}
       </h1>
       <p>
         {findText('Welcome {firstName}', {

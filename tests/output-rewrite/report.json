@@ -1,7 +1,7 @@
 {
-  "filesScanned": 32,
-  "messagesCount": 61,
-  "occurrencesCount": 78,
+  "filesScanned": 41,
+  "messagesCount": 55,
+  "occurrencesCount": 73,
   "collisions": [
     {
       "text": "Hi {firstName}",
@@ -16,11 +16,11 @@
           "file": "basic-jsx/App.jsx",
           "loc": {
             "start": {
-              "line": 15,
+              "line": 16,
               "column": 18
             },
             "end": {
-              "line": 15,
+              "line": 16,
               "column": 34
             }
           }
@@ -55,9 +55,21 @@
     }
   ],
   "missingInStore": [],
-  "unusedInCode": [],
+  "unusedInCode": [
+    "Head",
+    "Price is $10",
+    "Line 1 Line 2",
+    "Option {arg1}",
+    "Abhore",
+    "Inner",
+    "External link",
+    "Docs",
+    "Info",
+    "The imparting or exchanging of information by speaking, writing, or using some other medium.",
+    "Example(s):"
+  ],
   "errors": [],
   "mode": "loose",
   "htmlCollapseCandidatesCount": 0,
-  "wordStoreCount": 61
+  "wordStoreCount": 55
 }

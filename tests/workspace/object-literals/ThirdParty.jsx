@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite-nocollapse/wordStore.json';
+import wordStore from '../../output-rewrite/wordStore.json';
 export default function ThirdParty() {
   const { findText } = useTranslation(wordStore);
   const copy = {

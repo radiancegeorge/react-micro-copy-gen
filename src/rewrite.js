@@ -1224,8 +1224,8 @@ async function rewriteFile(absPath, code, config) {
         }
       }
 
-      // HTML collapsing disabled: rely on per-child wrapping only
-      if (false && config.htmlCollapse && config.htmlCollapse.apply) {
+      // HTML collapsing: when enabled, attempt to convert inline markup into a single template via dangerouslySetInnerHTML
+      if (config.htmlCollapse && config.htmlCollapse.apply) {
         const whitelist = (config.htmlCollapse.inlineWhitelist || []).map((s) => s.toLowerCase());
 
         function isInlineAllowed(el) {
@@ -1488,7 +1488,7 @@ async function rewriteFile(absPath, code, config) {
         return t.isCallExpression(n) && t.isMemberExpression(n.callee) && t.isIdentifier(n.callee.property, { name: 'map' });
       }
 
-      const canMerge = false;
+      const canMerge = true;
 
       if (canMerge) {
         let template = '';
@@ -1550,7 +1550,15 @@ async function rewriteFile(absPath, code, config) {
           }
         }
 
-        // Merge disabled; fall back to per-child wrapping
+        const mergedText = (template || '').trim();
+        if (mergedText && shouldWrapText(mergedText)) {
+          const call = makeFindTextCallFromTemplateString(mergedText, entries);
+          // Replace children with a single expression container
+          path.node.children = [t.jsxExpressionContainer(call)];
+          changed = true; nodesRewritten++;
+          path.skip();
+          return;
+        }
       }
 
       // Rewrite children
