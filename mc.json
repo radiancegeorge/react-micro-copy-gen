@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "lastScan": {
+    "root": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen",
+    "outDir": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/mc-out",
+    "reportPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/mc-out/report.json",
+    "messagesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/mc-out/messages.json",
+    "occurrencesPath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/mc-out/occurrences.json",
+    "wordStorePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/mc-out/wordStore.json",
+    "htmlCollapsePath": null,
+    "include": [
+      "**/*.{js,jsx,ts,tsx}"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/coverage/**",
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.stories.*",
+      "**/__tests__/**",
+      "**/__mocks__/**",
+      "**/storybook/**"
+    ],
+    "mode": "loose",
+    "scannedAt": "2025-10-15T09:10:46.046Z"
+  },
+  "settings": {
+    "translation": {
+      "hookSource": "l-min-components/src/components",
+      "hookName": "useTranslation",
+      "hookIsDefault": false
+    }
+  },
+  "lastRewrite": {
+    "timestamp": "2025-10-15T09:10:46.443Z",
+    "mode": "loose",
+    "include": [
+      "**/*.{js,jsx,ts,tsx}"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/coverage/**",
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.stories.*",
+      "**/__tests__/**",
+      "**/__mocks__/**",
+      "**/storybook/**"
+    ],
+    "outDir": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/mc-out",
+    "filesProcessed": 93,
+    "filesChanged": 63,
+    "nodesRewritten": 111,
+    "wordStorePath": "/Users/radianceobi/Documents/Radiance/auto-micro-copy-gen/mc-out/wordStore.json"
+  }
+}

@@ -1,11 +1,20 @@
 import React from 'react';
 
 // Arrow function with inner helper and expression body style
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../../mc-out/wordStore.json';
 export const CustomCountdown = ({ duration = 10 }) => {
-  const formatTimeArrow = (time) => `${Math.floor(time / 60)}:${(time % 60).toString().padStart(2, '0')} min`;
+  const { findText } = useTranslation(wordStore);
+  const formatTimeArrow = (time) =>
+    `${Math.floor(time / 60)}:${(time % 60).toString().padStart(2, '0')} min`;
   return (
     <div>
-      <p>{formatTimeArrow(duration)}</p>
+      <p>
+        {findText('{arg1}:{arg2} min', {
+          arg1: Math.floor(time / 60),
+          arg2: (time % 60).toString().padStart(2, '0'),
+        })}
+      </p>
     </div>
   );
 };
@@ -24,7 +33,6 @@ export const PreviewCountdown = ({ seconds = 90 }) => {
     </div>
   );
 };
-
 export default function SoundPlayPreview() {
   return <div />;
 }

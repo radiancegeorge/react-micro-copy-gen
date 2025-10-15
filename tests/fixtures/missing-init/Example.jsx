@@ -1,5 +1,6 @@
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../../mc-out/wordStore.json';
 export default function Button() {
-  return (
-    <button title="Submit">Save</button>
-  );
+  const { findText } = useTranslation(wordStore);
+  return <button title={findText('Submit')}>{findText('Save')}</button>;
 }

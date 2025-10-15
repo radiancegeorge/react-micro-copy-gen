@@ -1,11 +1,11 @@
-import React from "react";
-import Card from "../../components/generalCard";
-import Note from "../../assets/images/Group 1255.png";
-import Book from "../../assets/images/Group 1256.png";
-import Lamp from "../../assets/images/Group 1257.png";
-import Mic from "../../assets/images/Group 1258.png";
-import LanguageIcon from "../../assets/svg/englishIcon";
-import SelectArrowIcon from "../../assets/svg/selectLangArrow";
+import React from 'react';
+import Card from '../../components/generalCard';
+import Note from '../../assets/images/Group 1255.png';
+import Book from '../../assets/images/Group 1256.png';
+import Lamp from '../../assets/images/Group 1257.png';
+import Mic from '../../assets/images/Group 1258.png';
+import LanguageIcon from '../../assets/svg/englishIcon';
+import SelectArrowIcon from '../../assets/svg/selectLangArrow';
 import {
   Container,
   CardWrapper,
@@ -16,73 +16,62 @@ import {
   WordMeaning,
   WordHeader,
   GeneralTabWordMeaningContent,
-} from "./style";
-
-
+} from './style';
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../../mc-out/wordStore.json';
 const cardProps = [
   {
-    title: "Speech Rate",
+    title: 'Speech Rate',
     icon: Note,
-    content:
-      "Track your speech rate to see how well you’re doing.",
-    percentage: "195 (wpm)",
+    content: 'Track your speech rate to see how well you’re doing.',
+    percentage: '195 (wpm)',
   },
   {
-    title: "Audibility",
+    title: 'Audibility',
     icon: Book,
-    content:
-      "Gauge how loudly you project your voice while speaking.",
-    percentage: "79 (Decibel level)",
+    content: 'Gauge how loudly you project your voice while speaking.',
+    percentage: '79 (Decibel level)',
   },
   {
-    title: "Intelligibility Score",
+    title: 'Intelligibility Score',
     icon: Lamp,
-    content:
-      "See the reference text your provided for your recording.",
-    percentage: "80%",
+    content: 'See the reference text your provided for your recording.',
+    percentage: '80%',
   },
   {
-    title: "Hypothesis",
+    title: 'Hypothesis',
     icon: Note,
-    content:
-      "Check if you’re getting the tone right when you speak.",
-    percentage: "95%",
+    content: 'Check if you’re getting the tone right when you speak.',
+    percentage: '95%',
   },
-
-
   {
-    title: "What We Heard",
+    title: 'What We Heard',
     icon: Mic,
-    content:
-      "Provided by AI",
+    content: 'Provided by AI',
     // percentage: 44,
   },
   {
-    title: "What We Heard",
+    title: 'What We Heard',
     icon: Mic,
-    content:
-      "Provided by AI",
+    content: 'Provided by AI',
     // percentage: 80,
   },
 ];
-
-
 function CardContainer({ setGeneralTab }) {
-
-
-  const meaningArry = ["Noum", "Verb", "Noun"];
+  const { findText } = useTranslation(wordStore);
+  const meaningArry = ['Noum', 'Verb', 'Noun'];
   return (
     <div>
       <CardWrapper>
         <CardHeader>
-          <CardTitle>Word Translation</CardTitle>
+          <CardTitle>{findText('Word Translation')}</CardTitle>
           <div className="lang">
             <LanguageIcon />
-            <p>English </p>
+            <p>{findText('English')}</p>
             <SelectArrowIcon />
           </div>
         </CardHeader>
-        <CardBody>Communication</CardBody>
+        <CardBody>{findText('Communication')}</CardBody>
       </CardWrapper>
       <Container>
         {cardProps.map((props, index) => (
@@ -91,10 +80,10 @@ function CardContainer({ setGeneralTab }) {
       </Container>
       <WordMeaning>
         <WordHeader>
-          <p>Word meaning</p>
+          <p>{findText('Word meaning')}</p>
           <div className="lang">
             <LanguageIcon />
-            <p>English </p>
+            <p>{findText('English')}</p>
             <SelectArrowIcon />
           </div>
         </WordHeader>
@@ -102,7 +91,7 @@ function CardContainer({ setGeneralTab }) {
           {meaningArry.map((item, idx) => (
             <li key={idx}>
               <p>
-                <span>{idx + 1}.</span> Part of speech:{" "}
+                <span>{idx + 1}.</span> Part of speech:{' '}
                 <span className="em">{item}</span>
               </p>
               <p>
@@ -127,6 +116,4 @@ function CardContainer({ setGeneralTab }) {
     </div>
   );
 }
-
-
 export default CardContainer;

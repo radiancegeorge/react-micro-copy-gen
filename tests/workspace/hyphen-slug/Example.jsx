@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../../mc-out/wordStore.json';
 const ReportQuestions = () => null;
 export default function Demo(props) {
+  const { findText } = useTranslation(wordStore);
   const {
     questionActivityID,
     onClose,
@@ -13,7 +16,7 @@ export default function Demo(props) {
   return (
     <ReportQuestions
       key={questionActivityID}
-      accountType={'instructor-affiliate'}
+      accountType={findText('instructor-affiliate')}
       onClose={onClose}
       AiData={aiData}
       testId={test_id}

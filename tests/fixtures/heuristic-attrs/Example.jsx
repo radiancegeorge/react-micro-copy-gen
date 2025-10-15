@@ -1,13 +1,39 @@
 import React from 'react';
-
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../../mc-out/wordStore.json';
 export default function HeuristicDemo() {
-  const items = [{ text: 'View details' }, { text: 'Delete' }];
+  const { findText } = useTranslation(wordStore);
+  const items = [
+    {
+      text: 'View details',
+    },
+    {
+      text: 'Delete',
+    },
+  ];
   return (
     <div>
-      {/* Non-allowlisted prop names, but should be detected by heuristics */}
-      <Panel menu={[{ text: 'View details' }, { text: 'Delete' }]} />
-      <Panel actions={items} />
-      <Widget hintText="Click to open" />
+      <Panel
+        menu={[
+          {
+            text: findText('View details'),
+          },
+          {
+            text: findText('Delete'),
+          },
+        ]}
+      />
+      <Panel
+        actions={[
+          {
+            text: findText('View details'),
+          },
+          {
+            text: findText('Delete'),
+          },
+        ]}
+      />
+      <Widget hintText={findText('Click to open')} />
     </div>
   );
 }

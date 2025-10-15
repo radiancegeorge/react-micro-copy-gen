@@ -2,7 +2,7 @@ import React from 'react';
 
 // Arrow function with inner helper and expression body style
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite/wordStore.json';
+import wordStore from '../../../mc-out/wordStore.json';
 export const CustomCountdown = ({ duration = 10 }) => {
   const { findText } = useTranslation(wordStore);
   const formatTimeArrow = (time) =>

@@ -1,0 +1,2966 @@
+[
+  {
+    "text": "Screen reader only",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/accessibility/Acc.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 22
+          },
+          "end": {
+            "line": 8,
+            "column": 40
+          }
+        },
+        "context": "JSXText",
+        "element": "VisuallyHidden",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/accessibility/Acc.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 32
+          },
+          "end": {
+            "line": 20,
+            "column": 52
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Picture of cat",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 15
+          },
+          "end": {
+            "line": 10,
+            "column": 31
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "img",
+        "attribute": "alt"
+      },
+      {
+        "file": "tests/workspace/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 25
+          },
+          "end": {
+            "line": 11,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Cute cat",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 38
+          },
+          "end": {
+            "line": 10,
+            "column": 50
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "img",
+        "attribute": "title"
+      },
+      {
+        "file": "tests/workspace/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 60
+          },
+          "end": {
+            "line": 11,
+            "column": 70
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Enter {firstName}",
+    "placeholders": [
+      "firstName"
+    ],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 25
+          },
+          "end": {
+            "line": 11,
+            "column": 52
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "input",
+        "attribute": "placeholder"
+      },
+      {
+        "file": "tests/workspace/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 30
+          },
+          "end": {
+            "line": 13,
+            "column": 49
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Name input",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 64
+          },
+          "end": {
+            "line": 11,
+            "column": 76
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "input",
+        "attribute": "aria-label"
+      },
+      {
+        "file": "tests/workspace/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 29
+          },
+          "end": {
+            "line": 16,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Submit",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 20
+          },
+          "end": {
+            "line": 12,
+            "column": 28
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Button",
+        "attribute": "title"
+      },
+      {
+        "file": "tests/fixtures/missing-init/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 18
+          },
+          "end": {
+            "line": 3,
+            "column": 26
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "button",
+        "attribute": "title"
+      },
+      {
+        "file": "tests/workspace/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 24
+          },
+          "end": {
+            "line": 19,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/missing-init/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 33
+          },
+          "end": {
+            "line": 5,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Click to submit",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 37
+          },
+          "end": {
+            "line": 12,
+            "column": 54
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Button",
+        "attribute": "tooltip"
+      },
+      {
+        "file": "tests/workspace/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 26
+          },
+          "end": {
+            "line": 20,
+            "column": 43
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Something went wrong",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 61
+          },
+          "end": {
+            "line": 12,
+            "column": 85
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Button",
+        "attribute": "error"
+      },
+      {
+        "file": "tests/workspace/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 24
+          },
+          "end": {
+            "line": 21,
+            "column": 46
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Describes the region",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 28
+          },
+          "end": {
+            "line": 13,
+            "column": 50
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "div",
+        "attribute": "aria-description"
+      },
+      {
+        "file": "tests/workspace/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 38
+          },
+          "end": {
+            "line": 23,
+            "column": 60
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Region",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 51
+          },
+          "end": {
+            "line": 13,
+            "column": 57
+          }
+        },
+        "context": "JSXText",
+        "element": "div",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/attributes/Attrs.jsx",
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 18
+          },
+          "end": {
+            "line": 24,
+            "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello world",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 9
+          },
+          "end": {
+            "line": 6,
+            "column": 20
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/edge-react-nodes/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 9
+          },
+          "end": {
+            "line": 23,
+            "column": 23
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/hook-default/App.jsx",
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 14
+          },
+          "end": {
+            "line": 3,
+            "column": 25
+          }
+        },
+        "context": "JSXText",
+        "element": "div",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 19
+          },
+          "end": {
+            "line": 8,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/edge-react-nodes/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 19
+          },
+          "end": {
+            "line": 24,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/hook-default/App.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 24
+          },
+          "end": {
+            "line": 6,
+            "column": 37
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/skip-cases/Skip.jsx",
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 19
+          },
+          "end": {
+            "line": 21,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 9
+          },
+          "end": {
+            "line": 7,
+            "column": 15
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/filters/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 9
+          },
+          "end": {
+            "line": 24,
+            "column": 15
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/html-collapse/Multiple.jsx",
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 8
+          },
+          "end": {
+            "line": 6,
+            "column": 6
+          }
+        },
+        "context": "JSXText",
+        "element": "h2",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/missing-init-existing-hook/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 19
+          },
+          "end": {
+            "line": 7,
+            "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/skip-cases/Skip.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 9
+          },
+          "end": {
+            "line": 9,
+            "column": 14
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/tsx/App.tsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 10
+          },
+          "end": {
+            "line": 11,
+            "column": 16
+          }
+        },
+        "context": "JSXText",
+        "element": "h1",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/unhosted-findtext/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 19
+          },
+          "end": {
+            "line": 23,
+            "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/missing-init-existing-hook/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 19
+          },
+          "end": {
+            "line": 8,
+            "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/unhosted-findtext/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 25,
+            "column": 19
+          },
+          "end": {
+            "line": 25,
+            "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello {name}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 9
+          },
+          "end": {
+            "line": 8,
+            "column": 25
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 18
+          },
+          "end": {
+            "line": 10,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 19
+          },
+          "end": {
+            "line": 14,
+            "column": 33
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/filters/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 34,
+            "column": 18
+          },
+          "end": {
+            "line": 34,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/tsx/App.tsx",
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 18
+          },
+          "end": {
+            "line": 21,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hi {firstName}",
+    "placeholders": [
+      "firstName"
+    ],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 9
+          },
+          "end": {
+            "line": 9,
+            "column": 33
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/findtext/Calls.jsx",
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 11
+          },
+          "end": {
+            "line": 5,
+            "column": 33
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/tsx/App.tsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 19
+          },
+          "end": {
+            "line": 10,
+            "column": 26
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "section",
+        "attribute": "title"
+      },
+      {
+        "file": "tests/workspace/basic-jsx/App.jsx",
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 18
+          },
+          "end": {
+            "line": 16,
+            "column": 34
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/findtext/Calls.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 11
+          },
+          "end": {
+            "line": 7,
+            "column": 33
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/tsx/App.tsx",
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 22
+          },
+          "end": {
+            "line": 16,
+            "column": 38
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Shown when true",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 6
+          },
+          "end": {
+            "line": 6,
+            "column": 33
+          }
+        },
+        "context": "JSXExpression",
+        "element": "div",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 24
+          },
+          "end": {
+            "line": 8,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "A",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 6
+          },
+          "end": {
+            "line": 7,
+            "column": 24
+          }
+        },
+        "context": "JSXExpression",
+        "element": "div",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 23
+          },
+          "end": {
+            "line": 9,
+            "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "B",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 6
+          },
+          "end": {
+            "line": 7,
+            "column": 24
+          }
+        },
+        "context": "JSXExpression",
+        "element": "div",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 39
+          },
+          "end": {
+            "line": 9,
+            "column": 42
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "a",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 6
+          },
+          "end": {
+            "line": 8,
+            "column": 18
+          }
+        },
+        "context": "JSXExpression",
+        "element": "div",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 16
+          },
+          "end": {
+            "line": 10,
+            "column": 19
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "b",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 6
+          },
+          "end": {
+            "line": 8,
+            "column": 18
+          }
+        },
+        "context": "JSXExpression",
+        "element": "div",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/conditionals/Cond.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 33
+          },
+          "end": {
+            "line": 10,
+            "column": 36
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Slot Inner",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/edge-react-nodes/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 14
+          },
+          "end": {
+            "line": 4,
+            "column": 24
+          }
+        },
+        "context": "JSXText",
+        "element": "div",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/edge-react-nodes/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 24
+          },
+          "end": {
+            "line": 6,
+            "column": 36
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Price is $10",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/entities-rtl/Entities.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 9
+          },
+          "end": {
+            "line": 6,
+            "column": 31
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/entities-rtl/Entities.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 19
+          },
+          "end": {
+            "line": 8,
+            "column": 39
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Line 1\nLine 2",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/entities-rtl/Entities.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 9
+          },
+          "end": {
+            "line": 8,
+            "column": 27
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/entities-rtl/Entities.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 19
+          },
+          "end": {
+            "line": 10,
+            "column": 35
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hi {name}",
+    "placeholders": [
+      "name"
+    ],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/expressions/Expr.jsx",
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 9
+          },
+          "end": {
+            "line": 12,
+            "column": 14
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/expressions/Expr.jsx",
+        "loc": {
+          "start": {
+            "line": 22,
+            "column": 18
+          },
+          "end": {
+            "line": 22,
+            "column": 29
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "No items yet",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/expressions/Expr.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 19
+          },
+          "end": {
+            "line": 13,
+            "column": 37
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Empty",
+        "attribute": "title"
+      },
+      {
+        "file": "tests/fixtures/object-literals/ThirdParty.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 19
+          },
+          "end": {
+            "line": 7,
+            "column": 37
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Empty",
+        "attribute": "title"
+      },
+      {
+        "file": "tests/workspace/expressions/Expr.jsx",
+        "loc": {
+          "start": {
+            "line": 26,
+            "column": 29
+          },
+          "end": {
+            "line": 26,
+            "column": 43
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/object-literals/ThirdParty.jsx",
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 24
+          },
+          "end": {
+            "line": 15,
+            "column": 38
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hi {n}",
+    "placeholders": [
+      "n"
+    ],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/expressions/Expr.jsx",
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 9
+          },
+          "end": {
+            "line": 14,
+            "column": 32
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/expressions/Expr.jsx",
+        "loc": {
+          "start": {
+            "line": 28,
+            "column": 18
+          },
+          "end": {
+            "line": 28,
+            "column": 26
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Welcome {firstName}",
+    "placeholders": [
+      "firstName"
+    ],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/expressions/Expr.jsx",
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 9
+          },
+          "end": {
+            "line": 15,
+            "column": 18
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/tsx/App.tsx",
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 9
+          },
+          "end": {
+            "line": 12,
+            "column": 38
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/expressions/Expr.jsx",
+        "loc": {
+          "start": {
+            "line": 33,
+            "column": 18
+          },
+          "end": {
+            "line": 33,
+            "column": 39
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/tsx/App.tsx",
+        "loc": {
+          "start": {
+            "line": 26,
+            "column": 18
+          },
+          "end": {
+            "line": 26,
+            "column": 39
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Click-{name}",
+    "placeholders": [
+      "name"
+    ],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/filters/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 25,
+            "column": 17
+          },
+          "end": {
+            "line": 25,
+            "column": 34
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "img",
+        "attribute": "title"
+      },
+      {
+        "file": "tests/workspace/filters/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 39,
+            "column": 24
+          },
+          "end": {
+            "line": 39,
+            "column": 38
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Plain",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/findtext/Calls.jsx",
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 11
+          },
+          "end": {
+            "line": 4,
+            "column": 18
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/findtext/Calls.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 11
+          },
+          "end": {
+            "line": 6,
+            "column": 18
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "{arg1}:{arg2} min",
+    "placeholders": [
+      "arg1",
+      "arg2"
+    ],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/function-analysis/Sample.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 9
+          },
+          "end": {
+            "line": 8,
+            "column": 36
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/function-analysis/Sample.jsx",
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 18
+          },
+          "end": {
+            "line": 13,
+            "column": 37
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "{mins}:{arg2} min",
+    "placeholders": [
+      "mins",
+      "arg2"
+    ],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/function-analysis/Sample.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 9
+          },
+          "end": {
+            "line": 23,
+            "column": 30
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/function-analysis/Sample.jsx",
+        "loc": {
+          "start": {
+            "line": 32,
+            "column": 9
+          },
+          "end": {
+            "line": 32,
+            "column": 30
+          }
+        },
+        "context": "JSXExpression",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "View details",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 18
+          },
+          "end": {
+            "line": 8,
+            "column": 66
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Panel",
+        "attribute": "menu"
+      },
+      {
+        "file": "tests/fixtures/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 21
+          },
+          "end": {
+            "line": 9,
+            "column": 28
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Panel",
+        "attribute": "actions"
+      },
+      {
+        "file": "tests/workspace/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 27
+          },
+          "end": {
+            "line": 20,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 27
+          },
+          "end": {
+            "line": 30,
+            "column": 41
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Delete",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 18
+          },
+          "end": {
+            "line": 8,
+            "column": 66
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Panel",
+        "attribute": "menu"
+      },
+      {
+        "file": "tests/fixtures/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 21
+          },
+          "end": {
+            "line": 9,
+            "column": 28
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Panel",
+        "attribute": "actions"
+      },
+      {
+        "file": "tests/workspace/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 27
+          },
+          "end": {
+            "line": 23,
+            "column": 35
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 33,
+            "column": 27
+          },
+          "end": {
+            "line": 33,
+            "column": 35
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Click to open",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 23
+          },
+          "end": {
+            "line": 10,
+            "column": 38
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Widget",
+        "attribute": "hintText"
+      },
+      {
+        "file": "tests/workspace/heuristic-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 37,
+            "column": 33
+          },
+          "end": {
+            "line": 37,
+            "column": 48
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Visit",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Anchor.jsx",
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 8
+          },
+          "end": {
+            "line": 6,
+            "column": 6
+          }
+        },
+        "context": "JSXText",
+        "element": "h4",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "now",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Anchor.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 75
+          },
+          "end": {
+            "line": 8,
+            "column": 4
+          }
+        },
+        "context": "JSXText",
+        "element": "h4",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Go to {site}",
+    "placeholders": [
+      "site"
+    ],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Anchor.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 33
+          },
+          "end": {
+            "line": 6,
+            "column": 57
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "a",
+        "attribute": "title"
+      }
+    ]
+  },
+  {
+    "text": "Obi is a boy",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Collapse.jsx",
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 8
+          },
+          "end": {
+            "line": 7,
+            "column": 6
+          }
+        },
+        "context": "JSXText",
+        "element": "h1",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/html-collapse/HeadingSpan.jsx",
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 8
+          },
+          "end": {
+            "line": 5,
+            "column": 19
+          }
+        },
+        "context": "JSXText",
+        "element": "h1",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "from",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Multiple.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 28
+          },
+          "end": {
+            "line": 8,
+            "column": 6
+          }
+        },
+        "context": "JSXText",
+        "element": "h2",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "dear",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Multiple.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 14
+          },
+          "end": {
+            "line": 6,
+            "column": 18
+          }
+        },
+        "context": "JSXText",
+        "element": "strong",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "_blank",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Multiple.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 34
+          },
+          "end": {
+            "line": 8,
+            "column": 42
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "a",
+        "attribute": "target"
+      }
+    ]
+  },
+  {
+    "text": "noopener",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Multiple.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 47
+          },
+          "end": {
+            "line": 8,
+            "column": 57
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "a",
+        "attribute": "rel"
+      }
+    ]
+  },
+  {
+    "text": "Welcome",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Nested.jsx",
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 8
+          },
+          "end": {
+            "line": 6,
+            "column": 6
+          }
+        },
+        "context": "JSXText",
+        "element": "h3",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/skip-cases/Skip.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 9
+          },
+          "end": {
+            "line": 8,
+            "column": 17
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "and thanks",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/html-collapse/Nested.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 46
+          },
+          "end": {
+            "line": 8,
+            "column": 4
+          }
+        },
+        "context": "JSXText",
+        "element": "h3",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "You will be charged",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/merge-inline/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 87
+          },
+          "end": {
+            "line": 7,
+            "column": 28
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "at $",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/merge-inline/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 48
+          },
+          "end": {
+            "line": 7,
+            "column": 53
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "from your next billing cycle",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/merge-inline/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 120
+          },
+          "end": {
+            "line": 8,
+            "column": 6
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Sorry, Learngual",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/merge-inline/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 10
+          },
+          "end": {
+            "line": 9,
+            "column": 27
+          }
+        },
+        "context": "JSXText",
+        "element": "h2",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "is not available in your region",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/merge-inline/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 33
+          },
+          "end": {
+            "line": 9,
+            "column": 65
+          }
+        },
+        "context": "JSXText",
+        "element": "h2",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Save",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/missing-init/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 27
+          },
+          "end": {
+            "line": 3,
+            "column": 31
+          }
+        },
+        "context": "JSXText",
+        "element": "button",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/missing-init/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 54
+          },
+          "end": {
+            "line": 5,
+            "column": 60
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Dialogue Question",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 14
+          },
+          "end": {
+            "line": 9,
+            "column": 33
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "TestQuestionWrapper",
+        "attribute": "title"
+      },
+      {
+        "file": "tests/workspace/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 24
+          },
+          "end": {
+            "line": 17,
+            "column": 43
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "View in a flow diagram",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 21
+          },
+          "end": {
+            "line": 13,
+            "column": 10
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "TestQuestionWrapper",
+        "attribute": "dropdownList"
+      },
+      {
+        "file": "tests/workspace/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 28
+          },
+          "end": {
+            "line": 20,
+            "column": 52
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "View as dialogue",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 21
+          },
+          "end": {
+            "line": 13,
+            "column": 10
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "TestQuestionWrapper",
+        "attribute": "dropdownList"
+      },
+      {
+        "file": "tests/workspace/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 28
+          },
+          "end": {
+            "line": 23,
+            "column": 46
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Open",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 18
+          },
+          "end": {
+            "line": 15,
+            "column": 27
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Menu",
+        "attribute": "items"
+      },
+      {
+        "file": "tests/fixtures/non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 18
+          },
+          "end": {
+            "line": 8,
+            "column": 22
+          }
+        },
+        "context": "JSXText",
+        "element": "section",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 28
+          },
+          "end": {
+            "line": 30,
+            "column": 34
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 28
+          },
+          "end": {
+            "line": 11,
+            "column": 34
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Close",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 18
+          },
+          "end": {
+            "line": 15,
+            "column": 27
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Menu",
+        "attribute": "items"
+      },
+      {
+        "file": "tests/workspace/nested-attrs/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 33,
+            "column": 28
+          },
+          "end": {
+            "line": 33,
+            "column": 35
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Panel Title",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 16
+          },
+          "end": {
+            "line": 15,
+            "column": 29
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "h3",
+        "attribute": "title"
+      },
+      {
+        "file": "tests/workspace/non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 26
+          },
+          "end": {
+            "line": 19,
+            "column": 39
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Click me",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 30
+          },
+          "end": {
+            "line": 15,
+            "column": 38
+          }
+        },
+        "context": "JSXText",
+        "element": "h3",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/non-component-jsx/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 52
+          },
+          "end": {
+            "line": 19,
+            "column": 62
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Page",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/numeric-expr/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 18,
+            "column": 9
+          },
+          "end": {
+            "line": 18,
+            "column": 14
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Add your first item",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/object-literals/ThirdParty.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 50
+          },
+          "end": {
+            "line": 7,
+            "column": 74
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Empty",
+        "attribute": "description"
+      },
+      {
+        "file": "tests/workspace/object-literals/ThirdParty.jsx",
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 30
+          },
+          "end": {
+            "line": 16,
+            "column": 51
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Welcome {name}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/preexisting-translation/Component.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 24
+          },
+          "end": {
+            "line": 9,
+            "column": 40
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/preexisting-translation/Component.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 16
+          },
+          "end": {
+            "line": 9,
+            "column": 32
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/skip-cases/Skip.jsx",
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 27
+          },
+          "end": {
+            "line": 16,
+            "column": 43
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "world",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/skip-cases/Skip.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 19
+          },
+          "end": {
+            "line": 9,
+            "column": 24
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "top",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/tooltip-select/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 12
+          },
+          "end": {
+            "line": 7,
+            "column": 17
+          }
+        },
+        "context": "JSXAttribute",
+        "element": "Tooltip",
+        "attribute": "place"
+      },
+      {
+        "file": "tests/workspace/tooltip-select/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 22
+          },
+          "end": {
+            "line": 10,
+            "column": 27
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Word Translation",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 78,
+            "column": 21
+          },
+          "end": {
+            "line": 78,
+            "column": 37
+          }
+        },
+        "context": "JSXText",
+        "element": "CardTitle",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 67,
+            "column": 31
+          },
+          "end": {
+            "line": 67,
+            "column": 49
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "English",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 81,
+            "column": 15
+          },
+          "end": {
+            "line": 81,
+            "column": 23
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/fixtures/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 97,
+            "column": 15
+          },
+          "end": {
+            "line": 97,
+            "column": 23
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 70,
+            "column": 25
+          },
+          "end": {
+            "line": 70,
+            "column": 34
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 86,
+            "column": 25
+          },
+          "end": {
+            "line": 86,
+            "column": 34
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Communication",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 85,
+            "column": 18
+          },
+          "end": {
+            "line": 85,
+            "column": 31
+          }
+        },
+        "context": "JSXText",
+        "element": "CardBody",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 74,
+            "column": 28
+          },
+          "end": {
+            "line": 74,
+            "column": 43
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Word meaning",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/fixtures/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 94,
+            "column": 13
+          },
+          "end": {
+            "line": 94,
+            "column": 25
+          }
+        },
+        "context": "JSXText",
+        "element": "p",
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/user-card/CardContainer.jsx",
+        "loc": {
+          "start": {
+            "line": 83,
+            "column": 23
+          },
+          "end": {
+            "line": 83,
+            "column": 37
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Visit {site} now",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/workspace/html-collapse/Anchor.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 25
+          },
+          "end": {
+            "line": 9,
+            "column": 43
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Obi is a boy {gender}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/workspace/html-collapse/Collapse.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 25
+          },
+          "end": {
+            "line": 9,
+            "column": 48
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      },
+      {
+        "file": "tests/workspace/html-collapse/HeadingSpan.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 25
+          },
+          "end": {
+            "line": 9,
+            "column": 48
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Hello {arg1} {role} from {site}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/workspace/html-collapse/Multiple.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 25
+          },
+          "end": {
+            "line": 9,
+            "column": 58
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Welcome {highlight} and thanks",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/workspace/html-collapse/Nested.jsx",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 25
+          },
+          "end": {
+            "line": 9,
+            "column": 57
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "You will be charged {name} at $ {arg2} from your next billing cycle",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/workspace/merge-inline/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 10
+          },
+          "end": {
+            "line": 16,
+            "column": 79
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Sorry, Learngual {text} is not available in your region",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/workspace/merge-inline/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 18
+          },
+          "end": {
+            "line": 24,
+            "column": 75
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  },
+  {
+    "text": "Page {idx}{arg2}",
+    "placeholders": [],
+    "occurrences": [
+      {
+        "file": "tests/workspace/numeric-expr/Example.jsx",
+        "loc": {
+          "start": {
+            "line": 29,
+            "column": 18
+          },
+          "end": {
+            "line": 29,
+            "column": 36
+          }
+        },
+        "context": "findText",
+        "element": null,
+        "attribute": null
+      }
+    ]
+  }
+]

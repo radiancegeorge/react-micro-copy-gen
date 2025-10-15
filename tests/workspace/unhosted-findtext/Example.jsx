@@ -2,7 +2,7 @@ import React from 'react';
 
 // findText used outside a component
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite/wordStore.json';
+import wordStore from '../../../mc-out/wordStore.json';
 const jsx = (
   <div>
     <img alt={'Info'} />

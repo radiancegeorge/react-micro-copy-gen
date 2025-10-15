@@ -887,8 +887,13 @@ function injectFindTextIntoFunction(path, hookLocalName, wordStoreLocalName) {
 function makeFindTextCallFromTemplateString(text, kwargsEntries) {
   const args = [t.stringLiteral(text)];
   if (kwargsEntries && kwargsEntries.length) {
-    const props = kwargsEntries.map(([key, expr]) => t.objectProperty(t.identifier(key), expr));
-    args.push(t.objectExpression(props));
+    const filtered = kwargsEntries.filter(([, expr]) => expr && !t.isJSXEmptyExpression(expr));
+    if (filtered.length) {
+      const props = filtered.map(([key, expr]) =>
+        t.objectProperty(t.identifier(key), expr)
+      );
+      args.push(t.objectExpression(props));
+    }
   }
   return t.callExpression(t.identifier('findText'), args);
 }
@@ -1572,6 +1577,9 @@ async function rewriteFile(absPath, code, config) {
           // Ignore pure spaces like {' '}
           if (t.isStringLiteral(ch.expression) && /^\s+$/.test(ch.expression.value)) {
             newChildren.push(ch);
+            continue;
+          }
+          if (t.isJSXEmptyExpression(ch.expression)) {
             continue;
           }
           // Skip wrapping if the expression yields JSX or a map over items (node-like)

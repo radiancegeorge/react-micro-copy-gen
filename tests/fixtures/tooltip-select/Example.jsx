@@ -1,10 +1,13 @@
 import React from 'react';
 import Tooltip from 'some-lib';
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../../mc-out/wordStore.json';
 export default function Demo({ value }) {
+  const { findText } = useTranslation(wordStore);
   return (
     <Tooltip
       anchorSelect=".rc-slider-handle"
-      place="top"
+      place={findText('top')}
       variant="info"
       content={value}
       id="my-tooltip"

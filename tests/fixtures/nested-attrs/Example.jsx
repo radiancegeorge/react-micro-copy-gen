@@ -1,18 +1,39 @@
 import React from 'react';
-
-const actions = [{ label: 'Open' }, { label: 'Close' }];
-
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../../mc-out/wordStore.json';
+const actions = [
+  {
+    label: 'Open',
+  },
+  {
+    label: 'Close',
+  },
+];
 export default function Demo() {
+  const { findText } = useTranslation(wordStore);
   return (
     <div>
       <TestQuestionWrapper
-        title="Dialogue Question"
+        title={findText('Dialogue Question')}
         dropdownList={[
-          { value: 'View in a flow diagram' },
-          { value: 'View as dialogue' },
+          {
+            value: findText('View in a flow diagram'),
+          },
+          {
+            value: findText('View as dialogue'),
+          },
         ]}
       />
-      <Menu items={actions} />
+      <Menu
+        items={[
+          {
+            label: findText('Open'),
+          },
+          {
+            label: findText('Close'),
+          },
+        ]}
+      />
     </div>
   );
 }

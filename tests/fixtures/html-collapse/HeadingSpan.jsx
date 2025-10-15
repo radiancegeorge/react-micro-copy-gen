@@ -1,8 +1,7 @@
 import React from 'react';
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../../mc-out/wordStore.json';
 export default function HeadingSpan({ child }) {
-  return (
-    <h1>
-      Obi is a boy <span>{child?.gender}</span>
-    </h1>
-  );
+  const { findText } = useTranslation(wordStore);
+  return <h1>{findText('Obi is a boy')}</h1>;
 }

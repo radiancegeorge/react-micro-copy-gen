@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'l-min-components/src/components';
-import wordStore from '../../output-rewrite/wordStore.json';
+import wordStore from '../../../mc-out/wordStore.json';
 export default function HeadingSpan({ child }) {
   const { findText } = useTranslation(wordStore);
   return (

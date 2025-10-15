@@ -1,9 +1,11 @@
 import React from 'react';
 
 // findText used outside a component
+import { useTranslation } from 'l-min-components/src/components';
+import wordStore from '../../../mc-out/wordStore.json';
 const jsx = (
   <div>
-    <img alt={findText('Info')} />
+    <img alt={'Info'} />
   </div>
 );
 
@@ -11,12 +13,12 @@ const jsx = (
 function renderToast() {
   return (
     <>
-      <img alt={findText('')} />
+      <img alt={''} />
     </>
   );
 }
-
 export default function Demo({ message }) {
+  const { findText } = useTranslation(wordStore);
   // inside component, should keep findText wrapping
   return (
     <div>
